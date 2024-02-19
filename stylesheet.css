@@ -80,9 +80,9 @@
 
 
 a {
-  color: #3900F0;
+  /*color: #3900F0;*/
   /*color: #3D00FF;*/
-  /*color: #3600E3;*/
+  color: #3600E3;
   text-decoration: none;
 }
 
