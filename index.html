@@ -129,7 +129,7 @@
               </tr>
 
               <!---Publication-->
-              <tr>
+              <tr onmouseout="hearing_stop()" onmouseover="hearing_start()">
                 <td style="padding:20px; width:25%; vertical-align:middle">
                   <div class="two" id='hearing_image'>
                       <video width="100%" muted autoplay loop>
@@ -139,7 +139,16 @@
                     </div>
                     <img src='images/papers/hearinganything/hearing.png' width="100%">
                   </div>
-                </td>
+                  <script type="text/javascript">
+                    function hearing_start() {
+                      document.getElementById('hearing_image').style.opacity = "1";
+                    }
+                    function hearing_stop() {
+                      document.getElementById('hearing_image').style.opacity = "0";
+                    }
+                    hearing_stop()
+                  </script>
+                </td>                
                 <td style="padding:20px;width:75%;vertical-align:middle">
                   <span class="papertitle">Hearing Anything Anywhere</span>
                   <br>
