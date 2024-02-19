@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z53Z9PX0CL"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z53Z9PX0CL');
+    </script>
+    <title>SoundCam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" crossorigin="anonymous">
+</head>
+
+<body class="light">
+    <div id="header">
+        <a class="header-title" href="./">SoundCam</a>
+        <div class="header-links">
+            <a class="header-link" href="#abstract">ABSTRACT</a>
+            <a class="header-link" href="#rooms">ROOMS</a>
+            <a class="header-link" href="#tasks">TASKS</a>
+            <a class="header-link" href="#video">VIDEO</a>
+            <a class="header-link" href="#dataset">DATASET</a>
+            <a class="header-link" href="#bibtex">BIBTEX</a>
+        </div>
+        <div id="color-mode-wrap">
+            <div id="color-light" class="color-mode">
+                <i class="color-mode-icon fa-regular fa-sun"></i>
+                <span>Light</span>
+            </div>
+            <div id="color-dark" class="color-mode">
+                <i class="color-mode-icon fa-regular fa-moon"></i>
+                <span>Dark</span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>SoundCam: A Dataset for Finding Humans Using Room Acoustics</h1>
+        <h3>NeurIPS 2023 Datasets and Benchmarks</h3>
+        <div class="authors">
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://masonlwang.com">Mason Wang*</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://samuelpclarke.com/">Samuel Clarke*</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+        </div>
+        <div class="authors">
+            <div class="author">
+                <div class="author-name">
+                    <a href="http://juiwang.com/">Jui-Hsien Wang</a>
+                </div>
+                <div class="author-uni">Adobe</div>
+            </div>
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://ai.stanford.edu/~rhgao/">Ruohan Gao</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://jiajunwu.com/">Jiajun Wu</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+        </div>
+        <div class="links">
+            <div class="link">
+                <a href="https://arxiv.org/pdf/2311.03517.pdf" target="_blank" rel="noopener noreferrer">
+                <i class="link-icon fa-solid fa-file-lines"></i>
+                <div class="link-text">paper</div>
+                </a>
+            </div>
+            <div class="link">
+                <a href="#dataset">
+                <i class="link-icon fa-solid fa-database"></i>
+                <div class="link-text">dataset</div>
+                </a>
+            </div>
+            <div class="link">
+                <a href="https://github.com/samuel-clarke/RealImpact" target="_blank" rel="noopener noreferrer">
+                <i class="link-icon fa-brands fa-github"></i>
+                <div class="link-text">code</div>
+                </a>
+            </div>
+            <!-- <div class="link">
+                <a href="RealImpact_appendix.pdf" target="_blank" rel="noopener noreferrer">
+                <i class="link-icon fa-solid fa-file-lines"></i>
+                <div class="link-text">appendix</div>
+                </a>
+            </div> -->
+        </div>
+        <div class="section" id="abstract">
+            <h2 class="section-title">Abstract</h2>
+            <p class="abstract-text">
+                A room’s acoustic properties are a product of the room’s geometry, as well as the objects within 
+                the room and their specific positions. A room’s acoustic properties can be characterized by its 
+                impulse response (RIR) between a source and listener location, or inferred roughly from recordings 
+                of natural signals present in the room. We present SoundCam, the largest dataset of unique RIRs from 
+                in-the-wild rooms released to date publicly. It includes 5,000 10-channel real-world measurements 
+                of room impulse responses and 2,000 10-channel recordings of music in three different rooms, 
+                including a controlled acoustic lab, an in-the-wild living room, and a conference room, with 
+                different humans in positions throughout each room. We show that these measurements can be used for 
+                interesting tasks, such as detecting and identifying the human, and tracking their position. 
+            </p>
+        </div>
+        <div class="section" id="rooms">
+            <h2 class="section-title">Rooms</h2>
+            <div class="rooms-image-container">
+                <div class="image-wrapper">
+                    <h3>Dark Room</h3>
+                    <img src="./images/darkroomEdited.JPG" alt="Dark Room" />
+                </div>
+                <div class="image-wrapper">
+                    <h3>Living Room</h3>
+                    <img src="./images/Chris596Edited.JPG" alt="Living Room" />
+                </div>
+                <div class="image-wrapper">
+                    <h3>Conference Room</h3>
+                    <img src="./images/Conference619Edited.JPG" alt="Conference Room" />
+                </div>
+            </div>
+
+            <div class="rooms-text" display="flex">
+                In each room, we collect 1000 measurements of the room's acoustic impulse response, while 
+                varying the location, presence, and identity of a human in the room. Each impulse response is 
+                measured from 10 microphones.
+            </div>
+        </div>
+        <div class="section" id="tasks">
+            <h2 class="section-title">Tasks</h2>
+            <p class="abstract-text">
+                The SoundCam dataset can be used to evaluate methods which:
+                <ul>
+                    <li>Locate humans using room impulse responses</li>
+                    <li>Identify which human is in a room using room impulses responses</li>
+                    <li>Locate humans while music is playing in the room</li>
+                    <li>Determine if someone is present in the room while music is playing</li>
+                    <li>Generalize localization methods to other individuals</li>
+                    <li>Test robustness of localization methods to changes in room layout</li>
+                </ul>
+            </p>
+            <p class="abstract-text">
+                Below, we show some results from our best performing baseline for localization using a single RIR, in the acoustically treated room.
+
+                <div class="img-container">
+                    <img width="80%" class="gif" src="./images/localization.gif" />
+                </div>
+            </p>
+        </div>
+        <div class="section" id="video">
+            <h2 class="section-title">Video</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/HAhJLgj8maI"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen class="video"></iframe>
+        </div>
+        <div class="section" id="dataset">
+            <h2 class="section-title">Dataset</h2>
+            <p class="abstract-text">
+                The dataset is hosted by the Stanford Data Repository:
+                <a href="https://purl.stanford.edu/xq364hd5023" target="_blank" rel="noopener noreferrer">https://purl.stanford.edu/xq364hd5023</a>
+            </p>
+            <p class="abstract-text">
+                The compressed archives include both raw recordings and preprocessed impulse responses for all the subdatasets used in our experiments.
+                Subdatasets are sorted by room, with some rooms' archives including recordings and data from more than one distinct experiment.
+                3Dscans.tar.gz includes textured 3D scans of each room, along with 3D scans of each human in the dataset (untextured to preserve anonymity).
+            </p>
+            <h3>Sample Dataset</h3>
+            <p class="abstract-text">  
+                We provide a small downloadable sample dataset: <a href="https://drive.google.com/uc?export=download&id=1s7UDxUkaASWDuEWQrUDA6p_7COIofaOi" target="_blank" rel="noopener noreferrer">Download TreatedRoomSmallSet</a>
+                The files are from the Treated Room, preprocessed, but the number of data points has been significantly reduced. Information on the data's organization is included below.
+            </p>
+            <h3>Dataset Organization</h3>
+            <p class="abstract-text"> 
+                The preprocessed data will serve most use cases. Its organization is as follows:
+            </p>
+            <h4>Hierarchy</h4>
+            <p class="abstract-text"> 
+                Each subdataset file contains
+                <ul>
+                    <li>One folder for each human in the dataset</li>
+                    <li>A folder for the empty room</li>
+                </ul>
+            </p>
+            <h4>Preprocessed Files</h4>
+            <p class="abstract-text"> 
+                Each data folder contains some or all of these files:
+                <ul>
+                    <li>audio.npy - the recordings of each sweep, arranged by [N_datapoints, N_Microphones, N_samples]</li>
+                    <li>adjusted_audio.npy - audio.npy, but time-adjusted such that the audio files from all datapoints
+                        are time-aligned, using the method described in Appendix E.3.</li>
+                    <li>centroid.npy - the x,y locations of the human in the room. Shape is [N_datapoints, 2]</li>
+                    <li>deconvolved.npy - the RIRs. Shape is [N_datapoints, N_Microphones, N_samples]</li>
+                    <li>directlines.npy - the sweep signal as measured from a loopback signal, where the output of 
+                        the audio interface is routed directly into an input. This is used to estimate the delay in the system. 
+                        The shape is [N_datapoints, N_samples]</li>
+                    <li>skeletons.npy - the poses and joint locations as captured by each of the three cameras. The shape is [N_datapoints, N_Cameras, N_joints, 3]. 
+                        The indexing of the joints is provided
+                        <a href="https://learn.microsoft.com/en-us/azure/kinect-dk/body-joints" target="_blank" rel="noopener noreferrer">here</a>.</li>
+                    <li>music_audio.npy - the recordings of each music file, arranged by [N_datapoints, N_Microphones, N_samples]</li>
+                    <li>adjusted_music.npy - music_audio.npy, but time-adjusted such that the audio files from all datapoints are time-aligned, 
+                        using the method described in Appendix E.3.</li>
+                    <li>music_directlines.npy -  the music signal as measured from a loopback signal, where the output of the audio interface is routed directly into an input. 
+                        This is used to estimate the delay in the system. The shape is [N_datapoints, N_samples]</li>
+                    <li>music_deconvolved.npy - RIRs as measured by deconvolving the music source from the music recording. Shape is 
+                        [N_datapoints, N_Microphones, N_samples]</li>
+                    <li>music_sources.npy - the source signal of each music file. Shape is [N_datapoints, N_samples]</li>
+                </ul>
+            </p>
+            <h4>Raw Files</h4>
+            <p class="abstract-text"> 
+                The raw files are provided for completeness. Each folder contains raw recordings from each of the recording channels, 
+                as well as the skeletal poses from each camera, and depth maps.
+            </p>
+            <h3>Maintenance</h3>
+            <p class="abstract-text">
+                Mason Wang and Samuel Clarke are maintaining the dataset. Mason Wang can be contacted at <a href = "mailto: ycda@stanford.edu">ycda@stanford.edu</a>, 
+                and Samuel Clarke can be contacted at <a href = "mailto: spclarke@stanford.edu">spclarke@stanford.edu</a>.
+            </p>
+            <p class="abstract-text">   
+                Please contact us if you notice any errors with the dataset. To the extent that we notice errors, they will be fixed 
+                and the dataset will be updated. Previous versions of the dataset will be maintained. Errors and previous versions will be posted below.
+            </p>
+        </div>
+        <div class="section" id="bibtex">
+            <!-- TODO: Fix the booktitle when this gets published. -->
+            <h2 class="section-title">BibTex</h2>
+            <pre id="citation">@inproceedings{wang2023soundcam,
+    title={SoundCam: A Dataset for Finding Humans Using Room Acoustics},
+    author={Mason Wang and Samuel Clarke and Jui-Hsien Wang and Ruohan Gao and Jiajun Wu},
+    booktitle={Advances in Neural Informaion Processing Systems},
+    year={2023}
+}</pre>
+        </div>
+        <div id="footer">
+            <div class="footer-text">Template created by <a href="https://github.com/ryan-d-williams"
+                    class="template-creator">Ryan Williams</a></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("color-mode-wrap").addEventListener("click", () => {
+            document.body.classList.toggle("light");
+            document.body.classList.toggle("dark");
+        });
+    </script>
+</body>
+
+</html>

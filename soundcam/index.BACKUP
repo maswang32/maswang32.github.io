@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RealImpact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" crossorigin="anonymous">
+</head>
+
+<body class="light">
+    <div id="header">
+        <a class="header-title" href="./">RealImpact</a>
+        <div class="header-links">
+            <a class="header-link" href="#abstract">ABSTRACT</a>
+            <a class="header-link" href="#video">VIDEO</a>
+            <a class="header-link" href="#bibtex">BIBTEX</a>
+        </div>
+        <div id="color-mode-wrap">
+            <div id="color-light" class="color-mode">
+                <i class="color-mode-icon fa-regular fa-sun"></i>
+                <span>Light</span>
+            </div>
+            <div id="color-dark" class="color-mode">
+                <i class="color-mode-icon fa-regular fa-moon"></i>
+                <span>Dark</span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>RealImpact: A Dataset of Impact Sound Fields for Real Objects</h1>
+        <div class="authors">
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://samuelpclarke.com/">Samuel Clarke</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://ai.stanford.edu/~rhgao/">Ruohan Gao</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://www.linkedin.com/in/mason-wang-3b5288104/">Mason Wang</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://ccrma.stanford.edu/~mrau/">Mark Rau</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://www.linkedin.com/in/julia-xu-709167127">Julia Xu</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+            <div class="author">
+                <div class="author-name">
+                    <a href="http://juiwang.com/">Jui-Hsien Wang</a>
+                </div>
+                <div class="author-uni">Adobe</div>
+            </div>
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://jiajunwu.com/">Doug James</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+            <div class="author">
+                <div class="author-name">
+                    <a href="https://graphics.stanford.edu/~djames/">Jiajun Wu</a>
+                </div>
+                <div class="author-uni">Stanford</div>
+            </div>
+        </div>
+        <div class="links">
+            <div class="link">
+                <a href="https://github.com/samuel-clarke/RealImpact" target="_blank" rel="noopener noreferrer">
+                <i class="link-icon fa-brands fa-github"></i>
+                <div class="link-text">code</div>
+                </a>
+            </div>
+            <div class="link">
+                <a href="RealImpact.pdf" target="_blank" rel="noopener noreferrer">
+                <i class="link-icon fa-solid fa-file-lines"></i>
+                <div class="link-text">paper</div>
+                </a>
+            </div>
+            <div class="link">
+                <a href="RealImpact_appendix.pdf" target="_blank" rel="noopener noreferrer">
+                <i class="link-icon fa-solid fa-file-lines"></i>
+                <div class="link-text">appendix</div>
+                </a>
+            </div>
+        </div>
+        <div class="section" id="abstract">
+            <h2 class="section-title">Abstract</h2>
+            <p class="abstract-text">
+                Objects make unique sounds under different perturbations, environment conditions, and poses relative to
+                the listener. While prior works have modeled impact sounds and sound propagation in simulation, we lack
+                a standard dataset of impact sound fields of real objects for audio-visual learning and calibration of
+                the sim-to-real gap.
+                <span class="p-strong">We present RealImpact, a large-scale dataset of real
+                    object impact
+                    sounds
+                    recorded under
+                    controlled conditions.</span>
+                RealImpact contains <span class="p-strong">150,000</span> recordings of impact sounds of <span
+                    class="p-strong">50 everyday
+                    objects</span> with <span class="p-strong">detailed
+                    annotations</span>, including their impact locations, microphone locations, contact force profiles,
+                material
+                labels, and RGBD images. We make preliminary attempts to use our dataset as a reference to current
+                simulation methods for estimating object impact sounds that match the real world. Moreover, we
+                demonstrate the usefulness of our dataset as a testbed for acoustic and audio-visual learning via the
+                evaluation of two benchmark tasks, including listener location classification and visual acoustic
+                matching.
+            </p>
+
+        </div>
+        <div class="section" id="video">
+            <h2 class="section-title">Video</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/GQpdFihVEE4"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+        <div class="section" id="bibtex">
+            <h2 class="section-title">BibTex</h2>
+            <pre id="citation">@inproceedings{clarke2023realimpact,
+    title={RealImpact: A Dataset of Impact Sound Fields for Real Objects},
+    author={Samuel Clarke and Ruohan Gao and Mason Wang and Mark Rau and Julia Xu and Jui-Hsien Wang and Doug L. James and Jiajun Wu},
+    booktitle={Proceedings of the IEEE International Conference on Computer Vision and Pattern Recognition},
+    year={2023}
+}</pre>
+        </div>
+        <div id="footer">
+            <div class="footer-text">Template created by <a href="https://github.com/ryan-d-williams"
+                    class="template-creator">Ryan Williams</a></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("color-mode-wrap").addEventListener("click", () => {
+            document.body.classList.toggle("light");
+            document.body.classList.toggle("dark");
+        })
+    </script>
+</body>
+
+</html>
