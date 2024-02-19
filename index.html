@@ -1,1 +1,426 @@
-"this world"
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Mason L. Wang</title>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+
+
+
+<body>
+  <table class="main-content"
+    style="width:100%;max-width:860px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    <tbody>
+      <tr style="padding:20px">
+        <td style="padding:20px">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!--Introduction-->
+          <table
+            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <tbody>
+              <tr style="padding:0px">
+                <td style="padding:2.5%;width:63%;vertical-align:middle">
+                  <p class="name" style="text-align: center;">
+                    Mason L. Wang
+                  </p>
+                  <p>I am a master's student in EE at Stanford University working at the <a
+                      href="https://svl.stanford.edu/">Stanford Vision and Learning Lab</a>. I am currently advised by
+                    <a href="https://jiajunwu.com/">Jiajun Wu</a> and <a href="http://web.stanford.edu/~pilanci/">Mert
+                      Pilanci</a>. My research is at the intersection of audio, machine learning, and signal processing.
+                  </p>
+                  <p>
+                    You can contact me at <span class="courier-font">ycda [at] stanford [dot] edu</span>.
+                    <!--or find me on
+                    <a href="https://twitter.com/masonlongwang">Twitter</a>.--> 
+                  </p>
+                </td>
+                <td style="padding:2.5%;width:40%;max-width:40%">
+                  <a href="images/me/MasonLWang.jpg"><img
+                      style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo"
+                      src="images/me/MasonLWang.jpg" class="hoverZoomLink"></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          
+
+
+
+
+
+
+
+
+
+          
+          
+          <!--Research Interests-->
+          <table
+            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <tbody>
+              <tr>
+                <td style="padding:20px;width:100%;vertical-align:middle">
+                  <h2>Research Interests</h2>
+                  <p>
+                    <strong>Capturing Real Auditory Scenes:</strong> Recently, my work has been on virtualizing real
+                    auditory scenes and acoustic spaces. For instance, imagine being able to capture a video of a
+                    concert, and then move around the concert space freely. Or, imagine being able to capture the
+                    intrinsic acoustic properties of your living room, in a way that allows you to listen to your
+                    favorite artist there.
+                  </p>
+                  <p>
+                    <strong>Differentiable and Inverse Audio Rendering:</strong> Audio renderers often require slow and
+                    non-differentiable techniques. This makes it difficult to fit to real scenes via gradient-based
+                    optimization processes, and thus, often results in audio simulations that are not accurate to the
+                    real-world sounds they attempt to replicate. Inspired by visual inverse rendering and capture
+                    techniques, I believe combining physical inductive biases with machine learning can help make fit
+                    simulations to real scenes, and thus make them more accurate.
+                  </p>
+                  <p>
+                    <strong>AI assisted Sound Design and music-making:</strong> Making music requires many steps:
+                    writing melodies/themes, chord progressions, arrangement, sound design, mixing, mastering, etc. It
+                    is too difficult to be good at all of them. My goal is to provide musical artists with controllable
+                    assistance for parts of the music-making process they are unfamiliar with.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          
+          <!--Publications-->
+          <table style="width:100%; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto;">
+            <tbody>
+              <tr>
+                <td style="padding:20px; width:100%; vertical-align:middle;" colspan="2">
+                  <h2>Publications</h2>
+                </td>
+              </tr>
+
+              <!---Publication-->
+              <tr>
+                <td style="padding:20px; width:25%; vertical-align:middle">
+                  <div class="two" id='hearing_image'>
+                      <video width="100%" muted autoplay loop>
+                        <source src="images/papers/hearinganything/Hearing_Clip.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    <img src='images/papers/hearinganything/hearing.png' width="100%">
+                  </div>
+                </td>
+                <td style="padding:20px;width:75%;vertical-align:middle">
+                  <span class="papertitle">Hearing Anything Anywhere</span>
+                  <br>
+                  <strong>Mason L. Wang*</strong>,
+                  <a href="https://www.linkedin.com/in/rsawata?originalSubdomain=jp">Ryosuke Sawata*</a>,
+                  <a href="https://samuelpclarke.com/">Samuel P. Clarke</a>,
+                  <a href="https://ruohangao.github.io/">Ruohan Gao</a>,
+                  <a href="https://elliottwu.com/">Shangzhe Wu</a>,
+                  <a href="https://jiajunwu.com/">Jiajun Wu</a>
+                  <br>
+                  <em>In Submission</em>, 2024
+                  <br>
+                  <a href="https://www.youtube.com/watch?v=SHMy72fzU4Y">video</a>
+                  <p>
+                   We create a method of capturing real acoustic spaces from 12 RIR measurements, allowing you to listen to any audio signal being played in the room from any location and orientation. We develop an 'audio inverse-rendering framework' that allows us to synthesize the room's acoustics at novel locations and create immersive auditory experiences.
+                  </p>
+                </td>
+              </tr>
+
+
+
+              <!---Publication 1-->
+              <tr onmouseout="soundcam_stop()" onmouseover="soundcam_start()">
+                <td style="padding:20px; width:25%; vertical-align:middle">
+                  <div class="two" id='soundcam_image'>
+                      <video width="100%" muted autoplay loop>
+                        <source src="images/papers/soundcam/SoundCamClip.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    <img src='images/papers/soundcam/SoundCam.jpg' width="100%">
+                  </div>
+                  <script type="text/javascript">
+                    function soundcam_start() {
+                      document.getElementById('soundcam_image').style.opacity = "1";
+                    }
+                    function soundcam_stop() {
+                      document.getElementById('soundcam_image').style.opacity = "0";
+                    }
+                    soundcam_stop()
+                  </script>
+                </td>
+                <td style="padding:20px;width:75%;vertical-align:middle">
+                  <a href="https://masonlwang.com/soundcam">
+                    <span class="papertitle">SoundCam: A Dataset for Finding Humans Using Room Acoustics</span>
+                  </a>
+                  <br>
+                  <strong>Mason L. Wang*</strong>,
+                  <a href="https://samuelpclarke.com/">Samuel P. Clarke</a>,
+                  <a href="http://juiwang.com/">Jui-Hsien Wang</a>,
+                  <a href="https://ruohangao.github.io/">Ruohan Gao</a>,
+                  <a href="https://jiajunwu.com/">Jiajun Wu</a>
+                  <br>
+                  <em>NeurIPS Datasets and Bencmharks</em>, 2023
+                  <br>
+                  <a href="https://masonlwang.com/soundcam">project page</a>
+                  /
+                  <a href="https://www.youtube.com/watch?v=HAhJLgj8maI&t=275s">video</a>
+                  /
+                  <a href="https://arxiv.org/abs/2311.03517">arXiv</a>
+                  <p>
+                    Humans induce subtle changes to the room's acoustic properties. We can observe these changes (explicitly via RIR measurement, or by playing and recording music in the room) and determine a person's location, presence, and identity.
+                  </p>
+                </td>
+              </tr>
+
+              <!---Publication 2-->
+              <tr>
+                <td style="padding:20px;width:25%;vertical-align:middle">
+                  <img src="images/papers/realimpact/realimpact.webp" alt="realimpact" width="160" height="160">
+                </td>  
+                <td style="padding:20px;width:75%;vertical-align:middle">
+                  <a href="https://samuelpclarke.com/realimpact/">
+                    <span class="papertitle">RealImpact: A Dataset of Impact Sound Fields for Real Objects</span>
+                  </a>
+                  <br>
+                  <a href="https://samuelpclarke.com/">Samuel P. Clarke</a>,
+                  <a href="https://ruohangao.github.io/">Ruohan Gao</a>,
+                  <strong>Mason L. Wang*</strong>,
+                  <a href="https://ccrma.stanford.edu/~mrau/">Mark Rau</a>,
+                  <a href="https://www.linkedin.com/in/julia-xu-709167127/">Julia Xu</a>,
+                  <a href="http://juiwang.com/">Jui-Hsien Wang</a>,
+                  <a href="https://graphics.stanford.edu/~djames/">Doug James</a>,
+
+                  <a href="https://jiajunwu.com/">Jiajun Wu</a>
+                  <br>
+                  <!--- #CC0066-->
+                  <em>CVPR</em>, 2023 &nbsp <font color="#FF004F"><strong>(Highlight, Top 2.5% of Submissions)</strong></font>
+                  <br>
+                  <a href="https://samuelpclarke.com/">project page</a>
+                  /
+                  <a href="https://www.youtube.com/watch?v=OeZMeze-oIs">video</a>
+                  /
+                  <a href="https://arxiv.org/abs/2306.09944">arXiv</a>
+                  <p>
+                    Everyday objects possess distinct sonic characteristics determined by their shape and material. <em>RealImpact</em> is the largest dataset of object impact sounds to date, with 150,000 recordings of impact sounds from 50 objects of varying shape and material.
+                  </p>
+                </td>
+              </tr>
+              
+
+
+              
+              
+
+
+
+
+
+
+
+
+
+
+
+            </tbody>
+          </table>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+          <!--Education and Experience-->
+          <table width="100%" cellpadding="20">
+            <tbody>
+              <tr>
+                <td style="padding:20px; width:100%; vertical-align:middle;" colspan="2">
+                  <h2>Education and Experience</h2>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/logos/SONY.webp" width="100%">
+                </td>
+                <td width="75%" valign="top">
+                  <div class="vpadded">
+                    <div class="sameline">
+                      <span class="schoolname">SONY AI</span>
+                      <span class="schoolyear">June 2024-August 2024</span>
+                    </div>
+                  </div>
+                  <div class="vpadded">
+                    <div class="vpadded">
+                      <span class="position"><b>Incoming Research Intern, Music Foundation Model Team</b></span>
+                    </div>
+                    <div class="vpadded">
+                      Tokyo, Japan
+                    </div>
+
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/logos/Stanford1.webp"
+                    width="100%"></td>
+                <td width="75%" valign="top">
+                  <div class="vpadded">
+                    <div class="sameline">
+                      <span class="schoolname"><span style="color: #8C1515;">Stanford University</span></span>
+                      <span class="schoolyear">September 2022-June 2024</span>
+                    </div>
+                  </div>
+                  <div class="vpadded">
+                    <div class="vpadded">
+                      <span class="position"><b>M.S. in Electrical Engineering</b></span>, specialization in Signal
+                      Processing and Optimization
+                    </div>
+                    <div class="vpadded">
+                      <strong>GPA: </strong> 4.27/4.3
+                      <br>
+                    </div>
+                    <div class="vpadded">
+                      <strong>Course Assistant </strong> for ENGR 108 (3x), EE 178 (1x)
+                      <br>
+
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:20px;width:25%;vertical-align:middle">
+                  <img src="images/logos/UChicago1.webp" alt="cs188" width=100%>
+                </td>
+                <td width="75%" valign="center">
+                  <div class="vpadded">
+                    <div class="sameline">
+                      <span class="schoolname"><span style="color: #800000;">The University of Chicago</span></span>
+                      <span class="schoolyear">October 2018-June 2022</span>
+                    </div>
+                  </div>
+                  <div class="vpadded">
+                    <span class="position"><b>B.S. in Computer Science</b></span> with a Specialization in Machine
+                    Learning
+                  </div>
+                  <div class="vpadded">
+                    <span class="position"><b>B.A. in Mathematics</b></span>
+                  </div>
+                  <div class="vpadded">
+                    <strong>GPA: </strong> 4.0/4.0
+                    <br>
+                  </div>
+                  <strong>Honors: </strong>Odyssey Scholar, Enrico Fermi Scholar, Robert Maynard Hutchins Scholar,
+                  Summa Cum Laude
+
+                  <br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          
+
+
+          <table width="100%" cellpadding="20">
+            <tbody>
+              <tr>
+                <td style="padding:20px; width:100%; vertical-align:middle;" colspan="2">
+                  <h2>Music Works</h2>
+                </td>
+              </tr>
+              <tr> 
+                <td>
+                  <iframe width="100%" height="150" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1011523867&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/cosmicsleepovers" title="cosm9000" target="_blank" style="color: #cccccc; text-decoration: none;">cosm9000</a> · <a href="https://soundcloud.com/cosmicsleepovers/deep-field-reflections" title="Deep Field Reflections" target="_blank" style="color: #cccccc; text-decoration: none;">Deep Field Reflections</a></div>              </td>
+              </tr>
+            </tbody>
+          </table>
+          
+
+
+
+
+
+
+
+          <!--Credits-->
+          <table
+            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <tbody>
+              <tr>
+                <td style="padding:0px">
+                  <br>
+                  <p style="text-align:center;font-size:small;">
+                    Website Template ft. <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron</a>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </td>
+      </tr>
+  </table>
+</body>
+
+</html>
