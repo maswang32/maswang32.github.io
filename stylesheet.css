@@ -80,7 +80,9 @@
 
 
 a {
-  color: #3600E3;
+  color: #3900F0;
+  /*color: #3D00FF;*/
+  /*color: #3600E3;*/
   text-decoration: none;
 }
 
@@ -213,6 +215,12 @@ span.highlight {
   max-width: 840px; /* Adjust based on your layout */
   padding: 20px; /* Adjust for spacing inside the container */
   color: #000; /* Explicitly setting text color for content within */
+}
+
+.highlight-top-submission {
+  /*color: #FF0056;*/
+  color: #FF004F; /* Sets the text color */
+  font-weight: bold; /* Makes the text bold */
 }
 
 
