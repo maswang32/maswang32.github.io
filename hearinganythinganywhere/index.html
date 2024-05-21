@@ -127,11 +127,39 @@
       </div>
     </div>
   </section>
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop" style="max-width: 1200px;">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths" style="width: 100%;">
+            <h2 class="title is-3">Overview</h2>
+            <div class="content has-text-justified" style="max-width: 100%; padding: 0 10px;">
+              <p>We aim to reconstruct the spatial acoustic characteristics of an environment using:</p>
+              <ul style="list-style-position: inside; margin-left: 0;">
+                <li>A sparse set of (roughly 12) <strong>monoaural room impulse response (RIR) recordings</strong>.</li>
+                <li>A rough <strong>planar reconstruction</strong> of the scene.</li>
+              </ul>
+
+              <p>We use these measurements to fit DIFFRIR, a differentiable RIR rendering framework with interpretable parametric models of salient
+                acoustic features of the scene, including sound source directivity. DIFFRIR can:</p>
+              <ul style="list-style-position: inside; margin-left: 0;">
+                <li>Render <strong>monoaural and binaural RIRs</strong> at new listener locations.</li>
+                <li>Render <strong>monoaural and binaural music</strong> at new listener locations.</li>
+                <li>Render <strong>monoaural and binaural music</strong> at new listener locations.</li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
+    
   <!-- Teaser video-->
   <section class="hero teaser">
     <div class="container is-max-desktop">
+      <h2 class="title is-3">Video Demonstration</h2>
       <div class="hero-body">
         <video poster="" id="tree" autoplay controls muted loop height="100%">
           <!-- Your video here -->
@@ -145,62 +173,8 @@
   </section>
   <!-- End teaser video -->
 
-  <!-- Paper abstract -->
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              Alongside immersive visual experiences, immersive auditory experiences are equally vital to our holistic perception of an environment. In this paper, we aim to reconstruct the spatial acoustic characteristics of an arbitrary environment given only a sparse set of (roughly 12) room impulse response (RIR) recordings and a planar reconstruction of the scene, a setup that is easily achievable by ordinary users. To this end, we introduce DiffRIR, a differentiable RIR rendering framework with interpretable parametric models of salient acoustic features of the scene, including sound source directivity and surface reflectivity. This allows us to synthesize novel auditory experiences through the space with any source audio. To evaluate our method, we collect a dataset of RIR and music recordings in four diverse, real environments. We show that our model outperforms state-of-the-art baselines on rendering monaural and binaural RIRs and music at unseen locations, and learns physically interpretable parameters characterizing acoustic properties of the sound source and surfaces in the scene.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End paper abstract -->
 
 
-  <!--- Image carousel 
-  <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container">
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="item">
-            <!-- Your image here 
-            <img src="static/images/carousel1.jpg" alt="MY ALT TEXT" />
-            <h2 class="subtitle has-text-centered">
-              First image description.
-            </h2>
-          </div>
-          <div class="item">
-            <!-- Your image here 
-            <img src="static/images/carousel2.jpg" alt="MY ALT TEXT" />
-            <h2 class="subtitle has-text-centered">
-              Second image description.
-            </h2>
-          </div>
-          <div class="item">
-            <!-- Your image here 
-            <img src="static/images/carousel3.jpg" alt="MY ALT TEXT" />
-            <h2 class="subtitle has-text-centered">
-              Third image description.
-            </h2>
-          </div>
-          <div class="item">
-            <!-- Your image here 
-            <img src="static/images/carousel4.jpg" alt="MY ALT TEXT" />
-            <h2 class="subtitle has-text-centered">
-              Fourth image description.
-            </h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End image carousel -->
 
 
 
@@ -237,7 +211,11 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>@article{hearinganythinganywhere2024,
+        title={Hearing Anything Anywhere},
+        author={Mason Wang and Ryosuke Sawata and Samuel Clarke and Ruohan Gao and Elliott Wu and Jiajun Wu},
+        journal={Arkiv},
+        year={2024}}</code></pre>
     </div>
   </section>
   <!--End BibTex citation -->
@@ -259,13 +237,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Statcounter tracking code -->
-
-  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-  <!-- End of Statcounter Code -->
-
 </body>
 
 </html>
