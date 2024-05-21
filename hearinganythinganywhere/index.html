@@ -154,7 +154,7 @@
                 <li>A sparse set of (roughly 12) <strong>monoaural room impulse response (RIR) recordings</strong>.</li>
                 <li>A rough <strong>planar reconstruction</strong> of the scene.</li>
               </ul>
-              <p>We use this information to fit a differentiable acoustic inverse rendering framework () with interpretable parametric models of salient acoustic features of the scene, including sound source directivity and surface reflectivity.</p>
+              <p>We use this information to fit a differentiable acoustic inverse rendering framework (<strong>DIFFRIR</strong>) with interpretable parametric models of salient acoustic features of the scene, including sound source directivity and surface reflectivity.</p>
                 
               <p>After training, <strong>DIFFRIR</strong> can recover the fully immersive acoustic field of
                 a room, and:</p>
@@ -172,7 +172,7 @@
 
 
   <!-- Youtube video -->
-  <section class="hero is-small is-light">
+  <section>
     <div class="hero-body">
       <div class="container">
         <!-- Paper video. -->
@@ -194,15 +194,34 @@
 
 
 
+  <!-- Dataset -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop" style="max-width: 50%;">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths" style="width: 100%;">
+          <h2 class="title is-3">Dataset</h2>
+          <div class="content has-text-justified" style="max-width: 100%; padding: 0 10px;">
+            <p>The <strong>DIFFRIR</strong> dataset contains real RIRs and music from:</p>
+            <ul style="list-style-position: inside; margin-left: 0;">
+              <li>A Classroom<strong>monoaural room impulse response (RIR) recordings</strong>.</li>
+              <li>A rough <strong>planar reconstruction</strong> of the scene.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 
   <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@article{hearinganythinganywhere2024,
+      <pre><code>@InProceedings{hearinganythinganywhere2024,
         title={Hearing Anything Anywhere},
         author={Mason Wang and Ryosuke Sawata and Samuel Clarke and Ruohan Gao and Elliott Wu and Jiajun Wu},
-        journal={Arkiv},
+        booktitle={CVPR},
         year={2024}}</code></pre>
     </div>
   </section>
