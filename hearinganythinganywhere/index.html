@@ -5,9 +5,11 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriately as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="Hearing Anything Anywhere, CVPR 2024 Website. Introducing DIFFRIR, a differentiable RIR rendering framework for reconstructing spatial acoustic characteristics.">
+  <meta name="description"
+    content="Hearing Anything Anywhere, CVPR 2024 Website. Introducing DIFFRIR, a differentiable RIR rendering framework for reconstructing spatial acoustic characteristics.">
   <meta property="og:title" content="Hearing Anything Anywhere - CVPR 2024" />
-  <meta property="og:description" content="Discover DIFFRIR, a differentiable RIR rendering framework for immersive auditory experiences presented at CVPR 2024." />
+  <meta property="og:description"
+    content="Discover DIFFRIR, a differentiable RIR rendering framework for immersive auditory experiences presented at CVPR 2024." />
   <meta property="og:url" content="http://masonlwang.com/hearinganythinganywhere" />
   <!-- Path to banner image, should be in the path listed below. Optimal dimensions are 1200X630 -->
   <meta property="og:image" content="static/images/HearingAnythingAnywhere2.png" />
@@ -15,13 +17,15 @@
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:title" content="Hearing Anything Anywhere - CVPR 2024">
-  <meta name="twitter:description" content="Explore DIFFRIR, a new framework for rendering spatial acoustics, showcased at CVPR 2024.">
+  <meta name="twitter:description"
+    content="Explore DIFFRIR, a new framework for rendering spatial acoustics, showcased at CVPR 2024.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimensions are 1200X600 -->
   <meta name="twitter:image" content="static/images/HearingAnythingAnywhere2.png">
   <meta name="twitter:card" content="summary_large_image">
-  
+
   <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="DIFFRIR, RIR rendering, spatial acoustics, CVPR 2024, 3D computer vision, immersive audio, virtual reality, room impulse response, Stanford University, Sony AI, University of Maryland">
+  <meta name="keywords"
+    content="DIFFRIR, RIR rendering, spatial acoustics, CVPR 2024, 3D computer vision, immersive audio, virtual reality, room impulse response, Stanford University, Sony AI, University of Maryland">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -52,7 +56,8 @@
               <span class="author-block">
                 <a href="https://masonlwang.com" target="_blank">Mason Long Wang</a><sup>1*</sup>,</span>
               <span class="author-block">
-                <a href="https://www.linkedin.com/in/rsawata/?originalSubdomain=jp" target="_blank">Ryosuke Sawata</a><sup>1,2*</sup>,</span>
+                <a href="https://www.linkedin.com/in/rsawata/?originalSubdomain=jp" target="_blank">Ryosuke
+                  Sawata</a><sup>1,2*</sup>,</span>
               <span class="author-block">
                 <a href="https://samuelpclarke.com/" target="_blank">Samuel Clarke</a><sup>1</sup>,</span>
               <span class="author-block">
@@ -65,7 +70,8 @@
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>Stanford University, <sup>2</sup>Sony AI, <sup>3</sup>University of Maryland, College Park<br>CVPR 2024</span>
+              <span class="author-block"><sup>1</sup>Stanford University, <sup>2</sup>Sony AI, <sup>3</sup>University of
+                Maryland, College Park<br>CVPR 2024</span>
               <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
             </div>
 
@@ -123,7 +129,7 @@
   </section>
 
 
-    
+
   <!-- Teaser video-->
   <section class="hero teaser">
     <div class="container is-max-desktop">
@@ -133,7 +139,8 @@
           <source src="static/videos/0001-2337.mp4" type="video/mp4">
         </video>
         <h2 class="subtitle has-text-centered">
-          Rendered music from our model, trained on 12 room impulse response recordings from a real hallway. Headphones are strongly recommended.
+          Rendered music from our model, trained on 12 room impulse response recordings from a real hallway. Headphones
+          are strongly recommended.
         </h2>
       </div>
     </div>
@@ -142,48 +149,78 @@
 
 
 
-    <!-- Overview -->
-    <section class="section hero is-light">
-      <div class="container is-max-desktop" style="max-width: 50%;">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths" style="width: 100%;">
-            <h2 class="title is-3">Overview</h2>
-            <div class="content has-text-justified" style="max-width: 100%; padding: 0 10px;">
-              <p>We aim to reconstruct the <strong>spatial acoustic characteristics</strong> of an environment using:</p>
-              <ul style="list-style-position: inside; margin-left: 0;">
-                <li>A sparse set of (roughly 12) <strong>monoaural room impulse response (RIR) recordings</strong>.</li>
-                <li>A rough <strong>planar reconstruction</strong> of the scene.</li>
-              </ul>
-              <p>We use this information to fit a differentiable acoustic inverse rendering framework (<strong>DIFFRIR</strong>) with interpretable parametric models of salient acoustic features of the scene, including sound source directivity and surface reflectivity.</p>
-                
-              <p>After training, <strong>DIFFRIR</strong> can recover the fully immersive acoustic field of
-                a room, and:</p>
-              <ul style="list-style-position: inside; margin-left: 0;">
-                <li>Render <strong>monoaural and binaural RIRs</strong> at new listener locations.</li>
-                <li>Render <strong>monoaural and binaural music</strong> at new listener locations.</li>
-                <li>Render <strong>realistic trajectories </strong> simulating the sonic experience of moving through the room. </li>
-                <li>Perform <strong>zero-shot scene modification </strong> like virtual speaker rotation and translation. </li>
-              </ul>
-            </div>
+  <!-- Overview -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop" style="max-width: 50%;">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths" style="width: 100%;">
+          <h2 class="title is-3">Overview</h2>
+          <div class="content has-text-justified" style="max-width: 100%; padding: 0 10px;">
+            <p>We aim to reconstruct the <strong>spatial acoustic characteristics</strong> of an environment using:</p>
+            <ul style="list-style-position: inside; margin-left: 0;">
+              <li>A sparse set of (roughly 12) <strong>monoaural room impulse response (RIR) recordings</strong>.</li>
+              <li>A rough <strong>planar reconstruction</strong> of the scene.</li>
+            </ul>
+            <p>We use this information to fit a differentiable acoustic inverse rendering framework
+              (<strong>DIFFRIR</strong>) with interpretable parametric models of salient acoustic features of the scene,
+              including sound source directivity and surface reflectivity.</p>
+
+            <p>After training, <strong>DIFFRIR</strong> can recover the fully immersive acoustic field of
+              a room, and:</p>
+            <ul style="list-style-position: inside; margin-left: 0;">
+              <li>Render <strong>monoaural and binaural RIRs</strong> at new listener locations.</li>
+              <li>Render <strong>monoaural and binaural music</strong> at new listener locations.</li>
+              <li>Render <strong>realistic trajectories </strong> simulating the sonic experience of moving through the
+                room. </li>
+              <li>Perform <strong>zero-shot scene modification </strong> like virtual speaker rotation and translation.
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <!-- Teaser video-->
+  <section class="hero teaser">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths" style="width: 100%;">
+        <h2 class="title is-3" style="padding-top: 20px;">Another Trajectory</h2>
+      </div>
+    </div>
+
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video poster="" id="tree" autoplay controls muted loop height="100%">
+          <!-- Your video here -->
+          <source src="static/videos/DARKROOMTRAJ999.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          Rendered music from our model, trained on 12 room impulse response recordings from the Dampend Room.
+          Headphones are strongly recommended.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser video -->
 
 
   <!-- Youtube video -->
-  <section>
+  <section class="section hero is-light">
     <div class="hero-body">
       <div class="container">
-        <!-- Paper video. -->
-        <h2 class="title is-3">Video Presentation</h2>
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths" style="width: 100%;">
+            <h2 class="title is-3" style="padding-top: 20px;">Video Presentation</h2>
+          </div>
+        </div>
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
 
             <div class="publication-video">
               <!-- Youtube embed code here -->
-              <iframe src="https://www.youtube.com/watch?v=SHMy72fzU4Y" frameborder="0" allow="autoplay; encrypted-media"
-                allowfullscreen></iframe>
+              <iframe src="https://www.youtube.com/watch?v=SHMy72fzU4Y" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
           </div>
         </div>
@@ -193,6 +230,29 @@
   <!-- End youtube video -->
 
 
+  <!-- Teaser video-->
+  <section class="hero teaser">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths" style="width: 100%;">
+        <h2 class="title is-3" style="padding-top: 20px;">Virtual Speaker Rotation</h2>
+      </div>
+    </div>
+
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video poster="" id="tree" autoplay controls muted loop height="100%">
+          <!-- Your video here -->
+          <source src="static/videos/DARKROOMTRAJ999.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          Rendered music from our model, trained on 12 room impulse response recordings from the Dampend Room.
+          Headphones are strongly recommended.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser video -->
+
 
   <!-- Dataset -->
   <section class="section hero is-light">
@@ -201,17 +261,70 @@
         <div class="column is-four-fifths" style="width: 100%;">
           <h2 class="title is-3">Dataset</h2>
           <div class="content has-text-justified" style="max-width: 100%; padding: 0 10px;">
-            <p>The <strong>DIFFRIR</strong> dataset contains real RIRs and music from:</p>
-            <ul style="list-style-position: inside; margin-left: 0;">
-              <li>A Classroom<strong>monoaural room impulse response (RIR) recordings</strong>.</li>
-              <li>A rough <strong>planar reconstruction</strong> of the scene.</li>
-            </ul>
+            <p>The <strong>DIFFRIR dataset</strong> contains real RIRs and music from four rooms: A
+              <strong>Classroom</strong>, an acoustically <strong>Dampened Room</strong>, a <strong>Hallway</strong>,
+              and a <strong>Complex Room</strong> with many surfaces. In the latter three rooms, we collect
+              <strong>additional subdatasets</strong> where we vary the location and/or orientation of the speaker, or
+              the presence and location of standalone whiteboard panels in the room. These are used to evaluate
+              zero-shot generalization to changes in room layout. The dataset can be found on <a
+                href="https://zenodo.org/records/11195833" target="_blank" style="color: blue;">Zenodo</a>.</p>
           </div>
+        </div>
+      </div>
+      <div class="columns is-multiline is-centered has-text-centered">
+        <div class="column is-one-quarter">
+          <figure class="image is-square">
+            <div class="image-container">
+              <img src="static/images/Classroom.jpg" alt="Classroom">
+            </div>
+            <figcaption>Classroom</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-quarter">
+          <figure class="image is-square">
+            <div class="image-container">
+              <img src="static/images/DampenedRoom.JPG" alt="Dampened Room">
+            </div>
+            <figcaption>Dampened Room</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-quarter">
+          <figure class="image is-square">
+            <div class="image-container">
+              <img src="static/images/Hallway.JPG" alt="Hallway">
+            </div>
+            <figcaption>Hallway</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-quarter">
+          <figure class="image is-square">
+            <div class="image-container">
+              <img src="static/images/ComplexRoom.JPG" alt="Complex Room">
+            </div>
+            <figcaption>Complex Room</figcaption>
+          </figure>
         </div>
       </div>
     </div>
   </section>
 
+  <style>
+    .image-container {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+    }
+
+    .image-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Crop to fit */
+    }
+  </style>
 
 
   <!--BibTex citation -->
