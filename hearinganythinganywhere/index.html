@@ -156,9 +156,14 @@
         <div class="column is-four-fifths" style="width: 100%;">
           <h2 class="title is-3">Overview</h2>
           <div class="content has-text-justified" style="max-width: 100%; padding: 0 10px;">
-            <p>We aim to reconstruct the <strong>spatial acoustic characteristics</strong> of an environment using:</p>
+
+
+            <p>We want to <strong>capture</strong> and <strong>reconstruct</strong> the spatial acoustic characteristics of a <strong>real room</strong>,
+              to synthesize <strong>immersive auditory experiences</strong></p>
+
+            <p>We require only:</p>              
             <ul style="list-style-position: inside; margin-left: 0;">
-              <li>A sparse set of (roughly 12) <strong>monoaural room impulse response (RIR) recordings</strong>.</li>
+              <li>Roughly 12 <strong>monoaural room impulse response (RIR) recordings</strong>.</li>
               <li>A rough <strong>planar reconstruction</strong> of the scene.</li>
             </ul>
             <p>We use this information to fit a differentiable acoustic inverse rendering framework
@@ -196,8 +201,7 @@
           <source src="static/videos/DARKROOMTRAJ999.mp4" type="video/mp4">
         </video>
         <h2 class="subtitle has-text-centered">
-          Rendered music from our model, trained on 12 room impulse response recordings from the Dampend Room.
-          Headphones are strongly recommended.
+          Using the learned speaker directivity map from DIFFRIR trained on 12 RIRs from a static scene, we can simulate virtual rotation of the speaker.
         </h2>
       </div>
     </div>
@@ -242,7 +246,7 @@
       <div class="hero-body">
         <video poster="" id="tree" autoplay controls muted loop height="100%">
           <!-- Your video here -->
-          <source src="static/videos/DARKROOMTRAJ999.mp4" type="video/mp4">
+          <source src="static/videos/VirtualRotationDemo.mp4" type="video/mp4">
         </video>
         <h2 class="subtitle has-text-centered">
           Rendered music from our model, trained on 12 room impulse response recordings from the Dampend Room.
