@@ -15,6 +15,25 @@
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script src="static/js/index.js"></script>
+  
+  <style>
+    .example-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .audio-container {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      text-align: left;
+      margin: 1rem;
+    }
+    .description {
+      margin-top: 0.5rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -43,125 +62,140 @@
   <section class="section">
     <div class="container">
       <h2 class="title is-2 has-text-centered">Examples</h2>
+      
       <!-- Example 1 -->
-      <div class="columns is-vcentered">
-        <div class="column">
+      <div class="example-container">
+        <div class="audio-container">
           <label class="label">Buzzysynth Imitation</label>
           <audio controls>
             <source src="diffusion_examples/1_buzzysynth_imitation.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
         </div>
-        <div class="column">
-          <label class="label">Buzzysynth Output</label>
+        <div class="audio-container">
+          <label class="label">Output</label>
           <audio controls>
             <source src="diffusion_examples/1_buzzysynth_output.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
+          <p class="description">Description of the Buzzysynth output.</p>
         </div>
       </div>
+      
       <!-- Example 2 -->
-      <div class="columns is-vcentered">
-        <div class="column">
+      <div class="example-container">
+        <div class="audio-container">
           <label class="label">Chainsaw Imitation</label>
           <audio controls>
             <source src="diffusion_examples/2_chainsaw_imitation.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
         </div>
-        <div class="column">
-          <label class="label">Chainsaw Output</label>
+        <div class="audio-container">
+          <label class="label">Output</label>
           <audio controls>
             <source src="diffusion_examples/2_chainsaw_output.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
+          <p class="description">Description of the Chainsaw output.</p>
         </div>
       </div>
+      
       <!-- Example 3 -->
-      <div class="columns is-vcentered">
-        <div class="column">
+      <div class="example-container">
+        <div class="audio-container">
           <label class="label">Trumpet Imitation</label>
           <audio controls>
             <source src="diffusion_examples/3_trumpet_imitation.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
         </div>
-        <div class="column">
-          <label class="label">Trumpet Output</label>
+        <div class="audio-container">
+          <label class="label">Trumpet Output, Prompt of "Trumpet"</label>
           <audio controls>
             <source src="diffusion_examples/3_trumpet_output.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
+          <p class="description">Description of the Trumpet output.</p>
         </div>
       </div>
+      
       <!-- Example 4 -->
-      <div class="columns is-vcentered">
-        <div class="column">
+      <div class="example-container">
+        <div class="audio-container">
           <label class="label">Synth Imitation</label>
           <audio controls>
             <source src="diffusion_examples/4_synth_imitation.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
         </div>
-        <div class="column">
+        <div class="audio-container">
           <label class="label">Synth Output</label>
           <audio controls>
             <source src="diffusion_examples/4_synth_output.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
+          <p class="description">Description of the Synth output.</p>
         </div>
       </div>
+      
       <!-- Example 5 -->
-      <div class="columns is-vcentered">
-        <div class="column">
+      <div class="example-container">
+        <div class="audio-container">
           <label class="label">Boing Imitation</label>
           <audio controls>
             <source src="diffusion_examples/6_boing_imitation.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
         </div>
-        <div class="column">
+        <div class="audio-container">
           <label class="label">Boing Output</label>
           <audio controls>
             <source src="diffusion_examples/6_boing_output.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
+          <p class="description">Description of the Boing output.</p>
         </div>
       </div>
+      
       <!-- Example 6 -->
-      <div class="columns is-vcentered">
-        <div class="column">
+      <div class="example-container">
+        <div class="audio-container">
           <label class="label">Ringtone Imitation</label>
           <audio controls>
             <source src="diffusion_examples/7_ringtone_imitation.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
         </div>
-        <div class="column">
+        <div class="audio-container">
           <label class="label">Ringtone Output</label>
           <audio controls>
             <source src="diffusion_examples/7_ringtone_output.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
+          <p class="description">Description of the Ringtone output.</p>
         </div>
       </div>
+      
       <!-- Example 7 -->
-      <div class="columns is-vcentered">
-        <div class="column">
-          <label class="label">Violin Imitation</label>
+      <div class="example-container">
+        <div class="audio-container">
+          <label class="label">Imitation</label>
           <audio controls>
             <source src="diffusion_examples/8_violin_imitation.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
         </div>
-        <div class="column">
-          <label class="label">Violin Output</label>
+        <div class="audio-container">
+          <label class="label">Output, Prompt "Violin"</label>
           <audio controls>
             <source src="diffusion_examples/8_violin_output.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
+          <p class="description">Description of the Violin output.</p>
         </div>
       </div>
+      
     </div>
     Examples are from the "Devocalize and Diffuse" Method.
   </section>
