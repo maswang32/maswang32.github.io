@@ -6,10 +6,10 @@
   <!-- Meta tags for social media banners, these should be filled in appropriately as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
   <meta name="description"
-    content="Hearing Anything Anywhere, CVPR 2024 Website. Introducing DIFFRIR, a differentiable RIR rendering framework for reconstructing spatial acoustic characteristics.">
+    content="Hearing Anything Anywhere, CVPR 2024 Website. Introducing DiffRIR, a differentiable RIR rendering framework for reconstructing spatial acoustic characteristics.">
   <meta property="og:title" content="Hearing Anything Anywhere - CVPR 2024" />
   <meta property="og:description"
-    content="Discover DIFFRIR, a differentiable RIR rendering framework for immersive auditory experiences presented at CVPR 2024." />
+    content="Discover DiffRIR, a differentiable RIR rendering framework for immersive auditory experiences presented at CVPR 2024." />
   <meta property="og:url" content="http://masonlwang.com/hearinganythinganywhere" />
   <!-- Path to banner image, should be in the path listed below. Optimal dimensions are 1200X630 -->
   <meta property="og:image" content="static/images/HearingAnythingAnywhere2.png" />
@@ -18,14 +18,14 @@
 
   <meta name="twitter:title" content="Hearing Anything Anywhere - CVPR 2024">
   <meta name="twitter:description"
-    content="Explore DIFFRIR, a new framework for rendering spatial acoustics, showcased at CVPR 2024.">
+    content="Explore DiffRIR, a new framework for rendering spatial acoustics, showcased at CVPR 2024.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimensions are 1200X600 -->
   <meta name="twitter:image" content="static/images/HearingAnythingAnywhere2.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords"
-    content="DIFFRIR, RIR rendering, spatial acoustics, CVPR 2024, 3D computer vision, immersive audio, virtual reality, room impulse response, Stanford University, Sony AI, University of Maryland">
+    content="DiffRIR, RIR rendering, spatial acoustics, CVPR 2024, 3D computer vision, immersive audio, virtual reality, room impulse response, Stanford University, Sony AI, University of Maryland">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -151,7 +151,7 @@
 
   <!-- Overview -->
   <section class="section hero is-light">
-    <div class="container is-max-desktop" style="max-width: 50%;">
+    <div class="container is-max-desktop" style="max-width: 62%;">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths" style="width: 100%;">
           <h2 class="title is-3">Overview</h2>
@@ -167,10 +167,10 @@
               <li>A rough <strong>planar reconstruction</strong> of the scene.</li>
             </ul>
             <p>We use this information to fit a differentiable acoustic inverse rendering framework
-              (<strong>DIFFRIR</strong>) with interpretable parametric models of salient acoustic features of the scene,
+              (<strong>DiffRIR</strong>) with interpretable parametric models of salient acoustic features of the scene,
               including sound source directivity and surface reflectivity.</p>
 
-            <p>After training, <strong>DIFFRIR</strong> can recover the fully immersive acoustic field of
+            <p>After training, <strong>DiffRIR</strong> can recover the fully immersive acoustic field of
               a room, and:</p>
             <ul style="list-style-position: inside; margin-left: 0;">
               <li>Render <strong>monoaural and binaural RIRs</strong> at new listener locations.</li>
@@ -250,7 +250,7 @@
           <source src="static/videos/VirtualRotationDemo.mp4" type="video/mp4">
         </video>
         <h2 class="subtitle has-text-centered">
-          Using the learned speaker directivity map from DIFFRIR trained on 12 RIRs from a static scene, we can simulate virtual rotation of the speaker.
+          Using the learned speaker directivity map from DiffRIR trained on 12 RIRs from a static scene, we can simulate virtual rotation of the speaker.
         </h2>
       </div>
     </div>
@@ -260,12 +260,12 @@
 
   <!-- Dataset -->
   <section class="section hero is-light">
-    <div class="container is-max-desktop" style="max-width: 50%;">
+    <div class="container is-max-desktop" style="max-width: 62%;">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths" style="width: 100%;">
           <h2 class="title is-3">Dataset</h2>
           <div class="content has-text-justified" style="max-width: 100%; padding: 0 10px;">
-            <p>The <strong>DIFFRIR dataset</strong> contains real RIRs and music from four rooms: A
+            <p>The <strong>DiffRIR dataset</strong> contains real RIRs and music from four rooms: A
               <strong>Classroom</strong>, an acoustically <strong>Dampened Room</strong>, a <strong>Hallway</strong>,
               and a <strong>Complex Room</strong> with many surfaces. In the latter three rooms, we collect
               <strong>additional subdatasets</strong> where we vary the location and/or orientation of the speaker, or
