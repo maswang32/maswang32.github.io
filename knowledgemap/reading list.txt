@@ -1,0 +1,81 @@
+https://towardsdatascience.com/a-visual-explanation-of-gradient-descent-methods-momentum-adagrad-rmsprop-adam-f898b102325c
+---CS 231
+---UDL
+---CS 224
+---karpathy --- LM Coding
+---backprop video Artem
+---Adam Paper
+---Ouyang, RLHF, DPO, PPO, SFT
+
+
+---KV-Cache
+---LoRA
+
+---RLHF (Review)
+---SFT (Review)
+---ViLA U
+
+
+—knowledge distillation
+
+—RLHAIF, RLHF
+
+**Conformer**
+
+https://arxiv.org/pdf/2005.08100
+
+**Transformers with Convolutional Context**
+
+https://arxiv.org/pdf/1904.11660
+
+**Physical Modeling**
+
+https://www.youtube.com/watch?v=hw9bWnDei-k
+
+CS 285
+
+https://deepgenerativemodels.github.io/
+
+Reading right now:
+https://towardsdatascience.com/variational-inference-the-basics-f70ac511bcea
+
+Things to study:
+https://calvinyluo.com/2022/08/26/diffusion-tutorial.html --- do all the derivations by hand
+---https://yang-song.net/blog/2021/score/
+---Stable Diffusion
+---Music Transformer
+---VQVAE --- Autoregressive coding
+---Auto-Encoding Variational Bayes
+---Wavenet
+---tacotron
+---what is a vocoder?
+---instruct prompt2prompt
+---instruct pix2pix
+---mamba
+---dreamfusion
+---classifier-free guidance
+---john thickstun
+---MusicLM
+---Jukebox
+---wave2midi2wave
+---CS 229 review
+---information theory
+
+TIMBRE:
+---midi-DDSP
+---NSynth
+---GANSynth
+
+- --read language modeling papers
+---andrej karpathy video on tokenization
+---fix laptop
+
+Good resources:
+ELBO:
+https://yunfanj.com/blog/2021/01/11/ELBO.html
+Diffusion:
+https://calvinyluo.com/2022/08/26/diffusion-tutorial.html
+
+
+No Need:
+Quantile Loss

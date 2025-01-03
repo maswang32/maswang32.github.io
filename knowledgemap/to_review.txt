@@ -1,0 +1,14 @@
+Chain Rule
+
+
+Lower priority:
+---window method
+---PM method
+---aliasing
+---downsampling and upsampling
+---pole zero graphs
+---two sided vs one sided tests
+
+Dive more:
+---Frechet distance
+---interpreting the determinant in terms of volume, determinant of jacobian
