@@ -211,26 +211,31 @@ if __name__=="__main__":
     M.add_node("Info Theory Basics", type='concept', parent_names=["Deep Learning Chapter 3"], base_size=5  , link="auto")
 
 
-
-
-
-
     # Deep Learning
     M.add_node("Deep Learning", type='concept', color="#0000FF")
 
-    
+    # Activation Functions
+    M.add_node("Activation Functions", type='concept', parent_names=["Deep Learning"])
+    M.add_node("Pocketed Activations", type='concept', parent_names=["Activation Functions"], base_size=2)
+
+    # Generative Modeling
+    M.add_node("Generative Modeling", type='concept', color="#FFA500", parent_names=["Deep Learning"])
+
+    # Vision
+    M.add_node("Vision", type='concept', color="#79443B")
+    M.add_node("VAR", type='paper', parent_names=["Vision", "Generative Modeling"], base_size=7, link='auto')
+
+
     # UDL Textbook
     M.add_node("Understanding Deep Learning", type='book', parent_names=["Deep Learning"])
     M.add_node("MLP Interpretation - UDL", type='chapter', parent_names=["Understanding Deep Learning"], base_size=10, description="Last Recall: 10/24/24", link="auto")
-    
-    
     
     M.add_node("Loss Functions - UDL", type='chapter', parent_names=["Understanding Deep Learning"], base_size=10, link="auto")
     M.add_node("Optimization - UDL", type='chapter', parent_names=["Understanding Deep Learning", "Optimization"], base_size=10, link="auto")
     
     
-    # Diffusion
-    M.add_node("Diffusion Models", type='concept', parent_names=["Deep Learning"])
+    # Diffusion 
+    M.add_node("Diffusion Models", type='concept', parent_names=["Generative Modeling"])
     M.add_node("Understanding Diffusion Models: A Unified Perspective", type='blog post', parent_names=["Diffusion Models"], base_size=20, description="Last Recall: 7/14/24", review_flag=True)
 
 
@@ -251,26 +256,15 @@ if __name__=="__main__":
     # Signal Processing
     M.add_node("Signal Processing", type='concept',color="#a8326f")
     M.add_node("DDSP", type='concept',  parent_names=["Signal Processing", "Deep Learning"], base_size=7)
-
-
-
+    M.add_node("PQMF", type='concept',  parent_names=["Signal Processing"], base_size=7, link="auto")
+    M.add_node("Downsampling and Stretching", type='concept',  parent_names=["Signal Processing"], base_size=7, link="auto")
+    M.add_node("Convolution", type='concept',  parent_names=["Signal Processing"], base_size=7, link="auto")
+    M.add_node("Transpose Convolution", type='concept',  parent_names=["Signal Processing"], base_size=7, link="auto")
     
-    
-    
-    # RL 
+    # RL
     M.add_node("Reinforcement Learning", type='concept', color="#808080")
     M.add_node("ReaLChords", type='paper', parent_names=["Reinforcement Learning"], base_size=7, description="Last Recall: 9/25/24")
     M.add_node("CS 285", type='class',  parent_names=["Reinforcement Learning"], base_size=10, description="Last Recall: 9/25/24")
-
-
-
-
-
-
-
-
-
-
     M.render()
     
 

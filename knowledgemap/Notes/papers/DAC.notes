@@ -1,0 +1,12 @@
+1/17/2025
+
+Residual blocks with dilations 1, and depthwise 1x1
+These are chained together
+
+Downsampling blocks that double channel
+
+Upsampling blocks that halve channel
+
+Snake activations
+
+feature matching loss, multiscale STFT discriminator, mel-reconstruction loss

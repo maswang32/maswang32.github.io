@@ -1,4 +1,3 @@
-
 Under the KL divergence interpretation of NLL, what about the input variable?
 Answer: It's the KL divergence for a fixed input. As in, in a regression problem, image that for one 
 input we observe multiple outputs. Then it's the KL divergence for those outputs vs. the model's predicted distribution

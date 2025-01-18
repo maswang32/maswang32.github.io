@@ -1,0 +1,15 @@
+1/17/2025
+
+Works in VQ-VAE Latent Space
+
+Encoding:
+Take 64x64 latent, squash to 1x1, quantize.
+lookup, stretch to K x K, compute residual
+Squash residual to 4x4, quantize residual
+lookup, stretch to K x K, compute residual
+...
+
+Autoregressive 'next-scale' predictions,
+predict first scale, then all of next scale in parallel, etc.
+
+raster scan order bad - disrupts locality, makes infilling hard due to bidirectoinal correlation, inefficient.
