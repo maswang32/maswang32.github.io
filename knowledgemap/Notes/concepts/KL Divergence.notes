@@ -1,4 +1,4 @@
-Last Recall: 10/27/24
+Last Reviewed: 10/27/24
 Asymmetric
 DKL(P||Q) - symbols are drawn from P, but if we encode assuming drawn from Q, 
 how many extra bits on expectation are used

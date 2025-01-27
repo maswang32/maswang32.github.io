@@ -1,4 +1,4 @@
-1/17/2025
+Last Reviewed: 1/17/25
 
 GLU = (Ax + b)*sigma(Cx + D)
 SwiGLU = (Ax + b)*swish(Cx + D)

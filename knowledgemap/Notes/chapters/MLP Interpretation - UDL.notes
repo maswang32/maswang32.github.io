@@ -1,3 +1,5 @@
+Last Reviewed: 11/1/24
+
 Shallow MLPs clip linear functions, rescale, and combine.
 D hidden units means D+1 Linear Regions
 Multivariate outputs are clipped at the same joints

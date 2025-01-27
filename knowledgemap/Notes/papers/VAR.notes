@@ -1,4 +1,4 @@
-1/17/2025
+Last Reviewed: 1/17/25
 
 Works in VQ-VAE Latent Space
 
@@ -8,8 +8,9 @@ lookup, stretch to K x K, compute residual
 Squash residual to 4x4, quantize residual
 lookup, stretch to K x K, compute residual
 ...
+very similar to RVQ but with 'squashing'
 
 Autoregressive 'next-scale' predictions,
 predict first scale, then all of next scale in parallel, etc.
 
-raster scan order bad - disrupts locality, makes infilling hard due to bidirectoinal correlation, inefficient.
+raster scan order bad - disrupts locality, makes infilling hard due to bidirectional correlation, inefficient.

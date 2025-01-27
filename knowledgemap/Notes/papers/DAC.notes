@@ -1,7 +1,7 @@
-1/17/2025
+Last Reviewed: 1/17/25
 
-Residual blocks with dilations 1, and depthwise 1x1
-These are chained together
+Residual blocks with dilations 1, 3, 9 slash kernel size 7, and depthwise 1x1
+These are chained together.
 
 Downsampling blocks that double channel
 

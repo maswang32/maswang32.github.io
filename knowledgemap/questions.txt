@@ -1,7 +1,10 @@
+For diffusion ELBO, what does it mean when we say: changing its parameters so that the static encoder
+does approximate the posterior
+
 Under the KL divergence interpretation of NLL, what about the input variable?
-Answer: It's the KL divergence for a fixed input. As in, in a regression problem, image that for one 
+Answer: It's the KL divergence for a fixed input. As in, in a regression problem, imagine that for one 
 input we observe multiple outputs. Then it's the KL divergence for those outputs vs. the model's predicted distribution
-for that input
+for that input. Or, P(y|x) compared to the distribution over y|x.
 
 
 
@@ -12,7 +15,6 @@ Answer: because you can increase the probability of your data distribution arbit
 
 
 Still not sure about 'independent errors' assumption for modeling multidimensional distributions.
-
 
 
 Information theory - why do we care about encoding sequences of events?

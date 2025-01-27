@@ -1,4 +1,4 @@
-Last Reviewed 1/2/2025
+Last Reviewed: 1/2/2025
 
 Downsampling 'folds' the FFT spectrum on itself.
 e.g. downsampling by factor of 2 - imagine slicing spec. in half,
