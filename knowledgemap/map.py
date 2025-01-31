@@ -101,7 +101,16 @@ class KnowledgeMap:
                 if node.description:
                     title = node.description + "\n" + file_text
                 else:
-                    title = file_text
+                    #title = file_text
+                    
+                    
+                    title = f"""
+                    <div style="font-family:sans-serif;">
+                        <p>{file_text}</p>
+                    </div>
+                    """
+        
+        
             else:
                 title = node.description
             

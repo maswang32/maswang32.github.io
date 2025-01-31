@@ -1,3 +1,14 @@
+---consolidate notes
+---review score-based
+---DDIM/SDE interpretation
+---EDM
+---StyleGAN series
+---Ge's work
+---next scale prediction for audio
+---presto
+---patchwise diffusion
+
+
 https://towardsdatascience.com/a-visual-explanation-of-gradient-descent-methods-momentum-adagrad-rmsprop-adam-f898b102325c
 ---CS 231
 ---UDL

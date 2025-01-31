@@ -15,3 +15,7 @@ Zero_grad
 optimizer.step()
 ---the optimizer has a bunch of parameters stored in it, and it looks at the gradient of all the parameters
 and then does a backward step
+
+
+Use register_buffer to add a desired tensor to the model, so it gets moved to the right device.
+persistent=False will make it not part of the state_dict.
