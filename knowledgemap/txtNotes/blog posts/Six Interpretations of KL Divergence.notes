@@ -1,0 +1,24 @@
+Last Reviewed: 1/20/25
+
+Lottery game:
+
+For a bet of c on an outcome x, the house pays you
+c / q(x)
+where q(x) is the likelihood they assign to the outcome x.
+
+Suppose you know the true distribution of outcomes p(x).
+To maximize your winnings, you should bet proportional to p(x).
+
+Suppose you bet 1 dollar total. Then you optimally bet p(x) dollars for each outcome.
+
+Then the expected log-winnings are 
+sum( p(x) log(p(x)/q(x))    )
+
+In other words, KL(p,q) = max amount of log-money that can be made off one dollar,
+when the payoffs are assigned by the distribution q, but the real distribution is p.
+
+To do: review other interpretations
+
+
+
+

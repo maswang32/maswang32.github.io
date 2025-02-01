@@ -1,0 +1,18 @@
+Last Reviewed: 11/1/24
+
+Negative Log Likelihood is Loss
+Formula: Model predicts parameters of a distribution, on which the probability of data is evaluated.
+Maximize probability of data, minimize negative log probability of data.
+Assume data is independent
+MSE results from assuming y is sampled from gaussians with means determined by x
+heterodastic = variance varies with input
+
+BCE loss comes from assuming the distribution y|x is Bernoulli (there's a visualization)
+Multiclass cross entropy loss is discussed
+Table of distributions from different tasks is presented
+
+in multi-output situations, assume different outputs are conditionally independent.
+
+NLL minimization is the same as minimizing cross entropy between (possibly conditional on input) data distributions.
+
+Reference Sheet: UDL Chapter 5
