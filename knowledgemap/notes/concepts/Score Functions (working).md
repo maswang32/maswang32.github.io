@@ -71,7 +71,7 @@ $$
 
 How do we know the ground truth score function? There is a technique called **score matching**.
 
-### Langevin Sampling
+## Langevin Sampling
 Langevin sampling allows you to sample from a distribution given its score function. First, we draw from an arbitrary distribution:
 $$
 x_0 \sim \pi(\mathbf{x})
@@ -108,9 +108,7 @@ So the distance between the score and our estimate are downweighted in regions w
 This complicates Langevin sampling, since $\mathbf{x}_0$ (the first sampling step) usually starts in a low-density region (it is usually just noise).
 
 
-### Adding Noise
-
-Mason/Mert's Insights:
+### Mason/Mert's Insights:
 
 #### Adding two random variables
 1. Recall from [Brad Osgood's course](https://see.stanford.edu/course/ee261) that adding two random variables $Z = X + Y$ results in a distribution that is a *convolution* of the distributions of $X$ and $Y$.
@@ -208,3 +206,28 @@ We can fit a neural network to the score function of each noisy distribution:
 $$
 s_\theta (\mathbf{x}, i) \approx \nabla_x \log p_{\sigma_i}(\mathbf{x}), \quad \forall i = 1,\dots,L
 $$
+
+The training objective is be:
+$$
+\sum_{i=1}^L \lambda(i) \mathbb{E}_{x \sim p_{\sigma_i}}[\lVert \nabla_\mathbf{x} \log(p_{\sigma_i}(\mathbf{x})) - s_\theta (\mathbf{x}, i) \rVert^2 _2]
+$$
+
+Usually the loss weighting is $\lambda(i) = \sigma_i^2$. This would mean higher noise levels have a greater loss.
+
+The ground truth score estimates are usually $\frac{-\mathbf{z}}{\sigma}$
+
+We can run Langevin dynamics in sequence for each noise level. This means runnning Langevin chains for all noise levels.
+
+
+#### Recommendations
+We can choose the noise levels in a geometric progression (there is a common ratio). $\sigma_L$ can be the maximum pairwise distance between two datapoints, and $L$ can be hundreds or thousands.
+
+# SDE
+As $L \rightarrow \infty$, the noise level becomes a continuous-time stochastic process, where noise is added.
+
+$$
+d\mathbf{x} = f((\mathbf{x}, t) dt + g(t)d\mathbf{w}
+$$
+
+$d\mathbf{w}$ can be viewed as infinitesimal white noise, and $\mathbf{w}$, which is what happens when we integrate $d\mathbf{w}$, can be viewed as Brownian motion.
+
