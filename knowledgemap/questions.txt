@@ -1,3 +1,9 @@
+when you have like
+
+dx = dy
+
+What lets you integrate both sides? If you integrate the RHS from 0 to T, what are the limits of the integral on the RHS?
+
 For diffusion ELBO, what does it mean when we say: changing its parameters so that the static encoder
 does approximate the posterior
 

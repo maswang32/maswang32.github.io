@@ -57,7 +57,7 @@ Bolded random variables and their values (realizations) simply indicate that the
 
 
 ### Sample Spaces in Machine Learning
-The sample space is often implicit in machine learning. For instance, we might have a latent variable $\mathbf{Z}$ in a latent variable model. If $\mathbf{z} = \mathbf{Z}(\mathbf{w}) \in \mathbb{R}^d$, the sample space $\Omega$ is $\mathbb{R}^d$, and we think of $\mathbf{Z} : \Omega \rightarrow \mathbb{R}^d$ as $\mathbf{Z}(\omega) = \omega$.
+The sample space is not usually referenced in machine learning. For instance, we might have a latent variable $\mathbf{Z}$ in a latent variable model. If $\mathbf{z} = \mathbf{Z}(\mathbf{w}) \in \mathbb{R}^d$, the sample space $\Omega$ is $\mathbb{R}^d$, and we think of $\mathbf{Z} : \Omega \rightarrow \mathbb{R}^d$ as $\mathbf{Z}(\omega) = \omega$.
 
 
 ## Probability Distributions
@@ -71,11 +71,11 @@ $$
 p(\mathbf{X}(\mathbf{\omega})) : \mathbb{R}^d \rightarrow \mathbb{R}.
 $$
 
-We abbreviate 'probability density function' as 'PDF'.
+We abbreviate "probability density function" as "PDF".
 
 
 #### Note
-It is not the case that a random variable has a single probability distribution, although we often reference a 'true' probability distribution. Rather, a probability distribution is simply a mapping from a random variable's value to a density value.
+It is not the case that a random variable has a single probability distribution, although we often reference a "true" probability distribution. Rather, a probability distribution is simply a mapping from a random variable's value to a density value.
 
 ### Notes on Notation
 #### $Pr(x)$ vs $p(x)$
@@ -118,23 +118,23 @@ This is useful to disambiguate the input to the PDF when we have several PDFs.
 Suppose we have 
 
 $$
-p(x) = \int \mathcal{N}_x(f(z), I) \cdot N_z(0,I)) dz.
+p(\mathbf{x}) = \int \mathcal{N}_\mathbf{x}(f(\mathbf{z}), I) \cdot N_\mathbf{z}(0,I) d\mathbf{z}.
 $$
 In this case,
 
 
-- $p(x)$ is a function mapping $x$ to probability values.
-- For a given input $x$, we would substitute that value of $x$ into $\mathcal{N}_x(f(z), I)$ to get a density value.
-- The value of $z$ we would use is determined by the integrand.
+- $p(\mathbf{x})$ is a function mapping $\mathbf{x}$ to probability values.
+- For a given input $\mathbf{x}$, we would substitute that value of $\mathbf{x}$ into $\mathcal{N}_\mathbf{x}(f(\mathbf{z}), I)$ to get a density value.
+- The value of $\mathbf{z}$ we would use is determined by the integrand.
 
 
-To evaluate $p(x=0.5)$, we would:
-1. Iterate through all values of z
-2. Plug in $f(z)$ for the these values to get the parameters (mean and variance) for the distribution $\mathcal{N}_x$.
-3. Plug in $x$ into this distribution to get a probability density value.
-4. Plug in $z$ into $\mathcal{N}_z(0,I)$ to get a probability density value
-5. Multiply the two density values together (the outputs of the two normal distributions) and accumulate it over all $z$ to evaluate the integral.
+To evaluate $p(\mathbf{x})$ for a specific $\mathbf{x}$, we would:
+1. Iterate through all values of $\mathbf{z}$
+2. Plug in $f(\mathbf{z})$ for the these values to get the parameters (mean and variance) for the distribution $\mathcal{N}_\mathbf{x}$.
+3. Plug in $\mathbf{x}$ into this distribution to get a probability density value.
+4. Plug in $\mathbf{z}$ into $\mathcal{N}_\mathbf{z}(0,I)$ to get a probability density value
+5. Multiply the two density values together (the outputs of the two normal distributions) and accumulate it over all $\mathbf{z}$ to evaluate the integral.
 
-The parameters $f(z), I$ are how we describe the function that is the probability distribution.
+The parameters $f(\mathbf{z}), I$ are how we describe the function that is the probability distribution.
 
 Last Reviewed: 1/31/25
