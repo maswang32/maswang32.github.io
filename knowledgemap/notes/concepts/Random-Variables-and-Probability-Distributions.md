@@ -68,7 +68,7 @@ $$
 
 As an exercise in notation, this means we should also be able to write:
 $$
-p(\mathbf{X}(\mathbf{\omega})) : \mathbb{R}^d \rightarrow \mathbb{R}.
+p\left(\mathbf{X}(\mathbf{\omega})\right) : \mathbb{R}^d \rightarrow \mathbb{R}.
 $$
 
 We abbreviate "probability density function" as "PDF".

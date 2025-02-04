@@ -27,3 +27,5 @@ Since
 $$
 \lim_{\Delta x \rightarrow 0} \left[ \sum_{i=1}^N f(x_i) \Delta x \right] = b - a
 $$
+
+Last Reviewed: 2/4/25

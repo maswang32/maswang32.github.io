@@ -237,7 +237,6 @@ if __name__=="__main__":
     M.add_node("Conditional Independence", type='concept', parent_names=["Statistics"], base_radius=5, link='auto')
 
 
-
     # Deep Learning
     M.add_node("Deep Learning", type='concept', color="#0000FF")
     
@@ -251,8 +250,6 @@ if __name__=="__main__":
     M.add_node("Activation Functions", type='concept', parent_names=["Deep Learning"])
     M.add_node("Pocketed Activations", type='concept', parent_names=["Activation Functions"], base_radius=2, link='auto')
     M.add_node("Gated Activations", type='concept', parent_names=["Activation Functions"], base_radius=2, link='auto')
-
-
 
 
     # UDL Textbook
