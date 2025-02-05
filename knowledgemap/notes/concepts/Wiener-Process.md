@@ -1,5 +1,6 @@
+# Wiener Process
+
 {% raw %}
-# Brownian Motion
 
 ## Standard Wiener Process
 

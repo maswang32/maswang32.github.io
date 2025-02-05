@@ -1,6 +1,5 @@
+# Score-Based Generative Models
 {% raw %}
-
-# Score Functions
 
 ## Motivation
 

@@ -1,6 +1,5 @@
+# Generative Modeling Using SDEs
 {% raw %}
-
-# SDEs for Generative Modeling
 
 ## Forward-Time Diffusion
 

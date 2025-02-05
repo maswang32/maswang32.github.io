@@ -1,4 +1,4 @@
-Last Reviewed: 1/3/25
+# Transpose Convolution
 
 When stride = 1, it's overlaying kernels
 This is the 'superposition' interpretation of convolution
@@ -13,3 +13,4 @@ Filter the 'mirrored' copy of the signal
 Gradient of Conv (makes forward and backwards same, natural way of upsampling)
 
 the padding parameter is the same as truncating on both sides
+Last Reviewed: 1/3/25
