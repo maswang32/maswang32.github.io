@@ -132,7 +132,7 @@ For inference:
 	$$
 	q(\mathbf{z_{t-1} \mid \mathbf{z}_t, x})
 	$$
-	Which is 
+	which is 
 	$$
 	\sqrt{\beta_t\frac{1 - \alpha_{t-1}}{1 - \alpha_t}}
 	$$
