@@ -1,6 +1,6 @@
 kramdown:
   math_engine: mathjax
+  syntax_highlighter: rouge
+  auto_ids: true
   parse_block_html: true
-  syntax_highlighter_opts:
-    block: false
-  input: GFM
+  enable_coderay: false
