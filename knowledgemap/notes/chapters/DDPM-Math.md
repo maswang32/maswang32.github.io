@@ -22,7 +22,7 @@ $$
 p_\theta(\mathbf{x},\mathbf{z}_{1,…,T} )=p_\theta(\mathbf{x}|\mathbf{z}_{1,…,T})p_\theta(\mathbf{z}_{1,…,T})
 $$
 
-We have parametrized the decoder such that $p_\theta(\mathbf{x}|\mathbf{z}_1)$ is conditionally independent from $\mathbf{z}_2,….,\mathbf{z}_T$. We call this the Markov property of $p$. This is:
+We have parametrized the decoder such that $$p_\theta(\mathbf{x}|\mathbf{z}_1)$$ is conditionally independent from $$\mathbf{z}_2,….,\mathbf{z}_T$$. We call this the Markov property of $p$. This is:
 
 $$
 = p_\theta(\mathbf{x}|\mathbf{z}_1)p_\theta(\mathbf{z}_{1,…,T})
@@ -49,15 +49,15 @@ $$
 Thus, the probability of taking a particular path from $\mathbf{z}_T$ to $\mathbf{x}$ is given by the above expression. Which is typical, this is just the chain rule applied to Markov chain.
 
 #### One way to put this:
-The integrals iterate over all possible values of $ \mathbf{z}_1, \dots, \mathbf{z}_T$. They are then plugged in for the e\mathbf{x}pression for the joint distribution \( p_\theta(\mathbf{x}, \mathbf{z}_{1,\dots,T}) \) to get a probability value, which accumulates across the loop. \( p_\theta(\mathbf{x}, \mathbf{z}_{1,\dots,T}) \) maps a tuple of values \( (\mathbf{x}, \mathbf{z}_{1,\dots,T}) \) to a density value based on the joint distribution.
+The integrals iterate over all possible values of $ \mathbf{z}_1, \dots, \mathbf{z}_T$. They are then plugged in for the expression for the joint distribution $ p_\theta(\mathbf{x}, \mathbf{z}_{1,\dots,T}) $ to get a probability value, which accumulates across the loop. $ p_\theta(\mathbf{x}, \mathbf{z}_{1,\dots,T}) $ maps a tuple of values $ (\mathbf{x}, \mathbf{z}_{1,\dots,T}) $ to a density value based on the joint distribution.
 
-However, given this same tuple, \( (\mathbf{x}, \mathbf{z}_{1,\dots,T}) \), we can evaluate the density by evaluating the probability density of the ‘path’ that goes from \( \mathbf{z}_T \) to \( \mathbf{x} \), which is this e\mathbf{x}pression:
+However, given this same tuple, $ (\mathbf{x}, \mathbf{z}_{1,\dots,T}) $, we can evaluate the density by evaluating the probability density of the ‘path’ that goes from $ \mathbf{z}_T $ to $ \mathbf{x} $, which is this expression:
 
 $$
 p_\theta(\mathbf{x} | \mathbf{z}_1) p_\theta(\mathbf{z}_1 | \mathbf{z}_2) p_\theta(\mathbf{z}_2 | \mathbf{z}_3) \dots p_\theta(\mathbf{z}_{T-1} | \mathbf{z}_T) p_\theta(\mathbf{z}_T)
 $$
 
-Which is the probability that the decoder takes that ‘path’ from \( \mathbf{z}_T \) to \( \mathbf{x} \).
+Which is the probability that the decoder takes that ‘path’ from $ \mathbf{z}_T $ to $\mathbf{x}$.
 
 
 ### Focusing on the Denominator in the log
@@ -96,7 +96,7 @@ $$
 $$
 q(\mathbf{z}_t| \mathbf{z}_{t-1})=q\left(\mathbf{z}_t| \mathbf{z}_{t-1},\mathbf{x}\right)=\frac{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)q\left(\mathbf{z}_t| \mathbf{x}\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{x}\right)}$$
 
-The first step seems like a hack – since $\mathbf{z}_t$ conditioned on $\mathbf{z}_{t-1}$ is independent from $\mathbf{x}$, we can add in the extra condition on $\mathbf{x}$ without worrying.
+The first step seems like a hack – since $$\mathbf{z}_t$$ conditioned on $$\mathbf{z}_{t-1}$$ is independent from $$\mathbf{x}$$, we can add in the extra condition on $$\mathbf{x}$$ without worrying.
 Thus,
 $$
 q\left(\mathbf{z}_T\middle| \mathbf{z}_{T-1}\right)q\left(\mathbf{z}_{T-1}| \mathbf{z}_{T-2}\right)\cdots q\left(\mathbf{z}_2| \mathbf{z}_1\right)q\left(\mathbf{z}_1| \mathbf{x}\right)=\\[10pt]\frac{q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)q\left(\mathbf{z}_T| \mathbf{x}\right)}{q\left(\mathbf{z}_{T-1}| \mathbf{x}\right)}\cdots\frac{q\left(\mathbf{z}_1| \mathbf{z}_2\right)q\left(\mathbf{z}_2| \mathbf{x}\right)}{q\left(\mathbf{z}_1| \mathbf{x}\right)}q\left(\mathbf{z}_1| \mathbf{x}\right)
