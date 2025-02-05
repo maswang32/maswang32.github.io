@@ -1,7 +1,7 @@
 # Diffusion Math
 
 ### Main Expression
-
+{% raw %}
 \[
 \log p_\theta(\mathbf{x}) = \log \int_{\mathbf{z}_{1,…,T}} p_\theta(\mathbf{x},\mathbf{z}_{1,…,T} )d\mathbf{z}_{1,…,T}
 \]
@@ -234,3 +234,4 @@ $$
 =\ \sum_{i=1}^{N}\left[\frac{\left(\mathbf{x}^{\left(i\right)}- \mathbf{f}_\theta\left(\mathbf{z}_1^{\left(i\right)}\right)\right)^2}{{2\sigma}_1^2}+\sum_{t=2}^{t=T}{\frac{1}{2\sigma_t^2}\ \left|\left|\frac{\left(1-\alpha_{t-1}\right)}{1-\alpha_t}\sqrt{1-\beta_t}\ \mathbf{z}_t^{\left(i\right)}+\frac{\sqrt{\alpha_{t-1}}\beta_t}{1-\alpha_t}\mathbf{x}- \mathbf{f}_\theta\left(\mathbf{z}_t^{\left(i\right)}\right)\right|\right|^2}\right]
 $$
 The loss function minimizes the difference between the estimated mean $\mathbf{f}(\mathbf{z}_t)$ of $\mathbf{z}_{t-1}$, and the most likely value (mean) it took, given $\mathbf{z}_t$ and $\mathbf{x}$.
+{% endraw %}
