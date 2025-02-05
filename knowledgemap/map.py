@@ -195,6 +195,18 @@ class KnowledgeMap:
         #net.set_template(custom_template)
 
         net.set_options(options_string)
+        
+        net.on('click', """
+        function(params) {
+            if (params.nodes.length > 0) {
+                var nodeId = params.nodes[0];
+                var node = this.body.nodes[nodeId];
+                if (node.options.url) {
+                    window.open(node.options.url, '_blank');
+                }
+            }
+        }
+        """)
         net.write_html("index.html")
 
 
