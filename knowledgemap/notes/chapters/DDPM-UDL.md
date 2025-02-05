@@ -61,7 +61,7 @@ We use a neural network $$\mathbf{g_\theta}$$ to predict the noise term $$\mathb
 
 ### Modeling Multi-modal distributions
 Generative modeling is about turning simple distributions (noise) into more complex ones (data). 
-- The data distribution is very complex and multimodal. But we can assume each denoising step $$ p( \mathbf{z}_{t-1} | \mathbf{z}_t) $$ is approximately normal.
+- The data distribution is very complex and multimodal. But we can assume each denoising step $$ p( \mathbf{z}\_{t-1} | \mathbf{z}\_t) $$ is approximately normal.
 - VAEs attempt to map $$\mathcal{N}(0,I)$$ to a data distribution with potentially many modes. This is easier to do when each timestep increases the number of modes.
 - We sample from a normal distribution at **each reverse time-step**, which eventually allows us to be in a particular 'modes' of the distirbution.
 - This eventually allows us to model a multimodal distribution.
