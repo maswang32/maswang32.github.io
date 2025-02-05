@@ -1,7 +1,4 @@
-Last Reviewed: 1/25/25
-
-
-
+# Bayes
 We can ignore terms that are constant with regard to the distribution we are computing.
 For instance, for a fixed x*,
 
@@ -13,5 +10,7 @@ by rescaling it by C
 ignoring the need for p(x*) term (which is 1/C).
 
 TO DO: Find notes about 'evidence' in Bayes
+
+Last Reviewed: 1/25/25
 
 

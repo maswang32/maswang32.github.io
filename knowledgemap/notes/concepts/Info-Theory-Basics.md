@@ -1,4 +1,4 @@
-Last Reviewed: 10/27/24
+# Info Theory Basics
 
 Information is -logP(x) for an event
 Independent events have additive infomration
@@ -9,4 +9,5 @@ Measured in nats or bits (recall logs of all bases are proportional)
 
 setup: a bitstream encodes a sequence of random vairables. Prefix requirements impose a cost of 2^l
 
+Last Reviewed: 10/27/24
 Reference Sheet #3, 3.1

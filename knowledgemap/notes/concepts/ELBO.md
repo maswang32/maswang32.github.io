@@ -1,5 +1,4 @@
-Last Reviewed: 1/19/25
-
+# Downsampling and Stretching
 Lots of math here. You can reprove this by hand from Jensen's inequality or look at your notes
 
 Basically, start with log(p(x)).
@@ -16,3 +15,4 @@ Maximizing p(x) with respect to the parameters for q(z) and p(z|x) involves expe
 ---can improve ELBO's lower bound by changing p(z|x) slash p(x|z)'s parametrization
 OR
 ---can make ELBO bound more tight by changing q(z)'s parametrization
+Last Reviewed: 1/19/25

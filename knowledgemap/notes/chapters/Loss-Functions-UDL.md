@@ -1,4 +1,4 @@
-# Loss Functions
+# Loss Functions - UDL
 
 Below are some brief notes on loss functions from Understanding Deep Learning.
 

@@ -1,3 +1,4 @@
+# Pocketed Activation
 Last Reviewed: 1/3/25
 
 Dead ReLU problem - activation ranges get super negative

@@ -1,5 +1,5 @@
+# DDPM - Reparametrization
 {% raw %}
-## Reparametrization
 
 ### Expressing $\mathbf{z}_t$ in terms of noise
 

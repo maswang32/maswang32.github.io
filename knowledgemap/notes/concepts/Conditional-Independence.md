@@ -1,3 +1,4 @@
+# Conditional Independence
 Last Reviewed: 1/25/25
 
 e.g., in diffusion models, we have

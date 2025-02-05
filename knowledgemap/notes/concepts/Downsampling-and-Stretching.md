@@ -1,3 +1,4 @@
+# Downsampling and Stretching
 Last Reviewed: 1/2/2025
 
 Downsampling 'folds' the FFT spectrum on itself.

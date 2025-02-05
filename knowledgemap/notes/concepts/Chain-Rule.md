@@ -1,4 +1,4 @@
-Last Reviewed: 10/27/24
+# Chain Rule
 
 Reference Page: #1
 Univariate Chain Rule - 'speeding up' interperation.
@@ -22,5 +22,5 @@ The linearity assumption is the assumes that changes in variables will affect th
 
 wherever a function has a derivative, it is locally linear
 
-
+Last Reviewed: 10/27/24
 Reference Page: #1

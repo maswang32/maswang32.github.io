@@ -1,4 +1,4 @@
-Last Reviewed: 1/19/25
+# Jensens Inequality
 
 Imagine a bunch of datapoints lying on log(y)
 
@@ -14,5 +14,7 @@ It is thus lower than
 (E[y], log(E[y])) which is on the curve.
 
 To Do: Prove Jensen's Inequality
+Last Reviewed: 1/19/25
+
 
 

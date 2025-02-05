@@ -1,4 +1,4 @@
-Last Reviewed: 1/3/25
+# Convolution
 
 Convolution in Neural Networks:
 Dilated Convolution = replicating spectrum of filter
@@ -26,3 +26,5 @@ Two interpretations:
 2---flipping and shifting
 the 'flipped' kernel is a function. The x is the 'offset' and the y is the 'weight'.
 i.e., how does input at time t + x affect output at time t.
+
+Last Reviewed: 1/3/25

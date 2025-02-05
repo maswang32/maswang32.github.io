@@ -1,6 +1,4 @@
-Last Reviewed: 1/19/25
-
-# VAEs
+# VAEs - UDL
 
 <span style="color:blue">To Do: Organize</span>.
 
@@ -44,3 +42,4 @@ relative probabilites of the z's.
 There's a diagram of this in UDL.
 
 p(x) is called the evidence
+Last Reviewed: 1/19/25

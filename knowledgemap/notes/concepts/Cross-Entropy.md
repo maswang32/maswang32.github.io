@@ -1,4 +1,4 @@
-Last Reviewed: 1/20/25
+# Cross Entropy
 
 -∫(p(x) log(q(x) dx))
 
@@ -22,3 +22,4 @@ Cross entropy = number of bits it takes to encode samples from P using an encodi
 Entropy = number of bits it takes to encode samples from P using an encoding trained on P
 KL Divergence = number of extra bits it takes to encode samples from P using an encoding trained on Q.
 Or, KL divergence is cross entropy minus entropy.
+Last Reviewed: 1/20/25

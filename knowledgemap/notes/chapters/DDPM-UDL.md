@@ -1,5 +1,5 @@
-{% raw %}
 # Diffusion Models - UDL Notes
+{% raw %}
 
 ## Introduction
 <span style="color:blue">To Do: Write Introduction</span>

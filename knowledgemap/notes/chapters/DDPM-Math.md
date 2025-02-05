@@ -1,5 +1,5 @@
+# DDPM Math
 {% raw %}
-# Diffusion Math
 
 ### Main Expression
 \[

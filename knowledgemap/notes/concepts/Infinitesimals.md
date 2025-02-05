@@ -1,6 +1,6 @@
+# Infinitesimals
 {% raw %}
 
-# Infinitesimals
 Suppose we have a rectangular approximation to a definite integral with limits $a$ and $b$. We take $N$ evenly spaced points $x_1, \ldots, x_N$, where $x_1 = a$ and $x_N = b$. This corresponds to $N-1$ rectangles. The area under the curve is approximated as:
 
 $$

@@ -1,4 +1,4 @@
-Last Reviewed: 11/9/24
+# Momentum, RMSProp, Adam
 
 Notes from "A visual explanation"
 
@@ -26,6 +26,8 @@ sum of squares = explore new directions
 Notes from Andrew NG:
 Momentum cancels oscillations
 Corrections are usually applied to Adam so things get rolling earlier
+Last Reviewed: 11/9/24
+
 
 
 
