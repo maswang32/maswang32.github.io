@@ -2,49 +2,49 @@
 {% raw %}
 
 ### Main Expression
-\[
+$$
 \log p_\theta(\mathbf{x}) = \log \int_{\mathbf{z}_{1,…,T}} p_\theta(\mathbf{x},\mathbf{z}_{1,…,T} )d\mathbf{z}_{1,…,T}
-\]
+$$
 
-\[
+$$
 = \log \int_{\mathbf{z}_{1,…,T}} \frac{p_\theta(\mathbf{x},\mathbf{z}_{1,…,T} )}{q(\mathbf{z}_{1,…,T}|\mathbf{x})} q(\mathbf{z}_{1,…,T}|\mathbf{x})d\mathbf{z}_{1,…,T}
-\]
+$$
 
-\[
+$$
 \geq \int_{\mathbf{z}_{1,…,T}} \log \left[ \frac{p_\theta(\mathbf{x},\mathbf{z}_{1,…,T} )}{q(\mathbf{z}_{1,…,T}|\mathbf{x})} \right] q(\mathbf{z}_{1,…,T}|\mathbf{x})d\mathbf{z}_{1,…,T}
-\]
+$$
 
 ### Focusing on the Numerator in the log
 
 Now,
 
-\[
+$$
 p_\theta(\mathbf{x},\mathbf{z}_{1,…,T} )=p_\theta(\mathbf{x}|\mathbf{z}_{1,…,T})p_\theta(\mathbf{z}_{1,…,T})
-\]
+$$
 
 We have parametrized the decoder such that $p_\theta(\mathbf{x}|\mathbf{z}_1)$ is conditionally independent from $\mathbf{z}_2,….,\mathbf{z}_T$. We call this the Markov property of $p$. This is:
 
-\[
+$$
 = p_\theta(\mathbf{x}|\mathbf{z}_1)p_\theta(\mathbf{z}_{1,…,T})
-\]
+$$
 
 Expanding by using the Chain Rule:
 
-\[
+$$
 p_\theta(\mathbf{x}|\mathbf{z}_1 )p_\theta(\mathbf{z}_1|\mathbf{z}_{2,…,T})p_\theta(\mathbf{z}_{2,…,T})
-\]
+$$
 
 Once again, using the Markov property of $p$:
 
-\[
+$$
 p_\theta(\mathbf{x}|\mathbf{z}_1 )p_\theta(\mathbf{z}_1|\mathbf{z}_2 )p_\theta(\mathbf{z}_{2,…,T})
-\]
+$$
 
 Continuing, we get 
 
-\[
+$$
 p_\theta(\mathbf{x}|\mathbf{z}_1 )p_\theta(\mathbf{z}_1|\mathbf{z}_2 )p_\theta(\mathbf{z}_2|\mathbf{z}_3 )\dots p_\theta(\mathbf{z}_{T-1}|\mathbf{z}_T )p_\theta(\mathbf{z}_T )
-\]
+$$
 
 Thus, the probability of taking a particular path from $\mathbf{z}_T$ to $\mathbf{x}$ is given by the above expression. Which is typical, this is just the chain rule applied to Markov chain.
 
@@ -53,9 +53,9 @@ The integrals iterate over all possible values of $ \mathbf{z}_1, \dots, \mathbf
 
 However, given this same tuple, \( (\mathbf{x}, \mathbf{z}_{1,\dots,T}) \), we can evaluate the density by evaluating the probability density of the ‘path’ that goes from \( \mathbf{z}_T \) to \( \mathbf{x} \), which is this e\mathbf{x}pression:
 
-\[
+$$
 p_\theta(\mathbf{x} | \mathbf{z}_1) p_\theta(\mathbf{z}_1 | \mathbf{z}_2) p_\theta(\mathbf{z}_2 | \mathbf{z}_3) \dots p_\theta(\mathbf{z}_{T-1} | \mathbf{z}_T) p_\theta(\mathbf{z}_T)
-\]
+$$
 
 Which is the probability that the decoder takes that ‘path’ from \( \mathbf{z}_T \) to \( \mathbf{x} \).
 
@@ -64,37 +64,37 @@ Which is the probability that the decoder takes that ‘path’ from \( \mathbf{
 
 Now consider:
 
-\[
+$$
 q(\mathbf{z}_{1,…,T}|\mathbf{x})
-\]
+$$
 
-\[
+$$
 = q(\mathbf{z}_T |\mathbf{z}_{1,…,T-1},\mathbf{x})q(\mathbf{z}_{1,…,T-1} |\mathbf{x})
-\]
+$$
 
 Since the forward process is a Markov Chain:
 
-\[
+$$
 q(\mathbf{z}_T |\mathbf{z}_{T-1})q(\mathbf{z}_{1,…,T-1} |\mathbf{x})
-\]
+$$
 
 Continuing:
 
-\[
+$$
 q(\mathbf{z}_T |\mathbf{z}_{T-1})q(\mathbf{z}_{T-1}|\mathbf{z}_{T-2}) \dots q(\mathbf{z}_1|\mathbf{x})
-\]
+$$
 
 Thus, evaluating $q(\mathbf{z}_{1,…,T}|\mathbf{x})$ involves starting with $\mathbf{x}$, and evaluating the probability fo the chain of events leading from $\mathbf{x}$ to $\mathbf{z}_T$.
 
 #### Using Bayes' rule:
 
-\[
+$$
 q(\mathbf{z}_t|\mathbf{z}_{t-1}) = q(\mathbf{z}_t|\mathbf{z}_{t-1},\mathbf{x}) = \frac{q(\mathbf{z}_{t-1}|\mathbf{z}_t)q(\mathbf{z}_t|\mathbf{x})}{q(\mathbf{z}_{t-1}|\mathbf{x})}
-\]
+$$
 
 
-\[
-q(\mathbf{z}_t| \mathbf{z}_{t-1})=q\left(\mathbf{z}_t| \mathbf{z}_{t-1},\mathbf{x}\right)=\frac{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)q\left(\mathbf{z}_t| \mathbf{x}\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{x}\right)}\]
+$$
+q(\mathbf{z}_t| \mathbf{z}_{t-1})=q\left(\mathbf{z}_t| \mathbf{z}_{t-1},\mathbf{x}\right)=\frac{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)q\left(\mathbf{z}_t| \mathbf{x}\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{x}\right)}$$
 
 The first step seems like a hack – since $\mathbf{z}_t$ conditioned on $\mathbf{z}_{t-1}$ is independent from $\mathbf{x}$, we can add in the extra condition on $\mathbf{x}$ without worrying.
 Thus,
