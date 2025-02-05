@@ -1,4 +1,4 @@
-# Random Variables
+# Random Variables and Probability Distributions
 
 ## Definition of Random Variable
 
