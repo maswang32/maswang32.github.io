@@ -1,5 +1,3 @@
-Last Reviewed: 1/21/25
-
 Super Fast Rendering - realtime display rates at 1080p
 Higher quality than Mip-Nerf
 Avoids unnecessary computation in empty space
@@ -28,3 +26,4 @@ Parametrize each gaussian with:
     opacity, anisotropic covariance, spherical harmonics
     
 adaptive density control - add or remove gaussians during training
+Last Reviewed: 1/17/25

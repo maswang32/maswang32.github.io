@@ -1,9 +1,16 @@
 Last Reviewed: 1/19/25
 
-VAEs do not let you evaluate p(x)
-MLE training is not trivial, but can define a lower bound
-model an 'unobserved' latent variable, the thing that 'gives rise' to the image/sound
-p(x) = integral(P(x,z)dz) = integral(p(x|z)p(z)dz)
+# VAEs
+
+<span style="color:blue">To Do: Organize</span>.
+
+<span style="color:blue">To Do: Insert ELBO Math</span>.
+
+## Introduction
+- VAEs do not let you evaluate p(x)
+- MLE training is not trivial, but can define a lower bound
+- model an 'unobserved' latent variable, the thing that 'gives rise' to the image/sound
+- p(x) = integral(P(x,z)dz) = integral(p(x|z)p(z)dz)
 Example - Mixture of Gaussians, z describes which gaussian.
 
 VAE - P(z) is N(O,I), and P(x|z) is N(f(z), s^2I)
@@ -19,8 +26,6 @@ A model that maximizes it could try to assign big probabilities to your data, wi
 integrating to 1.
 
 Trying to restrict it to integrate to 1 is intractable.
-
-
 
 
 Note:

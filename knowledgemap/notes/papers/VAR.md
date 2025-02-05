@@ -1,5 +1,3 @@
-Last Reviewed: 1/17/25
-
 Works in VQ-VAE Latent Space
 
 Encoding:
@@ -14,3 +12,5 @@ Autoregressive 'next-scale' predictions,
 predict first scale, then all of next scale in parallel, etc.
 
 raster scan order bad - disrupts locality, makes infilling hard due to bidirectional correlation, inefficient.
+
+Last Reviewed: 1/17/25

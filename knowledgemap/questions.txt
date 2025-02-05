@@ -13,8 +13,6 @@ input we observe multiple outputs. Then it's the KL divergence for those outputs
 for that input. Or, P(y|x) compared to the distribution over y|x.
 
 
-
-
 Why is it bad that the normalizing constant is not tractable?
 Answer: because you can increase the probability of your data distribution arbitrarily
 
