@@ -110,7 +110,7 @@ So the distance between the score and our estimate are downweighted in regions w
 This complicates Langevin sampling, since $\mathbf{x}_0$ (the first sampling step) usually starts in a low-density region according to the data distribution (it is usually just noise).
 
 
-### Mason/Mert's Insights:
+### Additional Thoughts:
 
 #### Adding two random variables
 1. Recall from [Brad Osgood's course](https://see.stanford.edu/course/ee261) that adding two random variables $Z = X + Y$ results in a distribution that is a *convolution* of the distributions of $X$ and $Y$.
@@ -144,7 +144,7 @@ That means that the score function is proportional to the noise added!
 #### Score function of Mixture of Gaussians
 1. The score function of a *mixture of gaussians* is approximately piecewise linear. It would be exactly piecewise linear if our smoothed distribution was piece-wise Gaussian. In a mixture of Gaussians, there is some spillover from other Gaussians everywhere.
 
-2. Since ReLU neural networks output piecewise linear functions, they are great for modeling score functions.
+2. Since ReLU neural networks output piecewise linear functions, they are great for modeling score functions. (This was from Mert's class)
 
 ### Improved Score Matching
 Adding lots of noise corrupts the data distribution substantially, while adding low levels of noise may not result in enough smoothing or coverage. We can choose $L$ levels of noise:
