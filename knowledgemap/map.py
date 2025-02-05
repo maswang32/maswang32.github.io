@@ -88,11 +88,14 @@ class KnowledgeMap:
             
             adjusted_radius = np.sqrt(node.compute_area()) * 1
             
+            page_url = None
             if node.link:
                 if node.link == "auto":
                     pluralized_type = node.type + 's' if node.type not in ['class'] else node.type + 'es'
                     hyphenated_name = re.sub(r'[-\s]+', '-', node.name).strip('-')
                     file_location = os.path.join("Notes", pluralized_type, hyphenated_name + ".md")
+                    page_url = f"https://maswang32.github.io/knowledgemap/notes/{pluralized_type}/{hyphenated_name}/"
+
                     if not os.path.exists(file_location):
                         raise FileNotFoundError(f"File Not Found:\t{file_location}")
                 else:
@@ -122,8 +125,9 @@ class KnowledgeMap:
                 node_attrs["color"] = {
                     "background": node.color,
                     "border": "white",
-                    "borderWidth" : 1 
+                    "borderWidth" : 1,
                 }
+                node_attrs["href"] = page_url
             net.add_node(g_node, **node_attrs)
 
         # Add edges
