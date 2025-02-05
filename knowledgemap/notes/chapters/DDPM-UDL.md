@@ -10,7 +10,7 @@ Diffusion models can be interpreted as Hierarchical VAEs. The encoder in this ca
 ## DDPM - Noise Schedule
 Let $\mathbf{X}$ the random variable representing a data sample from the intended distribution, and $\mathbf{x}$ be a realization of it. Also, define
 
-$$\mathbf{Z_0} \coloneqq \mathbf{X}$$
+$$\mathbf{Z_0} = \mathbf{X}$$
 
 We have latent variables $\mathbf{z_1}, \ldots, \mathbf{z_T} $ correponding to noise levels $1, \ldots, T$. These latent variables are given by:
 

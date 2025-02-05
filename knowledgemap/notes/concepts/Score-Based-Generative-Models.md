@@ -32,7 +32,7 @@ $$
 \nabla_\mathbf{x} \log(p(\mathbf{x}))
 $$
 
-![Score function of a mixture of 2 Gaussians](images/MOG_Score.png){width="400" height="400" style="display: block; margin: 0 auto"}
+![Score function of a mixture of 2 Gaussians](images/MOG_Score.png)
 
 *Score function of a mixture of 2 Gaussians*
 
@@ -85,7 +85,8 @@ Where $z_i \sim \mathcal{N}(0,I)$.
 
 As the step size $\epsilon \rightarrow 0$, and the number of steps $K \rightarrow \infty$, this will result in a sample from $p(\mathbf{x})$.
 
-![Using Langevin Dynamics to sample from a mixture of 2 Gaussians](images/langevin_sampling.gif){width="400" height="400" style="display: block; margin: 0 auto"}
+![Using Langevin Dynamics to sample from a mixture of 2 Gaussians](images/langevin_sampling.gif)
+
 *Using Langevin Dynamics to sample from a mixture of 2 Gaussians.*
 
 Instead of using the ground-truth score function, we can plug in our estimate for the score function in order to generate samples.

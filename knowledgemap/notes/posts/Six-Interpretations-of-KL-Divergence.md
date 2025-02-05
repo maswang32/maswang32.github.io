@@ -23,7 +23,7 @@ In other words, $D_{\text{KL}(p,q)}$ is the maximum amount of log-money that can
 
 <span style="color:blue">To Do: review other interpretations</span>.
 
-[Link][https://www.lesswrong.com/posts/no5jDTut5Byjqb4j5/six-and-a-half-intuitions-for-kl-divergence]
+[Source](https://www.lesswrong.com/posts/no5jDTut5Byjqb4j5/six-and-a-half-intuitions-for-kl-divergence)
 
 Last Reviewed: 1/20/25
 
