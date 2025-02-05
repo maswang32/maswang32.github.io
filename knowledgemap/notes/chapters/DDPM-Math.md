@@ -206,7 +206,7 @@ Which is proportional to the squared difference between the means.
 
 ### First Term:
 $$
-E_{\mathbf{z}_1\sim q\left(\mathbf{z}_1| \mathbf{x}\right)}\left[\log p_\theta(\mathbf{x}| \mathbf{z}_1)\right]=E_{\mathbf{z}_1\sim q\left(\mathbf{z}_1| \mathbf{x}\right)}\left[-\frac{\left(\mathbf{x}- \mathbf{f}_\theta\left(\mathbf{z}_1\right)\right)^2}{{2\sigma}_1^2}\right]
+E_{\mathbf{z}_1\sim q\left(\mathbf{z}_1| \mathbf{x}\right)}\left[\log p_\theta(\mathbf{x}| \mathbf{z}_1)\right]=E_{\mathbf{z}_1\sim q\left(\mathbf{z}_1| \mathbf{x}\right)}\left[-\frac{\left(\mathbf{x}- \mathbf{f}_\theta\left(\mathbf{z}_1\right)\right)^2}{2\sigma}_1^2\right]
 $$
 ### Back to Main Expression
 $$
