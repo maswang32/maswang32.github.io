@@ -84,12 +84,15 @@ $$
 q(\mathbf{z}_T |\mathbf{z}_{T-1})q(\mathbf{z}_{T-1}|\mathbf{z}_{T-2}) \dots q(\mathbf{z}_1|\mathbf{x})
 $$
 
-Thus, evaluating $$q(\mathbf{z}_{1,…,T}|\mathbf{x})$$ involves starting with $$\mathbf{x}$$, and evaluating the probability fo the chain of events leading from $$\mathbf{x}$$ to $$\mathbf{z}_T$$.
+Thus, evaluating $$ q( \mathbf{z}_{1,…,T} | \mathbf{x})$$ involves starting with $$\mathbf{x}$$, and evaluating the probability fo the chain of events leading from $$\mathbf{x}$$ to $$\mathbf{z}_T$$.
 
 #### Using Bayes' rule:
 
 $$
-q(\mathbf{z}_t|\mathbf{z}_{t-1}) = q(\mathbf{z}_t|\mathbf{z}_{t-1},\mathbf{x}) = \frac{q(\mathbf{z}_{t-1}|\mathbf{z}_t)q(\mathbf{z}_t|\mathbf{x})}{q(\mathbf{z}_{t-1}|\mathbf{x})}
+q(\mathbf{z}_t|\mathbf{z}_{t-1}) = 
+$$
+$$
+q(\mathbf{z}_t | \mathbf{z}_{t-1},\mathbf{x}) = \frac{q(\mathbf{z}_{t-1} | \mathbf{z}_t)q(\mathbf{z}_t | \mathbf{x})}{q(\mathbf{z}_{t-1}|\mathbf{x})}
 $$
 
 
