@@ -1,6 +1,7 @@
 import numpy as np
 import os
 import glob
+import re
 
 import networkx as nx
 from pyvis.network import Network
@@ -14,10 +15,12 @@ def interpolate_colors(nodes):
     avg_color_rgb = lab2rgb([[avg_color_lab]])[0][0]
     return to_hex(avg_color_rgb)
 
+
+
 class Node:
     def __init__(self, name, base_radius=0, parents=[],
                  color=None, type='document', description="",
-                 link = "", review_flag=False):
+                 link = None):
         self.name = name
         self.base_area = base_radius**2
         self.parents = parents
@@ -31,7 +34,7 @@ class Node:
         self.type = type
         self.description = description
         self.link = link
-        self.review_flag = review_flag        
+        self.highlight = False        
         self.children = []
         for parent in self.parents:
             parent.add_child(self)
@@ -57,7 +60,7 @@ class KnowledgeMap:
         self.node_dict = {}
         
     def add_node(self, name, base_radius=0, parent_names=[], color=None,
-                type='document', description="", link="", review_flag=False):
+                type='document', description="", link=None):
         parents = [self.node_dict[parent] for parent in parent_names]
         self.node_dict[name] = Node(name,
                             base_radius=base_radius,
@@ -65,8 +68,7 @@ class KnowledgeMap:
                             color=color,
                             type=type,
                             description=description,
-                            link=link,
-                            review_flag=review_flag)
+                            link=link)
 
     def render(self):
         G = nx.Graph()
@@ -82,16 +84,17 @@ class KnowledgeMap:
         #net = Network(notebook=True, bgcolor="#000000", font_color="white")        
         for g_node in G.nodes:
             node = self.node_dict[g_node]
-            label = f"“{node.name}”" if node.type in ['document', 'book', 'class', 'paper', 'blog post', 'chapter'] else node.name
+            label = f"“{node.name}”" if node.type in ['document', 'book', 'class', 'paper', 'post', 'chapter'] else node.name
             
             adjusted_radius = np.sqrt(node.compute_area()) * 1
             
             if node.link:
                 if node.link == "auto":
                     pluralized_type = node.type + 's' if node.type not in ['class'] else node.type + 'es'
-                    file_location = os.path.join("Notes", pluralized_type, node.name + ".notes")
+                    hyphenated_name = re.sub(r'[-\s]+', '-', node.name).strip('-')
+                    file_location = os.path.join("Notes", pluralized_type, hyphenated_name + ".md")
                     if not os.path.exists(file_location):
-                        raise Error(f"File Not Found:\t{file_location}")
+                        raise FileNotFoundError(f"File Not Found:\t{file_location}")
                 else:
                     file_location = node.link
                               
@@ -101,16 +104,7 @@ class KnowledgeMap:
                 if node.description:
                     title = node.description + "\n" + file_text
                 else:
-                    #title = file_text
-                    
-                    
-                    title = f"""
-                    <div style="font-family:sans-serif;">
-                        <p>{file_text}</p>
-                    </div>
-                    """
-        
-        
+                    title = file_text
             else:
                 title = node.description
             
@@ -122,12 +116,13 @@ class KnowledgeMap:
                 "fixed": False
             }
             
-            if not node.review_flag:
+            if not node.link:
                 node_attrs["color"] = node.color
             else:
                 node_attrs["color"] = {
                     "background": node.color,
                     "border": "white",
+                    "borderWidth" : 1 
                 }
             net.add_node(g_node, **node_attrs)
 
@@ -146,7 +141,7 @@ class KnowledgeMap:
         options_string = """
         {
             "nodes": {
-                "borderWidth": 2,
+                "borderWidth": 1,
                 "borderWidthSelected": 3,
                 "chosen": true,
                 "shape": "dot",
@@ -220,19 +215,21 @@ if __name__=="__main__":
     M.add_node("Momentum, RMSProp, Adam", type='concept', parent_names=["Optimization"], base_radius=10, link='auto')
     M.add_node("Gradients", type='concept',  parent_names=["Calculus", "Linear Algebra"], base_radius=10, link="auto")
     M.add_node("Chain Rule", type='concept',  parent_names=["Gradients"], base_radius=10, link="auto")
+    M.add_node("Infinitesimals", type='concept',  parent_names=["Calculus"], base_radius=5, link="auto")
+
 
     M.add_node("Functions", type='concept',  parent_names=["Math"], base_radius=1, link="auto")
     
-    M.add_node("A Brief Introduction To Information", type='blog post', parent_names=["Information Theory"], link="auto", base_radius=2)
+    M.add_node("A Brief Introduction To Information", type='post', parent_names=["Information Theory"], link="auto", base_radius=2)
 
     M.add_node("Deep Learning Chapter 3", type='chapter', parent_names=["Information Theory"])
     M.add_node("KL Divergence", type='concept', parent_names=["Information Theory"], base_radius=5, link="auto")
-    M.add_node("Six Interpretations of KL Divergence", type='blog post', parent_names=["KL Divergence"], base_radius=5, link="auto")
+    M.add_node("Six Interpretations of KL Divergence", type='post', parent_names=["KL Divergence"], base_radius=5, link="auto")
     M.add_node("Entropy", type='concept', parent_names=["Deep Learning Chapter 3"], base_radius=5, link="auto")
     M.add_node("Cross Entropy", type='concept', parent_names=["Deep Learning Chapter 3"], base_radius=5, link="auto")
 
     M.add_node("Info Theory Basics", type='concept', parent_names=["Deep Learning Chapter 3"], base_radius=5  , link="auto")
-    M.add_node("Random Variables", type='concept', parent_names=["Statistics"], base_radius=10, link='auto')
+    M.add_node("Random-Variables-and-Probability-Distributions", type='concept', parent_names=["Statistics"], base_radius=10, link='auto')
     M.add_node("Bayes", type='concept', parent_names=["Statistics"], base_radius=10, link='auto')
     M.add_node("Conditional Independence", type='concept', parent_names=["Statistics"], base_radius=5, link='auto')
 
@@ -243,7 +240,6 @@ if __name__=="__main__":
     # Software
     M.add_node("Software", type='concept', color="#212129")
     M.add_node("PyTorch", type='software', parent_names=["Software", "Deep Learning"], base_radius=10, link='auto')
-
 
 
     # Activation Functions
@@ -265,10 +261,19 @@ if __name__=="__main__":
     M.add_node("Optimization - UDL", type='chapter', parent_names=["Understanding Deep Learning", "Optimization"], base_radius=10, link="auto")
 
     M.add_node("Diffusion Models", type='concept', parent_names=["Generative Modeling"])
-    M.add_node("Diffusion Models - UDL", type='chapter', parent_names=["Understanding Deep Learning", "Diffusion Models"], base_radius=10, link='auto')
-    M.add_node("Noise Schedule", type='concept', parent_names=["Diffusion Models - UDL"], base_radius=5, link='auto')
+    M.add_node("DDPM - UDL", type='chapter', parent_names=["Understanding Deep Learning", "Diffusion Models"], base_radius=10, link='auto')
+    M.add_node("DDPM - Math", type='chapter', parent_names=["DDPM - UDL"], base_radius=10, link='auto')
+    M.add_node("DDPM - Reparametrization", type='chapter', parent_names=["DDPM - UDL"], base_radius=10, link='auto')
 
-    M.add_node("Understanding Diffusion Models: A Unified Perspective", type='blog post', parent_names=["Diffusion Models"], base_radius=20, description="Last Recall: 7/14/24", review_flag=True)
+    M.add_node("Understanding Diffusion Models: A Unified Perspective", type='post', parent_names=["Diffusion Models"], base_radius=20, description="Last Recall: 7/14/24")
+
+    M.add_node("Score Based Generative Models", type='post', parent_names=["Diffusion Models"], base_radius=10)
+
+    M.add_node("Generative Modeling Using SDEs", type='post', parent_names=["Score Based Generative Models"], base_radius=10)
+    
+    M.add_node("Wiener Process", type='concept',  parent_names=["Calculus", "Statistics", "Generative Modeling Using SDEs"], base_radius=5, link="auto")
+
+
 
     # Audio
     M.add_node("Audio", type='concept', color="#3FFF57")
@@ -311,8 +316,9 @@ if __name__=="__main__":
     M.render()
     
     
-    list_of_notes_documents = [os.path.splitext(os.path.basename(path))[0] for path in glob.glob("Notes/*/*.notes")]
-    unassigned_notes = [name for name in list_of_notes_documents if name not in M.node_dict.keys()]    
+    list_of_notes_documents = [os.path.splitext(os.path.basename(path))[0] for path in glob.glob("Notes/*/*.md")]
+    simplified_keys = [re.sub(r'[-\s]+', '-', name).strip('-') for name in list(M.node_dict.keys())]
+    unassigned_notes = [name for name in list_of_notes_documents if name not in simplified_keys]    
     print("Unassigned Notes")
     print(unassigned_notes)
     
