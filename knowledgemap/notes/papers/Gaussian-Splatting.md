@@ -1,3 +1,4 @@
+# Gaussian Splatting
 Super Fast Rendering - realtime display rates at 1080p
 Higher quality than Mip-Nerf
 Avoids unnecessary computation in empty space

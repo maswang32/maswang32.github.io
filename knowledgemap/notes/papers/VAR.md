@@ -1,3 +1,4 @@
+# VAR
 Works in VQ-VAE Latent Space
 
 Encoding:
