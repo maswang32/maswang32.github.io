@@ -1,26 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-
-    <!-- Load MathJax -->
-    <script type="text/javascript" async
-      src="https://polyfill.io/v3/polyfill.min.js?features=es6">
-    </script>
-    <script type="text/javascript" async
-      id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
-
-    <!-- Load default Jekyll theme styles (if needed) -->
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-</head>
+{% include head.html %}
 <body>
     <header>
         <h1>{{ site.title }}</h1>
     </header>
-
     <main>
         {{ content }}
     </main>
