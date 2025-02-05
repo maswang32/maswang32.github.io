@@ -128,5 +128,13 @@ For inference:
 - Sample $\mathbf{z}_{t-1}$ from
 		$\mathcal{N}\left(f\left(\mathbf{z}_t\right),\ \sigma_t\right)$
 	Eventually, we compute $\mathbf{f}(\mathbf{z}_1)$, which is our data sample.
-Sigmas here are predetermined.
+	Sigmas here are predetermined. In practice, I use the standard deviation of 
+	$$
+	q(\mathbf{z_{t-1} \mid \mathbf{z}_t, x})
+	$$
+	Which is 
+	$$
+	\sqrt{\beta_t\frac{1 - \alpha_{t-1}}{1 - \alpha_t}}
+	$$
+
 {% endraw %}
