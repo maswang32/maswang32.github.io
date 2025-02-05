@@ -4,3 +4,5 @@ kramdown:
   syntax_highlighter_opts:
     block: false
   input: GFM
+
+permalink: pretty
