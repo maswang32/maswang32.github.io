@@ -99,7 +99,7 @@ $$
 p_\theta(\mathbf{x_1}, \ldots , \mathbf{x}_N) = \prod_{i=1}^N p_\theta(\mathbf{x_i}).
 $$
 
-In this case, the left hand side refers to the probability of observing $\mathbf{x_1}, \ldots , \mathbf{x}_N$ according to the joint distribution given by the parameters $\theta$. We use $p_\theta$ to refer to both the joint *and* marginal distributions. They are intertwined by the rules of probability, e.g., the chain rule.
+In this case, the left hand side refers to the probability of observing $\mathbf{x}_1, \ldots , \mathbf{x}_N$ according to the joint distribution given by the parameters $\theta$. We use $p_\theta$ to refer to both the joint *and* marginal distributions. They are intertwined by the rules of probability, e.g., the chain rule.
 
 
 

@@ -1,2 +1,6 @@
 kramdown:
   math_engine: mathjax
+  parse_block_html: true
+  syntax_highlighter_opts:
+    block: false
+  input: GFM
