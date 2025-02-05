@@ -1,3 +1,4 @@
+{% raw %}
 # Brownian Motion
 
 ## Standard Wiener Process
@@ -55,3 +56,4 @@ dW \sim \mathcal{N}(0, I dt)
 $$
 
 Last Reviewed: 2/4/25
+{% endraw %}

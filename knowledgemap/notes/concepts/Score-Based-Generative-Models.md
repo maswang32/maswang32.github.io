@@ -1,3 +1,5 @@
+{% raw %}
+
 # Score Functions
 
 ## Motivation
@@ -232,3 +234,5 @@ We can choose the noise levels in a geometric progression (there is a common rat
 As $L \rightarrow \infty$, the noise level becomes a continuous-time stochastic process, where noise is added. This will allow for generative modeling using [SDEs](Generative-Modeling-Using-SDEs). 
 
 Last Reviewed: 2/4/25
+
+{% endraw %}

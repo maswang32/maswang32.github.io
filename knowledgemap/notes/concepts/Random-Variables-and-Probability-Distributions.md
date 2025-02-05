@@ -2,6 +2,7 @@
 layout: default
 title: My Document
 ---
+{% raw %}
 
 # Random Variables
 
@@ -143,3 +144,4 @@ To evaluate $p(\mathbf{x})$ for a specific $\mathbf{x}$, we would:
 The parameters $f(\mathbf{z}), I$ are how we describe the function that is the probability distribution.
 
 Last Reviewed: 1/31/25
+{% endraw %}

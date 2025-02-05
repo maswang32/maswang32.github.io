@@ -1,3 +1,4 @@
+{% raw %}
 # Diffusion Models - UDL Notes
 
 ## Introduction
@@ -99,3 +100,5 @@ Last Reviewed: 1/23/25
 More Resources I should look at:
 https://sander.ai/2024/09/02/spectral-autoregression.html
 https://sander.ai/2023/07/20/perspectives.html
+
+{% endraw %}

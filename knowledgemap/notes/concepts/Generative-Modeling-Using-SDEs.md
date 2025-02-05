@@ -1,3 +1,4 @@
+{% raw %}
 
 # SDEs for Generative Modeling
 
@@ -450,3 +451,5 @@ For instance, we can apply score-based models to the task of image inpainting. T
 Once I finish my page on DDPM, you will be able to see that the ELBO objective that DDPM uses is the same as a the score-matching objective.
 
 Last Reviewed: 2/4/25
+
+{% endraw %}

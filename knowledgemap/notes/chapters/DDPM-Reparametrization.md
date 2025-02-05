@@ -1,3 +1,4 @@
+{% raw %}
 ## Reparametrization
 
 ### Expressing $\mathbf{z}_t$ in terms of noise
@@ -128,12 +129,4 @@ For inference:
 		$\mathcal{N}\left(f\left(\mathbf{z}_t\right),\ \sigma_t\right)$
 	Eventually, we compute $\mathbf{f}(\mathbf{z}_1)$, which is our data sample.
 Sigmas here are predetermined.
-
-
-	
-	
-
-
-
-
-
+{% endraw %}
