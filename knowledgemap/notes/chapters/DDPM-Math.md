@@ -22,7 +22,7 @@ $$
 p_\theta(\mathbf{x},\mathbf{z}_{1,…,T} )=p_\theta(\mathbf{x}|\mathbf{z}_{1,…,T})p_\theta(\mathbf{z}_{1,…,T})
 $$
 
-We have parametrized the decoder such that $$p_\theta(\mathbf{x}|\mathbf{z}_1)$$ is conditionally independent from $$\mathbf{z}_2,….,\mathbf{z}_T$$. We call this the Markov property of $p$. This is:
+We have parametrized the decoder such that $$p_\theta(\mathbf{x}|\mathbf{z}_1)$$ is conditionally independent from $$\mathbf{z}_2,….,\mathbf{z}_T$$. We call this the Markov property of $$p$$. This is:
 
 $$
 = p_\theta(\mathbf{x}|\mathbf{z}_1)p_\theta(\mathbf{z}_{1,…,T})
@@ -34,7 +34,7 @@ $$
 p_\theta(\mathbf{x}|\mathbf{z}_1 )p_\theta(\mathbf{z}_1|\mathbf{z}_{2,…,T})p_\theta(\mathbf{z}_{2,…,T})
 $$
 
-Once again, using the Markov property of $p$:
+Once again, using the Markov property of $$p$$:
 
 $$
 p_\theta(\mathbf{x}|\mathbf{z}_1 )p_\theta(\mathbf{z}_1|\mathbf{z}_2 )p_\theta(\mathbf{z}_{2,…,T})
@@ -46,18 +46,18 @@ $$
 p_\theta(\mathbf{x}|\mathbf{z}_1 )p_\theta(\mathbf{z}_1|\mathbf{z}_2 )p_\theta(\mathbf{z}_2|\mathbf{z}_3 )\dots p_\theta(\mathbf{z}_{T-1}|\mathbf{z}_T )p_\theta(\mathbf{z}_T )
 $$
 
-Thus, the probability of taking a particular path from $\mathbf{z}_T$ to $\mathbf{x}$ is given by the above expression. Which is typical, this is just the chain rule applied to Markov chain.
+Thus, the probability of taking a particular path from $$\mathbf{z}_T$$ to $$\mathbf{x}$$ is given by the above expression. Which is typical, this is just the chain rule applied to Markov chain.
 
 #### One way to put this:
-The integrals iterate over all possible values of $ \mathbf{z}_1, \dots, \mathbf{z}_T$. They are then plugged in for the expression for the joint distribution $ p_\theta(\mathbf{x}, \mathbf{z}_{1,\dots,T}) $ to get a probability value, which accumulates across the loop. $ p_\theta(\mathbf{x}, \mathbf{z}_{1,\dots,T}) $ maps a tuple of values $ (\mathbf{x}, \mathbf{z}_{1,\dots,T}) $ to a density value based on the joint distribution.
+The integrals iterate over all possible values of $$ \mathbf{z}_1, \dots, \mathbf{z}_T$$. They are then plugged in for the expression for the joint distribution $$ p_\theta(\mathbf{x}, \mathbf{z}_{1,\dots,T}) $$ to get a probability value, which accumulates across the loop. $$ p_\theta(\mathbf{x}, \mathbf{z}_{1,\dots,T}) $$ maps a tuple of values $$ (\mathbf{x}, \mathbf{z}_{1,\dots,T}) $$ to a density value based on the joint distribution.
 
-However, given this same tuple, $ (\mathbf{x}, \mathbf{z}_{1,\dots,T}) $, we can evaluate the density by evaluating the probability density of the ‘path’ that goes from $ \mathbf{z}_T $ to $ \mathbf{x} $, which is this expression:
+However, given this same tuple, $$ (\mathbf{x}, \mathbf{z}_{1,\dots,T}) $$, we can evaluate the density by evaluating the probability density of the ‘path’ that goes from $$ \mathbf{z}_T $$ to $$ \mathbf{x} $$, which is this expression:
 
 $$
 p_\theta(\mathbf{x} | \mathbf{z}_1) p_\theta(\mathbf{z}_1 | \mathbf{z}_2) p_\theta(\mathbf{z}_2 | \mathbf{z}_3) \dots p_\theta(\mathbf{z}_{T-1} | \mathbf{z}_T) p_\theta(\mathbf{z}_T)
 $$
 
-Which is the probability that the decoder takes that ‘path’ from $ \mathbf{z}_T $ to $\mathbf{x}$.
+Which is the probability that the decoder takes that ‘path’ from $$ \mathbf{z}_T $$ to $$\mathbf{x}$$.
 
 
 ### Focusing on the Denominator in the log
@@ -84,7 +84,7 @@ $$
 q(\mathbf{z}_T |\mathbf{z}_{T-1})q(\mathbf{z}_{T-1}|\mathbf{z}_{T-2}) \dots q(\mathbf{z}_1|\mathbf{x})
 $$
 
-Thus, evaluating $q(\mathbf{z}_{1,…,T}|\mathbf{x})$ involves starting with $\mathbf{x}$, and evaluating the probability fo the chain of events leading from $\mathbf{x}$ to $\mathbf{z}_T$.
+Thus, evaluating $$q(\mathbf{z}_{1,…,T}|\mathbf{x})$$ involves starting with $$\mathbf{x}$$, and evaluating the probability fo the chain of events leading from $$\mathbf{x}$$ to $$\mathbf{z}_T$$.
 
 #### Using Bayes' rule:
 
@@ -119,9 +119,9 @@ $$
 $$
 =\log{p_\theta\left(\mathbf{x}| \mathbf{z}_1\right)}+\log{\frac{p_\theta\left(\mathbf{z}_1| \mathbf{z}_2\right)}{q\left(\mathbf{z}_1| \mathbf{z}_2\right)}+\cdots}\ \log{\frac{p_\theta\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)}{q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)}}+\log{\frac{p_\theta\left(\mathbf{z}_T\right)}{q\left(\mathbf{z}_T| \mathbf{x}\right)}}
 $$
-Assume the last term goes to zero, since the distribution after all the forward diffusion steps should be very similar to $p_\theta\left(\mathbf{z}_T\right)=\mathcal{N}\left(0,\mathbf{I}\right)$.
+Assume the last term goes to zero, since the distribution after all the forward diffusion steps should be very similar to $$p_\theta\left(\mathbf{z}_T\right)=\mathcal{N}\left(0,\mathbf{I}\right)$$.
 
-Why is the distribution for $p_\theta\left(\mathbf{z}_T\right)=N\left(0,\mathbf{I}\right)?$ Well, we can choose it to be that way, by making the ‘decoder’ evaluate it as such. Or, we can think of p as attempting to fit the ‘true’ distribution of the data, which is done approximately in this case by being $\mathcal{N}\left(0,\mathbf{I}\right)$.
+Why is the distribution for $$p_\theta\left(\mathbf{z}_T\right)=N\left(0,\mathbf{I}\right)?$$ Well, we can choose it to be that way, by making the ‘decoder’ evaluate it as such. Or, we can think of p as attempting to fit the ‘true’ distribution of the data, which is done approximately in this case by being $$\mathcal{N}\left(0,\mathbf{I}\right)$$.
 $$\approx\log{p_\theta\left(\mathbf{x}| \mathbf{z}_1\right)}+\log{\frac{p_\theta\left(\mathbf{z}_1| \mathbf{z}_2\right)}{q\left(\mathbf{z}_1| \mathbf{z}_2\right)}+\cdots}\ \log{\frac{p_\theta\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)}{q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)}}$$
 Let us put this in the integral:
 
@@ -219,7 +219,7 @@ Maximizing this means minimizing this:
 $$
 =E_{\mathbf{z}_1\sim q\left(\mathbf{z}_1| \mathbf{x}\right)}\left[\frac{\left(\mathbf{x}- \mathbf{f}_\theta\left(\mathbf{z}_1\right)\right)^2}{{2\sigma}_1^2}\right]+\ \sum_{t=2}^{t=T}{E_{\mathbf{z}_t\sim q\left(\mathbf{z}_t| \mathbf{x}\right)}\frac{1}{2\sigma_t^2}\ \left|\left|\frac{\left(1-\alpha_{t-1}\right)}{1-\alpha_t}\sqrt{1-\beta_t}\ \mathbf{z}_t+\frac{\sqrt{\alpha_{t-1}}\beta_t}{1-\alpha_t}\mathbf{x}- \mathbf{f}_\theta\left(\mathbf{z}_t\right)\right|\right|^2}
 $$
-We can imagine minimizing this term regarding a specific $\mathbf{x}$ by sampling $\mathbf{z}_1,\ldots,\mathbf{z}_{T}$ from $\mathbf{x}$, computing the expression, and changing the parameters of $\mathbf{f}$. We can see this more clearly by adding stuff to the expectations.
+We can imagine minimizing this term regarding a specific $$\mathbf{x}$$ by sampling $$\mathbf{z}_1,\ldots,\mathbf{z}_{T}$$ from $$\mathbf{x}$$, computing the expression, and changing the parameters of $$\mathbf{f}$$. We can see this more clearly by adding stuff to the expectations.
 $$
 =E_{\mathbf{z}_{1,\ldots,T}\sim q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)}\left[\frac{\left(\mathbf{x}- \mathbf{f}_\theta\left(\mathbf{z}_1\right)\right)^2}{{2\sigma}_1^2}\right]+\ \sum_{t=2}^{t=T}{E_{\mathbf{z}_{1,\ldots,T}\sim q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)}\frac{1}{2\sigma_t^2}\ \left|\left|\frac{\left(1-\alpha_{t-1}\right)}{1-\alpha_t}\sqrt{1-\beta_t}\ \mathbf{z}_t+\frac{\sqrt{\alpha_{t-1}}\beta_t}{1-\alpha_t}\mathbf{x}- \mathbf{f}_\theta\left(\mathbf{z}_t\right)\right|\right|^2}
 $$
@@ -233,5 +233,5 @@ Now using a Monte Carlo estimate:
 $$
 =\ \sum_{i=1}^{N}\left[\frac{\left(\mathbf{x}^{\left(i\right)}- \mathbf{f}_\theta\left(\mathbf{z}_1^{\left(i\right)}\right)\right)^2}{{2\sigma}_1^2}+\sum_{t=2}^{t=T}{\frac{1}{2\sigma_t^2}\ \left|\left|\frac{\left(1-\alpha_{t-1}\right)}{1-\alpha_t}\sqrt{1-\beta_t}\ \mathbf{z}_t^{\left(i\right)}+\frac{\sqrt{\alpha_{t-1}}\beta_t}{1-\alpha_t}\mathbf{x}- \mathbf{f}_\theta\left(\mathbf{z}_t^{\left(i\right)}\right)\right|\right|^2}\right]
 $$
-The loss function minimizes the difference between the estimated mean $\mathbf{f}(\mathbf{z}_t)$ of $\mathbf{z}_{t-1}$, and the most likely value (mean) it took, given $\mathbf{z}_t$ and $\mathbf{x}$.
+The loss function minimizes the difference between the estimated mean $$\mathbf{f}(\mathbf{z}_t)$$ of $$\mathbf{z}_{t-1}$$, and the most likely value (mean) it took, given $$\mathbf{z}_t$$ and $$\mathbf{x}$$.
 {% endraw %}
