@@ -24,7 +24,7 @@ In addition, we can let $$\mathbf{X}_t$$ be a random variable representing the v
 
 We choose our diffusion process so that $$p_T$$ does not depend on $$p_0$$.
 
-#### Extra Thoughts
+#### Additional Thoughts
 - In DDPMs, the *drift coefficient* $$\mathbf{f}(\mathbf{x}, t)$$ would be analogous to $$\sqrt{1-\beta_t}$$ when defining the forward process. It is kind of like the derivative of the coefficient on $$\mathbf{x}_0$$.
 - in DDPMs, the diffusion coefficient is analogous to $$\sqrt{\beta_t}$$. It is kind of like the derivative of $$\sigma_i$$ or the derivative of the coefficent on the noise term in DDPMs. It represents the variance of the noise added at each step.
 
@@ -50,7 +50,7 @@ If we know the drift and diffusion coefficients (which are from the forward proc
 
 We can sample from any marginal distribution $$p_t$$ (determined by the forward process) by sampling from $$p_T$$ (which should be doable, since this should approximate an easy-to-sample from distribution), then by integrating from $$T$$ to $$t$$. By integrating all the way to $$t=0$$, we should be able to generate a data sample.
 
-#### Extra Thoughts
+#### Additional Thoughts
 - Note that $$dt$$ represents an infinitesimal *negative* time step, since we are integrating from higher $$t$$ to lower $$t$$.
 - **What is a Reverse-Time SDE?** In this case, $$\mathbf{\bar{w}}$$ is described as 'reverse-time brownian motion'. In practice, $$d\mathbf{\bar{w}}$$ is Gaussian Noise, just like $$d\mathbf{w}$$ in the forward process.
 
@@ -89,7 +89,7 @@ To implement this weighting, we also rescale the outputs of the network, so its 
 
 In addition, we use the exponential moving average of the weights during sampling.
 
-#### Additional Notes from Mason:
+#### Additional Thoughts:
 - The expectation here is proportional to the expected amount of noise added. 
 
 - Note that in DDPM, the network is always predicting samples from $$\mathcal{N}(0, I)$$ no matter the timestep, which is similar to rescaling the outputs of the network in DDIM.
@@ -131,7 +131,7 @@ $$
 - Since the score function we are fitting does not see $$\mathbf{x_0}$$, it will fit an expectation over all possible $$\mathbf{x_0}$$, which will approximate the score function of $$p_t(\mathbf{x_t})$$.
 - The probability distribution of $$p_t(\mathbf{x_t})$$ is a mixture of Gaussians, which means that the conditional distribution $$\log p_{t} (\mathbf{x_t} \mid \mathbf{x}_0)$$ locally approximates $$\log p_{t} (\mathbf{x_t})$$ at the point $$\mathbf{x_t}$$.
 
-##### A derivation that both objectives are equivalent
+### A derivation that both objectives are equivalent
 Our intended objective is:
 $$
 \mathbb{E}_{t \sim \mathcal{U}(0,T)}
@@ -160,7 +160,7 @@ $$
 $$
 
 
-###### Lemma
+#### Lemma
 We first show that we can estimate the marginal distribution as an expecation of the conditionals:
 
 $$
@@ -173,7 +173,7 @@ $$
 
 In other words, we can approximate the marginal score function by sampling from the posterior, and aggregating the score esimates that we can from single samples.
 
-###### Bias Variance Decomposition
+#### Bias Variance Decomposition
 By the law of total variance, we have:
 $$
 \mathbb{E} \| Z - a \|^2_2 =  \| \mathbb{E}[Z] - a \|^2_2 + \mathbb{E} \left[ \| Z - \mathbb{E}[Z] \|^2_2 \right] \\[10pt]
@@ -182,7 +182,7 @@ $$
 For any random variable $$Z$$.
 <span style="color:blue">To Do: Prove this Decomposition</span>.
 
-###### Another Equality
+#### Another Equality
 Consider the new expression
 $$
 \tag{*}
@@ -209,7 +209,7 @@ $$
 \nabla_{\mathbf{x}_t} \log p_t(\mathbf{x_t}) - s_\theta(\mathbf{x}_t, t) \right\rVert^2_2 + C 
 $$
 Which is our score matching objective for a single timestep, plus a constant.
-###### Wrapping in expectation
+#### Wrapping in expectation
 Let us wrap both starred expressions (which we have proven to be equal) in an expectation over $$\mathbf{x}_t$$:
 
 $$
