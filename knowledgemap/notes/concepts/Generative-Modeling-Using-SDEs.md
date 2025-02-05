@@ -48,37 +48,11 @@ $$
 
 If we know the drift and diffusion coefficients (which are from the forward process), and can approximate the score function (the gradient of the data distributions at time $$t$$), then we can compute the reverse-time SDE.
 
-<!-- When we integrate from $$T$$ to $$t$$, we should get the marginal distributions for $$p_t(\mathbf{x})$$ determined by forward-time diffusion, if we start from a datapoint sampled from $$p_T$$. -->
-
 We can sample from any marginal distribution $$p_t$$ (determined by the forward process) by sampling from $$p_T$$ (which should be doable, since this should approximate an easy-to-sample from distribution), then by integrating from $$T$$ to $$t$$. By integrating all the way to $$t=0$$, we should be able to generate a data sample.
 
 #### Extra Thoughts
 - Note that $$dt$$ represents an infinitesimal *negative* time step, since we are integrating from higher $$t$$ to lower $$t$$.
 - **What is a Reverse-Time SDE?** In this case, $$\mathbf{\bar{w}}$$ is described as 'reverse-time brownian motion'. In practice, $$d\mathbf{\bar{w}}$$ is Gaussian Noise, just like $$d\mathbf{w}$$ in the forward process.
-<!-- Technically, we can view it like this:
-
-$$
-d \mathbf{\bar{w}} \sim \mathcal{N}(0, ds)
-$$ -->
-<!-- 
-
-
-, which is defined as:
-
-
-
-$$
-\mathbf{\bar{w}}_t = \mathbf{w}_T - \mathbf{w}_{T-t}
-$$
-
-We can also view -->
-
-
-<!-- Where $$s = T - t$$, and thus $$ds = -dt$$. -->
-
-
-<!-- 
-We can use $$p_t(\mathbf{x})$$ to define the probability distribution of $$\mathbf{X_t}$$, according to the data distribution, which is $$p_0(x)$$ -->
 
 
 
@@ -293,46 +267,6 @@ $$
 \nabla_{\mathbf{x}_t} \log p_t(\mathbf{x_t}) - s_\theta(\mathbf{x}_t, t) \right\rVert^2_2 \right] \right] + C_2
 $$
 The left hand side is the objective that we train with, and the right hand side is the optimization objective. Thus, we have that the two optimization objectives are equivalent - they differ by a constant that does not depend on our parameters $$\theta$$.
-<!-- $$
-\nabla_{\mathbf{x}_t} \log p_t(\mathbf{x_t}) = \mathbb{E}_{\mathbf{x}_0\sim p(\mathbf{x}_0 \mid \mathbf{x_t})} \left[
-    \nabla_{\mathbf{x}_t} \log p(\mathbf{x_t} \mid \mathbf{x_0})
-\right]
-$$
-
-
-
-####
-Let us narrow in on this term:
-$$
-\mathbb{E}_{\mathbf{x_t} \sim p_t(\mathbf{x_t} \mid \mathbf{x_0})}
-\left[
-\lVert
-\nabla_\mathbf{x} \log p_{t} (\mathbf{x_t} \mid \mathbf{x}_0) -
-\mathbf{s}_\theta(\mathbf{x_t}, t)  \rVert^2_2
-\right]
-$$
-
-
-Applying it:
-$$
-\mathbb{E}_{\mathbf{x_t} \sim p_t(\mathbf{x_t} \mid \mathbf{x_0})}
-\left[
-\lVert
-\nabla_\mathbf{x} \log p_{t} (\mathbf{x_t} \mid \mathbf{x}_0) -
-\mathbf{s}_\theta(\mathbf{x_t}, t)  \rVert^2_2
-\right] = \\[10pt]
-\left\lVert
-\mathbb{E}_{\mathbf{x_t} \sim p_t(\mathbf{x_t} \mid \mathbf{x_0})}\left[
-\nabla_\mathbf{x} \log p_{t} (\mathbf{x_t} \mid \mathbf{x}_0)\right] -
-\mathbf{s}_\theta(\mathbf{x_t}, t) \right\rVert^2_2 + \operatorname{Var}\left[ p(\mathbf{x}_t \mid \mathbf{x}_0) \right]
-$$
-Let's analyze one of the terms further:
-$$
-\mathbb{E}_{\mathbf{x_t} \sim p_t(\mathbf{x_t} \mid \mathbf{x_0})}\left[
-\nabla_\mathbf{x} \log p_{t} (\mathbf{x_t} \mid \mathbf{x}_0)\right] = 
-\int_{\mathbf{x_t} \sim p_t(\mathbf{x_t} \mid \mathbf{x_0})}\left[
-\nabla_\mathbf{x} \log p_{t} (\mathbf{x_t} \mid \mathbf{x}_0)\right] 
-$$ -->
 
 ### 'Likelihood' Weighting
 
@@ -426,11 +360,6 @@ Bayes' rule tells us
 $$
 p(\mathbf{x} \mid \mathbf{y}) = \frac{p(\mathbf{y} \mid \mathbf{x})p(\mathbf{x})}{p(\mathbf{y})}
 $$
-<!-- $$
- = \frac{p(\mathbf{y} \mid \mathbf{x})p(\mathbf{x})}{\int p(\mathbf{x,y}) d \mathbf{x}}
-\\[10pt] =
-\frac{p(\mathbf{y} \mid \mathbf{x})p(\mathbf{x})}{\int p(\mathbf{y} \mid \mathbf{x}) p(\mathbf{x}) d\mathbf{x}}
-$$ -->
 
 By taking the gradient with respect to x of the log of both sides, we get a Bayes' rule for score functions:
 
