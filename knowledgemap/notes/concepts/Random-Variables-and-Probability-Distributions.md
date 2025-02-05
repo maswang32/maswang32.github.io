@@ -1,3 +1,7 @@
+---
+layout: default
+title: My Document
+---
 # Random Variables
 
 ## Definition of Random Variable
