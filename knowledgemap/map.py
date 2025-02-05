@@ -196,17 +196,6 @@ class KnowledgeMap:
 
         net.set_options(options_string)
         
-        net.on('click', """
-        function(params) {
-            if (params.nodes.length > 0) {
-                var nodeId = params.nodes[0];
-                var node = this.body.nodes[nodeId];
-                if (node.options.url) {
-                    window.open(node.options.url, '_blank');
-                }
-            }
-        }
-        """)
         net.write_html("index.html")
 
 
@@ -337,5 +326,38 @@ if __name__=="__main__":
     unassigned_notes = [name for name in list_of_notes_documents if name not in simplified_keys]    
     print("Unassigned Notes")
     print(unassigned_notes)
+    
+    
+    # Read the existing HTML
+    with open("index.html", "r", encoding="utf-8") as f:
+        html = f.read()
+
+    # Define your custom script
+    custom_script = """
+    <script type="text/javascript">
+    // Wait until the network is fully initialized
+    document.addEventListener("DOMContentLoaded", function() {
+        // 'network' should be available as it is defined in the generated HTML
+        network.on('click', function(params) {
+            if (params.nodes.length > 0) {
+                var nodeId = params.nodes[0];
+                var nodeData = network.body.data.nodes.get(nodeId);
+                if (nodeData.href) {
+                    window.open(nodeData.href, '_blank');
+                }
+            }
+        });
+    });
+    </script>
+    </body>
+    """
+
+    # Insert the custom script before the closing </body> tag
+    html = html.replace("</body>", custom_script)
+
+    # Write back the modified HTML
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+
     
 

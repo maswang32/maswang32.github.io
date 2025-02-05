@@ -123,5 +123,22 @@
               }
               drawGraph();
         </script>
+    
+    <script type="text/javascript">
+    // Wait until the network is fully initialized
+    document.addEventListener("DOMContentLoaded", function() {
+        // 'network' should be available as it is defined in the generated HTML
+        network.on('click', function(params) {
+            if (params.nodes.length > 0) {
+                var nodeId = params.nodes[0];
+                var nodeData = network.body.data.nodes.get(nodeId);
+                if (nodeData.href) {
+                    window.open(nodeData.href, '_blank');
+                }
+            }
+        });
+    });
+    </script>
     </body>
+    
 </html>
