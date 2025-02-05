@@ -91,7 +91,7 @@ As the step size $\epsilon \rightarrow 0$, and the number of steps $K \rightarro
 
 Instead of using the ground-truth score function, we can plug in our estimate for the score function in order to generate samples.
 
-##### Observation from Mason
+### Additional Thoughts
 Using the log allows for *larger* absolute scores near the edges of the Gaussian, since the numbers are smaller there, so the logarithm is large. Thus, scores are larger the further away we are from the mean of the Gaussian, which is what we want, since we want to jump further.
 
 ## Adding Noise
@@ -146,7 +146,7 @@ That means that the score function is proportional to the noise added!
 
 2. Since ReLU neural networks output piecewise linear functions, they are great for modeling score functions. (This was from Mert's class)
 
-### Improved Score Matching
+## Improved Score Matching
 Adding lots of noise corrupts the data distribution substantially, while adding low levels of noise may not result in enough smoothing or coverage. We can choose $L$ levels of noise:
 
 $$
@@ -160,20 +160,20 @@ p_{\sigma_i}(\mathbf{x}) = \int p(\mathbf{y}) N_\mathbf{x}(\mathbf{y}, \sigma_i^
 $$
 
 
-#### Side Note - Mason
-##### Interpreting the Integral
+### Additional Thoughts
+#### Interpreting the Integral
 We can view computing this integral like this:
 1. Iterate through all possible data examples $\mathbf{y}$
 2. Compute the probability that $\mathbf{x}$ occurs under a normal distribution centered at $\mathbf{y}$.
 3. Sum across all possible values of $\mathbf{y}$, weighted by the data distribution $p(\mathbf{y})$.
-##### Expectation
+#### Expectation
 This can also be viewed as an expectation:
 $$
 \int p(\mathbf{y}) N_\mathbf{x}(\mathbf{y}, \sigma_i I) d \mathbf{y} = \mathbb{E}_{y \sim p(\mathbf{y})}[N_\mathbf{x}(\mathbf{y}, \sigma_i^2 I)]
 $$
 Or, when we sample $\mathbf{y}$ from our data distribution $p(\mathbf{y})$, what is the expected density of a normal distribution centered at $\mathbf{y}$?
 
-##### Convolution
+#### Convolution
 Note that this can be seen as the convolution between two probability distributions:
 
 $$
@@ -186,7 +186,7 @@ q(\mathbf{z}) = N_\mathbf{z}(0, \sigma_i I)
 $$
 
 
-##### Flipped Convolution
+#### Flipped Convolution
 Since convolution is commutative, there are two ways to express a convolution, and we can also express it as 
 $$
 p_{\sigma_i}(\mathbf{x}) = \int p(\mathbf{y}) q(\mathbf{x - y}) d \mathbf{y} = \int q(\mathbf{y}) p(\mathbf{x - y}) d \mathbf{y}
@@ -206,7 +206,7 @@ In other words, $\mathbf{y}$ is the noise added to the data example $\mathbf{x}$
 
 We can also think of this as fixing the noise vector, and asking, "What is the probability density if the noise is this?" Then we accumulate over all possible noise vectors.
 
-#### End Side Note
+#### End Additional Thoughts
 Drawing samples from $p_{\sigma_i}(\mathbf{x})$ is easy, we can just draw a sample $x \sim p(\mathbf{x})$ from our dataset and add noise to get $\mathbf{x} + \sigma_i \mathbf{z}$.
 
 We can fit a neural network to the score function of each noisy distribution:
