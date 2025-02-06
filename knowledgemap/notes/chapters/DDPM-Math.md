@@ -153,10 +153,11 @@ $$
 
 $$
 \int_{\mathbf{z}_{1,\ldots,T}}\log{\left[p_\theta\left(\mathbf{x}| \mathbf{z}_1\right)\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)d\mathbf{z}_{1,\ldots,T} + 
-$$$$
+$$
 
 $$
-\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_1| \mathbf{z}_2\right)}{q\left(\mathbf{z}_1| \mathbf{z}_2\right)}\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)}d\mathbf{z}_{1,\ldots,T} + $$
+\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_1| \mathbf{z}_2\right)}{q\left(\mathbf{z}_1| \mathbf{z}_2\right)}\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)}d\mathbf{z}_{1,\ldots,T} + 
+$$
 
 $$
 \cdots+\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)}{q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)}\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)}d\mathbf{z}_{1,\ldots,T}
