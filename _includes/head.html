@@ -35,6 +35,9 @@
             inlineMath: [['$', '$'], ['\\(', '\\)']],  // Enable inline math with $
             displayMath: [['$$', '$$'], ['\\[', '\\]']]  // Enable block math with $$
           },
+          chtml: {
+            scale: 0.92  // Adjust this value (0.9 = 90% size)
+          },
           svg: {
             fontCache: 'global'
           }
@@ -62,6 +65,9 @@
         font-size: 100%;
         background: inherit;
         border: inherit;
+      };
+      .MathJax, .MathJax_Display, mjx-container {
+        font-size: 1.05em !important;  /* Adjust as needed */
       }
     </style>
 </head>
