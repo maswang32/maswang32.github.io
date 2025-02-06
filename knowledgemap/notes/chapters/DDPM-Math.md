@@ -175,6 +175,7 @@ $$
 =
 \int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}\right]}q\left(\mathbf{z}_{t-1},\mathbf{z}_t| \mathbf{x}\right)q\left(\mathbf{z}_{1,\ldots t-2,\ t+1,T}| \mathbf{x},\ \mathbf{z}_{t-1},\mathbf{z}_t\right)}d\mathbf{z}_{1,\ldots,T}
 $$
+
 $$
 =\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}\right]}q\left(\mathbf{z}_{t-1}| \mathbf{z}_t,\ \mathbf{x}\right)q\left(\mathbf{z}_t| \mathbf{x}\right)q\left(\mathbf{z}_{1,\ldots t-2,\ t+1,T}| \mathbf{x},\ \mathbf{z}_{t-1},\mathbf{z}_t\right)}d\mathbf{z}_{1,\ldots,T}
 $$
