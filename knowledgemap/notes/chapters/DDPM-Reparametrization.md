@@ -18,6 +18,7 @@ First, we denote $\mathbf{\epsilon}_t^{(i)}$ as the noise added to data sample $
 $$
 \sum_{i=1}^{N}\left[\left[\frac{\left(\frac{\mathbf{z}_1^{\left(i\right)}}{\sqrt{\alpha_1}}-\frac{\sqrt{1-\alpha_1}}{\sqrt{\alpha_1}}\mathbf{\epsilon}_1^{(i)}-f\left(\mathbf{z}_1^{\left(i\right)}\right)\right)^2}{{2\sigma}_1^2}\right]+\sum_{t=2}^{t=T}{\frac{1}{2\sigma_t^2}\ \left|\left|\frac{\left(1-\alpha_{t-1}\right)}{1-\alpha_t}\sqrt{1-\beta_t}\ \mathbf{z}_t^{\left(i\right)}+\frac{\sqrt{\alpha_{t-1}}\beta_t}{1-\alpha_t}\left(\frac{\mathbf{z}_t^{(i)}}{\sqrt{\alpha_t}}-\frac{\sqrt{1-\alpha_t}\mathbf{\epsilon}_t^{(i)}}{\sqrt{\alpha_t}}\right)-f\left(\mathbf{z}_t^{\left(i\right)}\right)\right|\right|^2}\right]
 $$
+
 $$
 \sum_{i=1}^{N}\left[\left[\frac{\left(\frac{1}{\sqrt{\alpha_1}}\mathbf{z}_1^{\left(i\right)}-\frac{\sqrt{1-\alpha_1}}{\sqrt{\alpha_1}}\mathbf{\epsilon}_1^{(i)}-f\left(\mathbf{z}_1^{\left(i\right)}\right)\right)^2}{{2\sigma}_1^2}\right]+\sum_{t=2}^{t=T}{\frac{1}{2\sigma_t^2}\ \left|\left|\frac{1}{(1-\alpha_t)}\left(\left(1-\alpha_{t-1}\right){\sqrt{1-\beta_t}}_\ +\frac{\sqrt{\alpha_{t-1}}\beta_t}{\sqrt{\alpha_t}}\ \right)\mathbf{z}_t^{\left(i\right)}-\frac{\sqrt{\alpha_{t-1}}\beta_t\sqrt{1-\alpha_t}}{(1-\alpha_t)\sqrt{\alpha_t}}\mathbf{\epsilon}_t^{(i)}-f\left(\mathbf{z}_t^{\left(i\right)}\right)\right|\right|^2}\right]
 $$
