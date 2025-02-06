@@ -138,7 +138,7 @@ $$
 So we are just predicting the (unscaled) noise added. Another way to write it:
 
 $$
-\sum_{{i}=1}^{\mathbf{N}}\left[\sum_{{t}=1}^{{t}={T}}{\ \left|\left|{\mathbf{\epsilon}}_{t}^{({i})}-{g}({\mathbf{\mathbf{x}}}_{i}\sqrt{{\alpha}_{t}}+{\mathbf{\epsilon}}_{t}^{\left({i}\right)}\sqrt{1-{\alpha}_{t}})\right|\right|^2}\right]
+\sum_{{i}=1}^{N}\left[\sum_{{t}=1}^{{t}={T}}{\ \left|\left|{\mathbf{\epsilon}}_{t}^{({i})}-{g}({\mathbf{\mathbf{x}}}_{i}\sqrt{{\alpha}_{t}}+{\mathbf{\epsilon}}_{t}^{\left({i}\right)}\sqrt{1-{\alpha}_{t}})\right|\right|^2}\right]
 $$
 
 ### Thus, to train a diffusion model:
