@@ -14,7 +14,7 @@ $$
 d\mathbf{x} = \mathbf{f}(\mathbf{x}, t) dt + g(t)d\mathbf{w}
 $$
 
-$$d\mathbf{w}$$ can be viewed as infinitesimal white noise, and characterizes a [Wiener Process](https://masonlwang.com/knowledgemap/notes/concepts/wiener-process).
+$$d\mathbf{w}$$ can be viewed as infinitesimal white noise, and characterizes a [Wiener Process](Wiener-Process.md).
 
 $$\mathbf{f}$$ is a vector-valued function representing the *drift coefficient* and $$g(t)$$ is a scalar-valued function called the *diffusion coefficient*.
 
@@ -180,6 +180,7 @@ $$
 = \| \mathbb{E}[Z] - a \|^2_2 + \operatorname{Var}(Z)
 $$
 For any random variable $$Z$$.
+
 <span style="color:blue">To Do: Prove this Decomposition</span>.
 
 #### Another Equality
