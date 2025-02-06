@@ -110,7 +110,7 @@ So the distance between the score and our estimate are downweighted in regions w
 This complicates Langevin sampling, since $\mathbf{x}_0$ (the first sampling step) usually starts in a low-density region according to the data distribution (it is usually just noise).
 
 
-### Additional Thoughts:
+### Additional Thoughts
 
 #### Adding two random variables
 1. Recall from [Brad Osgood's course](https://see.stanford.edu/course/ee261) that adding two random variables $Z = X + Y$ results in a distribution that is a *convolution* of the distributions of $X$ and $Y$.
@@ -166,6 +166,7 @@ We can view computing this integral like this:
 1. Iterate through all possible data examples $\mathbf{y}$
 2. Compute the probability that $\mathbf{x}$ occurs under a normal distribution centered at $\mathbf{y}$.
 3. Sum across all possible values of $\mathbf{y}$, weighted by the data distribution $p(\mathbf{y})$.
+
 #### Expectation
 This can also be viewed as an expectation:
 $$
@@ -231,7 +232,7 @@ We can run Langevin dynamics in sequence for each noise level. This means runnni
 We can choose the noise levels in a geometric progression (there is a common ratio). $\sigma_L$ can be the maximum pairwise distance between two datapoints, and $L$ can be hundreds or thousands.
 
 ## Next steps
-As $L \rightarrow \infty$, the noise level becomes a continuous-time stochastic process, where noise is added. This will allow for generative modeling using [SDEs](Generative-Modeling-Using-SDEs). 
+As $L \rightarrow \infty$, the noise level becomes a continuous-time stochastic process, where noise is added. This will allow for generative modeling using [SDEs](Generative-Modeling-Using-SDEs.md). 
 
 Last Reviewed: 2/4/25
 

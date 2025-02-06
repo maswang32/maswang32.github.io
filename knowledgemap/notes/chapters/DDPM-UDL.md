@@ -76,7 +76,7 @@ The game [Plinko](https://spribe.co/games/plinko) is a good analogy.
 
 When we extend this analogy to diffusion when the number of timesteps is infinite, we get something like Brownian Motion.
 
-- If we instead imagine an infinite number of sticks at an infinite number of heights, we have a simulation of Brownian motion or a [Wiener Process](../concepts/Wiener-Process).
+- If we instead imagine an infinite number of sticks at an infinite number of heights, we have a simulation of Brownian motion or a [Wiener Process](https://masonlwang.com/knowledgemap/notes/concepts/Wiener-Process/).
 - The ball moves randomly at *every* time
 - The ball become a 'particle' randomly colliding with other particles (but moving down due to gravity, which is like moving forward in time.)
 
@@ -98,7 +98,7 @@ Last Reviewed: 1/23/25
 
 
 More Resources I should look at:
-https://sander.ai/2024/09/02/spectral-autoregression.html
-https://sander.ai/2023/07/20/perspectives.html
+[Sander](https://sander.ai/2024/09/02/spectral-autoregression.html)
+[Sander2](https://sander.ai/2023/07/20/perspectives.html)
 
 {% endraw %}
