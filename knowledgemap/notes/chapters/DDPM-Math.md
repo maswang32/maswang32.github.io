@@ -22,7 +22,8 @@ $$
 p_\theta(\mathbf{x},\mathbf{z}_{1,…,T} )=p_\theta(\mathbf{x}|\mathbf{z}_{1,…,T})p_\theta(\mathbf{z}_{1,…,T})
 $$
 
-We have parametrized the decoder such that $$p_\theta( \mathbf{x} | \mathbf{z}_1)$$ is conditionally independent from $$\mathbf{z}_2,….,\mathbf{z}_T$$. We call this the Markov property of $$p$$. This is:
+We have parametrized the decoder such that $$p_\theta( \mathbf{x} 
+\mid \mathbf{z}_1)$$ is conditionally independent from $$\mathbf{z}_2,….,\mathbf{z}_T$$. We call this the Markov property of $$p$$. This is:
 
 $$
 = p_\theta(\mathbf{x}|\mathbf{z}_1)p_\theta(\mathbf{z}_{1,…,T})
