@@ -65,6 +65,7 @@ $$
 $$
 
 This should be a continuous weighted sum of:
+
 $$
 \mathbb{E}_{t \sim \mathcal{U}(0,T)}
 \mathbb{E}_{p_t(\mathbf{x})}
@@ -75,6 +76,7 @@ $$
 \mathbf{s}_\theta(\mathbf{x}, t)  \rVert^2_2
 \right]
 $$
+
 Where $$\lambda(t)$$ is a weighting function. We would like to balance the losses across time, so we choose
 
 $$
@@ -99,6 +101,7 @@ We can use denoising score matching to optimize this objective.
 
 ### Actual Optimization
 We have
+
 $$
 \mathbb{E}_{t \sim \mathcal{U}(0,T)}
 \mathbb{E}_{p_t(\mathbf{x})}
@@ -133,6 +136,7 @@ $$
 
 ### A derivation that both objectives are equivalent
 Our intended objective is:
+
 $$
 \mathbb{E}_{t \sim \mathcal{U}(0,T)}
 \mathbb{E}_{\mathbf{x} \sim p_t(\mathbf{x})}
@@ -145,6 +149,7 @@ $$
 $$
 
 We would like to show this objective is equivalent:
+
 $$
 \mathbb{E}_{t \sim \mathcal{U}(0,T)}
 \lambda(t)
@@ -161,6 +166,7 @@ $$
 
 
 #### Lemma
+
 We first show that we can estimate the marginal distribution as an expecation of the conditionals:
 
 $$
@@ -175,23 +181,28 @@ In other words, we can approximate the marginal score function by sampling from 
 
 #### Bias Variance Decomposition
 By the law of total variance, we have:
+
 $$
 \mathbb{E} \| Z - a \|^2_2 =  \| \mathbb{E}[Z] - a \|^2_2 + \mathbb{E} \left[ \| Z - \mathbb{E}[Z] \|^2_2 \right] \\[10pt]
 = \| \mathbb{E}[Z] - a \|^2_2 + \operatorname{Var}(Z)
 $$
+
 For any random variable $$Z$$.
 
 <span style="color:blue">To Do: Prove this Decomposition</span>.
 
 #### Another Equality
 Consider the new expression
+
 $$
 \tag{*}
 \mathbb{E}_{\mathbf{x}_0\sim p(\mathbf{x}_0 \mid \mathbf{x_t})} \left[
 \left\lVert
     \nabla_{\mathbf{x}_t} \log p(\mathbf{x_t} \mid \mathbf{x_0}) - s_\theta(\mathbf{x}_t, t) \right\rVert^2_2 \right]
 $$
+
 By the bias-variance decomposition, this is equal to
+
 $$
 \left\lVert
 \mathbb{E}_{\mathbf{x}_0\sim p(\mathbf{x}_0 \mid \mathbf{x_t})} \left[
@@ -203,13 +214,17 @@ $$
     \nabla_{\mathbf{x}_t} \log p(\mathbf{x_t} \mid \mathbf{x_0})
 \right] - s_\theta(\mathbf{x}_t, t) \right\rVert^2_2 + C
 $$
+
 Where we are use $$C$$ to denote the variance expression, which is constant given the forward process and does not depend on model parameters $$\theta$$. By the Lemma, this is equal to
+
 $$
 \tag{**}
 \left\lVert
 \nabla_{\mathbf{x}_t} \log p_t(\mathbf{x_t}) - s_\theta(\mathbf{x}_t, t) \right\rVert^2_2 + C 
 $$
+
 Which is our score matching objective for a single timestep, plus a constant.
+
 #### Wrapping in expectation
 Let us wrap both starred expressions (which we have proven to be equal) in an expectation over $$\mathbf{x}_t$$:
 
@@ -222,7 +237,9 @@ $$
 \left\lVert
 \nabla_{\mathbf{x}_t} \log p_t(\mathbf{x_t}) - s_\theta(\mathbf{x}_t, t) \right\rVert^2_2 + C \right]
 $$
+
 By using the chain rule:
+
 $$
 \mathbb{E}_{\mathbf{x}_0\sim p(\mathbf{x}_0)}
 \mathbb{E}_{\mathbf{x}_t\sim p(\mathbf{x}_t \mid \mathbf{x}_0)}
@@ -233,7 +250,9 @@ $$
 \left\lVert
 \nabla_{\mathbf{x}_t} \log p_t(\mathbf{x_t}) - s_\theta(\mathbf{x}_t, t) \right\rVert^2_2 + C \right]
 $$
+
 If we wrap both in another expectation over $$t$$, and multiply by $$\lambda(t)$$, we get
+
 $$
 \mathbb{E}_{t \sim \mathcal{U}(0,T)}
 \lambda(t)
@@ -250,7 +269,9 @@ $$
 \left\lVert
 \nabla_{\mathbf{x}_t} \log p_t(\mathbf{x_t}) - s_\theta(\mathbf{x}_t, t) \right\rVert^2_2 + C \right] \right]
 $$
+
 The $$C$$ term can be taken out of the inner expectation, and remains constant with repsect to $$\theta$$ when it is taken outside of the outer expecation:
+
 $$
 \mathbb{E}_{t \sim \mathcal{U}(0,T)}
 \lambda(t)
@@ -267,6 +288,7 @@ $$
 \left\lVert
 \nabla_{\mathbf{x}_t} \log p_t(\mathbf{x_t}) - s_\theta(\mathbf{x}_t, t) \right\rVert^2_2 \right] \right] + C_2
 $$
+
 The left hand side is the objective that we train with, and the right hand side is the optimization objective. Thus, we have that the two optimization objectives are equivalent - they differ by a constant that does not depend on our parameters $$\theta$$.
 
 ### 'Likelihood' Weighting
@@ -297,12 +319,15 @@ d\mathbf{x} = \left[\mathbf{f}(\mathbf{x},t) - g^2(t)\nabla_\mathbf{x} \log(p_t(
 $$
 
 ##### Additional Notes
+
 We can express our SDE in integral form:
+
 $$
 \mathbf{x_t} = \mathbf{x}_{t_0} + \int_{t_0}^t \left[\mathbf{f}(\mathbf{x},s) - g^2(s)\nabla_\mathbf{x} \log(p_s(\mathbf{x}))\right] ds + \int_{t_0}^t g(s)d\mathbf{\bar{w}}(s)
 $$
 
 Where
+
 $$
 d\mathbf{\bar{w}}(s) = \mathcal{N}(0, ds) ds
 $$
