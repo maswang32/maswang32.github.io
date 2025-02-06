@@ -102,7 +102,9 @@ $$
 q(\mathbf{z}_t| \mathbf{z}_{t-1})=q\left(\mathbf{z}_t| \mathbf{z}_{t-1},\mathbf{x}\right)=\frac{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)q\left(\mathbf{z}_t| \mathbf{x}\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{x}\right)}$$
 
 The first step seems like a hack – since $$\mathbf{z}_t$$ conditioned on $$\mathbf{z}_{t-1}$$ is independent from $$\mathbf{x}$$, we can add in the extra condition on $$\mathbf{x}$$ without worrying.
+
 Thus,
+
 $$
 q\left(\mathbf{z}_T\middle| \mathbf{z}_{T-1}\right)q\left(\mathbf{z}_{T-1}| \mathbf{z}_{T-2}\right)\cdots q\left(\mathbf{z}_2| \mathbf{z}_1\right)q\left(\mathbf{z}_1| \mathbf{x}\right)
 $$
@@ -113,11 +115,13 @@ $$
 $$
 =q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)\cdots q\left(\mathbf{z}_1| \mathbf{z}_2\right)\cdot\frac{\left[q\left(\mathbf{z}_T| \mathbf{x}\right)\ q\left(\mathbf{z}_{T-1\ }| \mathbf{x}\right)\cdots q\left(\mathbf{z}_2| \mathbf{x}\right)q\left(\mathbf{z}_1| \mathbf{x}\right)\right]}{q\left(\mathbf{z}_{T-1}| \mathbf{x}\right)\cdots q\left(\mathbf{z}_1| \mathbf{x}\right)}
 $$
+
 $$
 =q\left(\mathbf{z}_1| \mathbf{z}_2\right)\cdots\ q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)\cdot\frac{\left[q\left(\mathbf{z}_T| \mathbf{x}\right)\ q\left(\mathbf{z}_{T-1\ }| \mathbf{x}\right)\cdots q\left(\mathbf{z}_2| \mathbf{x}\right)q\left(\mathbf{z}_1| \mathbf{x}\right)\right]}{q\left(\mathbf{z}_{T-1}| \mathbf{x}\right)\cdots q\left(\mathbf{z}_1| \mathbf{x}\right)}
 $$
 
 Things cancel in the fraction:
+
 $$
 =q\left(\mathbf{z}_1| \mathbf{z}_2\right)\cdots\ q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)\cdot q\left(\mathbf{z}_T| \mathbf{x}\right)
 $$
@@ -172,8 +176,7 @@ $$
 $$
 
 $$
-=
-\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}\right]}q\left(\mathbf{z}_{t-1},\mathbf{z}_t| \mathbf{x}\right)q\left(\mathbf{z}_{1,\ldots t-2,\ t+1,T}| \mathbf{x},\ \mathbf{z}_{t-1},\mathbf{z}_t\right)}d\mathbf{z}_{1,\ldots,T}
+= \int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}\right]}q\left(\mathbf{z}_{t-1},\mathbf{z}_t| \mathbf{x}\right)q\left(\mathbf{z}_{1,\ldots t-2,\ t+1,T}| \mathbf{x},\ \mathbf{z}_{t-1},\mathbf{z}_t\right)}d\mathbf{z}_{1,\ldots,T}
 $$
 
 $$
@@ -224,7 +227,8 @@ $$
 \int_{\mathbf{z}_1}{\log{\left[p_\theta\left(\mathbf{x}| \mathbf{z}_1\right)\right]}q\left(\mathbf{z}_1| \mathbf{x}\right)d\mathbf{z}_1}
 $$
 
-$$-E_{\mathbf{z}_2\sim q\left(\mathbf{z}_2| \mathbf{x}\right)}\left[D_{KL}\left(q\left(\mathbf{z}_1| \mathbf{z}_2\right) ||\ \ p_\theta\left(\mathbf{z}_1| \mathbf{z}_2\right)\right)\ \right] - \cdots -
+$$
+-E_{\mathbf{z}_2\sim q\left(\mathbf{z}_2| \mathbf{x}\right)}\left[D_{KL}\left(q\left(\mathbf{z}_1| \mathbf{z}_2\right) ||\ \ p_\theta\left(\mathbf{z}_1| \mathbf{z}_2\right)\right)\ \right] - \cdots -
 $$
 
 $$
@@ -237,7 +241,8 @@ $$
 =E_{\mathbf{z}_1\sim q\left(\mathbf{z}_1| \mathbf{x}\right)}\left[\log p_\theta \left(\mathbf{x}| \mathbf{z}_1\right)\right] - 
 $$
 
-$$E_{\mathbf{z}_2\sim q\left(\mathbf{z}_2| \mathbf{x}\right)}\left[D_{KL}\left(q\left(\mathbf{z}_1| \mathbf{z}_2\right) ||\ \ p_\theta\left(\mathbf{z}_1| \mathbf{z}_2\right)\right)\ \right] - 
+$$
+E_{\mathbf{z}_2\sim q\left(\mathbf{z}_2| \mathbf{x}\right)}\left[D_{KL}\left(q\left(\mathbf{z}_1| \mathbf{z}_2\right) ||\ \ p_\theta\left(\mathbf{z}_1| \mathbf{z}_2\right)\right)\ \right] - 
 $$
 
 $$
