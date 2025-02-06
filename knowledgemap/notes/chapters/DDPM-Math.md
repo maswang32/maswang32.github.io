@@ -104,13 +104,17 @@ q(\mathbf{z}_t| \mathbf{z}_{t-1})=q\left(\mathbf{z}_t| \mathbf{z}_{t-1},\mathbf{
 The first step seems like a hack – since $$\mathbf{z}_t$$ conditioned on $$\mathbf{z}_{t-1}$$ is independent from $$\mathbf{x}$$, we can add in the extra condition on $$\mathbf{x}$$ without worrying.
 Thus,
 $$
-q\left(\mathbf{z}_T\middle| \mathbf{z}_{T-1}\right)q\left(\mathbf{z}_{T-1}| \mathbf{z}_{T-2}\right)\cdots q\left(\mathbf{z}_2| \mathbf{z}_1\right)q\left(\mathbf{z}_1| \mathbf{x}\right)=\\[10pt]\frac{q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)q\left(\mathbf{z}_T| \mathbf{x}\right)}{q\left(\mathbf{z}_{T-1}| \mathbf{x}\right)}\cdots\frac{q\left(\mathbf{z}_1| \mathbf{z}_2\right)q\left(\mathbf{z}_2| \mathbf{x}\right)}{q\left(\mathbf{z}_1| \mathbf{x}\right)}q\left(\mathbf{z}_1| \mathbf{x}\right)
+q\left(\mathbf{z}_T\middle| \mathbf{z}_{T-1}\right)q\left(\mathbf{z}_{T-1}| \mathbf{z}_{T-2}\right)\cdots q\left(\mathbf{z}_2| \mathbf{z}_1\right)q\left(\mathbf{z}_1| \mathbf{x}\right)
 $$
+
+$$=\frac{q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)q\left(\mathbf{z}_T| \mathbf{x}\right)}{q\left(\mathbf{z}_{T-1}| \mathbf{x}\right)}\cdots\frac{q\left(\mathbf{z}_1| \mathbf{z}_2\right)q\left(\mathbf{z}_2| \mathbf{x}\right)}{q\left(\mathbf{z}_1| \mathbf{x}\right)}q\left(\mathbf{z}_1| \mathbf{x}\right)
+$$
+
 $$
 =q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)\cdots q\left(\mathbf{z}_1| \mathbf{z}_2\right)\cdot\frac{\left[q\left(\mathbf{z}_T| \mathbf{x}\right)\ q\left(\mathbf{z}_{T-1\ }| \mathbf{x}\right)\cdots q\left(\mathbf{z}_2| \mathbf{x}\right)q\left(\mathbf{z}_1| \mathbf{x}\right)\right]}{q\left(\mathbf{z}_{T-1}| \mathbf{x}\right)\cdots q\left(\mathbf{z}_1| \mathbf{x}\right)}
 $$
 $$
-=10pt]q\left(\mathbf{z}_1| \mathbf{z}_2\right)\cdots\ q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)\cdot\frac{\left[q\left(\mathbf{z}_T| \mathbf{x}\right)\ q\left(\mathbf{z}_{T-1\ }| \mathbf{x}\right)\cdots q\left(\mathbf{z}_2| \mathbf{x}\right)q\left(\mathbf{z}_1| \mathbf{x}\right)\right]}{q\left(\mathbf{z}_{T-1}| \mathbf{x}\right)\cdots q\left(\mathbf{z}_1| \mathbf{x}\right)}
+=q\left(\mathbf{z}_1| \mathbf{z}_2\right)\cdots\ q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)\cdot\frac{\left[q\left(\mathbf{z}_T| \mathbf{x}\right)\ q\left(\mathbf{z}_{T-1\ }| \mathbf{x}\right)\cdots q\left(\mathbf{z}_2| \mathbf{x}\right)q\left(\mathbf{z}_1| \mathbf{x}\right)\right]}{q\left(\mathbf{z}_{T-1}| \mathbf{x}\right)\cdots q\left(\mathbf{z}_1| \mathbf{x}\right)}
 $$
 
 Things cancel in the fraction:
@@ -148,8 +152,14 @@ $$
 $$
 
 $$
-\int_{\mathbf{z}_{1,\ldots,T}}\log{\left[p_\theta\left(\mathbf{x}| \mathbf{z}_1\right)\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)d\mathbf{z}_{1,\ldots,T} + \\[10pt]
-\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_1| \mathbf{z}_2\right)}{q\left(\mathbf{z}_1| \mathbf{z}_2\right)}\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)}d\mathbf{z}_{1,\ldots,T} + \\[10pt]\cdots+\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)}{q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)}\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)}d\mathbf{z}_{1,\ldots,T}
+\int_{\mathbf{z}_{1,\ldots,T}}\log{\left[p_\theta\left(\mathbf{x}| \mathbf{z}_1\right)\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)d\mathbf{z}_{1,\ldots,T} + 
+$$$$
+
+$$
+\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_1| \mathbf{z}_2\right)}{q\left(\mathbf{z}_1| \mathbf{z}_2\right)}\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)}d\mathbf{z}_{1,\ldots,T} + $$
+
+$$
+\cdots+\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)}{q\left(\mathbf{z}_{T-1}| \mathbf{z}_T\right)}\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)}d\mathbf{z}_{1,\ldots,T}
 $$
 
 We can marginalize out a lot of stuff. Here is an example:
@@ -157,9 +167,15 @@ We can marginalize out a lot of stuff. Here is an example:
 ### Single Term
 
 $$
-\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)d\mathbf{z}_{1,\ldots,T}}=\\[10pt]
+\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}\right]}q\left(\mathbf{z}_{1,\ldots,T}| \mathbf{x}\right)d\mathbf{z}_{1,\ldots,T}} 
+$$
+
+$$
+=
 \int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}\right]}q\left(\mathbf{z}_{t-1},\mathbf{z}_t| \mathbf{x}\right)q\left(\mathbf{z}_{1,\ldots t-2,\ t+1,T}| \mathbf{x},\ \mathbf{z}_{t-1},\mathbf{z}_t\right)}d\mathbf{z}_{1,\ldots,T}
-\\[10pt]=\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}\right]}q\left(\mathbf{z}_{t-1}| \mathbf{z}_t,\ \mathbf{x}\right)q\left(\mathbf{z}_t| \mathbf{x}\right)q\left(\mathbf{z}_{1,\ldots t-2,\ t+1,T}| \mathbf{x},\ \mathbf{z}_{t-1},\mathbf{z}_t\right)}d\mathbf{z}_{1,\ldots,T}
+$$
+$$
+=\int_{\mathbf{z}_{1,\ldots,T}}{\log{\left[\frac{p_\theta\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}{q\left(\mathbf{z}_{t-1}| \mathbf{z}_t\right)}\right]}q\left(\mathbf{z}_{t-1}| \mathbf{z}_t,\ \mathbf{x}\right)q\left(\mathbf{z}_t| \mathbf{x}\right)q\left(\mathbf{z}_{1,\ldots t-2,\ t+1,T}| \mathbf{x},\ \mathbf{z}_{t-1},\mathbf{z}_t\right)}d\mathbf{z}_{1,\ldots,T}
 $$
 
 $$
