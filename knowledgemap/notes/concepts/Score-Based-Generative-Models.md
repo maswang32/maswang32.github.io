@@ -74,13 +74,17 @@ How do we know the ground truth score function? There is a technique called **sc
 
 ## Langevin Sampling
 Langevin sampling allows you to sample from a distribution given its score function. First, we draw from an arbitrary distribution:
+
 $$
 x_0 \sim \pi(\mathbf{x})
 $$
+
 Then we iteratively perform "noisy gradient ascent":
+
 $$
 x_{i+1} = x_{i} + \epsilon \nabla_x \log (p(\mathbf{x})) + \sqrt{2 \epsilon} z_i, \quad i = 0, \ldots, K
 $$
+
 Where $z_i \sim \mathcal{N}(0,I)$.
 
 As the step size $\epsilon \rightarrow 0$, and the number of steps $K \rightarrow \infty$, this will result in a sample from $p(\mathbf{x})$.
@@ -105,6 +109,7 @@ $$
 \mathbb{E}_{p(\mathbf{x})}\left[ \lVert \nabla_\mathbf{x} \log(p_\theta(\mathbf{x})) - s_\theta (\mathbf{x}) \rVert^2 _2 \right] =
 \int p(\mathbf{x}) \lVert \nabla_\mathbf{x} \log(p_\theta(\mathbf{x})) - s_\theta (\mathbf{x}) \rVert^2 _2  d \mathbf{x}
 $$
+
 So the distance between the score and our estimate are downweighted in regions where $p(\mathbf{x})$ is small (low density regions). (In practice, the expectation is computed by sampling real data, so the score estimate is inaccurate where we have little data).
 
 This complicates Langevin sampling, since $\mathbf{x}_0$ (the first sampling step) usually starts in a low-density region according to the data distribution (it is usually just noise).
@@ -130,15 +135,19 @@ $$
 $$
 
 2. In fact, if we consider the Gaussian distribution as originating from a data point at $\mu$ with added noise $n \sim \mathcal{N}(0,\sigma^2)$, then we have that a sample $x$ from the Gaussian is:
+
 $$
 x = \mu + \sigma n
 $$
+
 And the score function is 
+
 $$
 \frac{-2(x - \mu)}{\sigma^2}
  = \frac{-2(\mu + \sigma n - \mu)}{\sigma^2}
  = \frac{-2n}{\sigma}
 $$
+
 That means that the score function is proportional to the noise added!
 
 #### Score function of Mixture of Gaussians
@@ -169,9 +178,11 @@ We can view computing this integral like this:
 
 #### Expectation
 This can also be viewed as an expectation:
+
 $$
 \int p(\mathbf{y}) N_\mathbf{x}(\mathbf{y}, \sigma_i I) d \mathbf{y} = \mathbb{E}_{y \sim p(\mathbf{y})}[N_\mathbf{x}(\mathbf{y}, \sigma_i^2 I)]
 $$
+
 Or, when we sample $\mathbf{y}$ from our data distribution $p(\mathbf{y})$, what is the expected density of a normal distribution centered at $\mathbf{y}$?
 
 #### Convolution
@@ -182,6 +193,7 @@ p_{\sigma_i}(\mathbf{x}) = \int p(\mathbf{y}) q(\mathbf{x - y}) d \mathbf{y}
 $$
 
 Where 
+
 $$
 q(\mathbf{z}) = N_\mathbf{z}(0, \sigma_i I)
 $$
@@ -189,6 +201,7 @@ $$
 
 #### Flipped Convolution
 Since convolution is commutative, there are two ways to express a convolution, and we can also express it as 
+
 $$
 p_{\sigma_i}(\mathbf{x}) = \int p(\mathbf{y}) q(\mathbf{x - y}) d \mathbf{y} = \int q(\mathbf{y}) p(\mathbf{x - y}) d \mathbf{y}
 $$
@@ -201,6 +214,7 @@ Basically, there's a different way to "add up" to $\mathbf{x + y}$, one for each
 $$
 \mathbb{E_{\mathbf{y} \sim q(\mathbf{y})}}[p(\mathbf{x - y})]
 $$
+
 Which is saying, draw a sample (noise) from the normal distribution, and evaluate the probability of the data distribution at the point where example that results from *subtracting* that noise.
 
 In other words, $\mathbf{y}$ is the noise added to the data example $\mathbf{x}$, and we are evaluating $p(\mathbf{x})$ according to the data distribuition, but we are aggretating over all possible noises that could have been added, which is $\mathbf{y}$.
@@ -217,6 +231,7 @@ s_\theta (\mathbf{x}, i) \approx \nabla_\mathbf{x} \log p_{\sigma_i}(\mathbf{x})
 $$
 
 The training objective is:
+
 $$
 \sum_{i=1}^L \lambda(i) \mathbb{E}_{\mathbf{x} \sim p_{\sigma_i}}[\lVert \nabla_\mathbf{x} \log(p_{\sigma_i}(\mathbf{x})) - s_\theta (\mathbf{x}, i) \rVert^2 _2]
 $$
