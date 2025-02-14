@@ -92,6 +92,10 @@ When we extend this analogy to diffusion when the number of timesteps is infinit
 - In other words, we are guiding $$p_\theta(\mathbf{z}_{t-1})$$ with $$q(\mathbf{z}_{t-1} \mid \mathbf{z}_t, \mathbf{x})$$, where samples $$\mathbf{x}$$ are drawn from the data, but since the model cannot see $$\mathbf{x}$$, it will fit $$q(\mathbf{z}_{t-1} \mid \mathbf{z}_{t})$$.
 
 
+## More Observations
+- The diffusion model's predictions are always 'white noise'. When generating audio examples, this probably lends itself to a whole different set of artifacts than say, transpose convolution or a CNN.
+- While VAEs model output pixels as conditionally independent given $$z$$, this is NOT true of diffusion models when there are multiple steps. This is because the output pixel at one step has some dependency on the output pixels at intermediate steps.
+
 See math in "DiffusionMath"
 
 Last Reviewed: 1/23/25
