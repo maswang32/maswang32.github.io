@@ -1,4 +1,4 @@
-# PixelVAE
+# EDM
 ## Single-Level
 
 ## Architectural Notes

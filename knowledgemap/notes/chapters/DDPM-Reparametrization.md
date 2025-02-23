@@ -20,7 +20,7 @@ $$
 $$
 
 $$
-\sum_{i=1}^{N}\left[\frac{\left(\frac{1}{\sqrt{\alpha_1}}\mathbf{z}_1^{\left(i\right)}-\frac{\sqrt{1-\alpha_1}}{\sqrt{\alpha_1}}\mathbf{\epsilon}_1^{(i)}-f\left(\mathbf{z}_1^{\left(i\right)}\right)\right)^2}{{2\sigma}_1^2}\+\sum_{t=2}^{t=T}{\frac{1}{2\sigma_t^2}\ \left|\left|\frac{1}{(1-\alpha_t)}\left(\left(1-\alpha_{t-1}\right){\sqrt{1-\beta_t}}_\ +\frac{\sqrt{\alpha_{t-1}}\beta_t}{\sqrt{\alpha_t}}\ \right)\mathbf{z}_t^{\left(i\right)}-\frac{\sqrt{\alpha_{t-1}}\beta_t\sqrt{1-\alpha_t}}{(1-\alpha_t)\sqrt{\alpha_t}}\mathbf{\epsilon}_t^{(i)}-f\left(\mathbf{z}_t^{\left(i\right)}\right)\right|\right|^2}\right]
+\sum_{i=1}^{N}\left[\frac{\left(\frac{1}{\sqrt{\alpha_1}}\mathbf{z}_1^{\left(i\right)}-\frac{\sqrt{1-\alpha_1}}{\sqrt{\alpha_1}}\mathbf{\epsilon}_1^{(i)}-f\left(\mathbf{z}_1^{\left(i\right)}\right)\right)^2}{{2\sigma}_1^2}+\sum_{t=2}^{t=T}{\frac{1}{2\sigma_t^2}\ \left|\left|\frac{1}{(1-\alpha_t)}\left(\left(1-\alpha_{t-1}\right){\sqrt{1-\beta_t}}_\ +\frac{\sqrt{\alpha_{t-1}}\beta_t}{\sqrt{\alpha_t}}\ \right)\mathbf{z}_t^{\left(i\right)}-\frac{\sqrt{\alpha_{t-1}}\beta_t\sqrt{1-\alpha_t}}{(1-\alpha_t)\sqrt{\alpha_t}}\mathbf{\epsilon}_t^{(i)}-f\left(\mathbf{z}_t^{\left(i\right)}\right)\right|\right|^2}\right]
 $$
 
 Note that $\alpha_t=\alpha_{t-1}\left(1-\beta_t\right)$, so $\frac{\alpha_{t-1}}{\alpha_t}=\frac{1}{(1-\beta_t)}$
