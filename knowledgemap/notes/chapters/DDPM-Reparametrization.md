@@ -129,7 +129,7 @@ $$
 $$
 
 This is our objective.
-We ignore the constants out front and simply it further:
+The constants out front can be used to reweight the objective based on the time-step. In NCSN and DDPM, we have the same weighting for all time steps. Thus, we ignore the constants out front and simply it further:
 
 $$
 \sum_{i=1}^{N}\left[\sum_{t=1}^{t=T}{\ \left|\left|\mathbf{\epsilon}_t^{(i)}-g(\mathbf{z}_t^{\left(i\right)})\right|\right|^2}\right]
