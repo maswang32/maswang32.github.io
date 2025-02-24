@@ -16,3 +16,5 @@ Week 1, Thursday
 - x and y are up and side
 - right handed in real-world space
 - f = distance from pinhole to image plance
+
+To do: better notes for lectures 1 (introduction), 2 (image formation), and 3 (fourier transform).
