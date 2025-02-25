@@ -132,7 +132,7 @@ Thus,
 
 $$
 \nabla_{\mathbf{x}} \log p\left(\frac{\mathbf{x}}{s(t)}, \sigma(t)\right) = \frac{ D(\hat{\mathbf{x}};\sigma) - \hat{\mathbf{x}} }{\sigma(t)^2 s(t)}
-= \frac{ D(\frac{\mathbf{x}}{s(t)};\sigma) - \frac{\mathbf{x}}{{s(t)}} }{\sigma(t)^2 s(t)}
+= \frac{ D(\frac{\mathbf{x}}{s(t)};\sigma) - \frac{ \mathbf{x} }{s(t)} }{\sigma(t)^2 s(t)}
 $$
 
 We can use this function to estimate the score function from the denoiser.
