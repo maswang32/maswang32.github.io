@@ -147,11 +147,6 @@ $$
 $$
 
 $$
-\frac{d \mathbf{x} }{ dt } = \frac{\dot{s}(t)}{s(t)} \mathbf{x} - s(t)^2 \left[ \dot \sigma(t) \sigma(t) \frac{ D( \frac{\mathbf{x}}{s(t)} ; \sigma) - \frac{\mathbf{x}}{{s(t)}} }{\sigma(t)^2 s(t)}
- \right]
-$$
-
-$$
 \frac{d \mathbf{x} }{ dt } = \frac{\dot{s}(t)}{s(t)} \mathbf{x} - s(t)^2 \left[ \dot{\sigma}(t) \sigma(t) \frac{ D\left( \frac{\mathbf{x}}{s(t)} , \sigma \right) - \frac{\mathbf{x}}{s(t)} }{\sigma(t)^2 s(t)}
  \right]
 $$
@@ -235,8 +230,7 @@ Also, in the EDM formulation, we have:
 
 This means that $t$ and $\sigma$ become interchangeable. Also, since the noise trajectories are linear, we have that a single step to $t = 0$ will give you the denoised image. The tangent line to the trajectory points towards the denoiser output. The plots show you that we only have slight curvature at some intermediate time steps, but at the first and last time steps, we are linear.
 
-<img src="image-1.png" alt="alt text" width="400">
-
+![Trajectories](image-1.png)
 
 It should make sense that since the derivative is a linear approximation to the noise trajectory, the noise trajectory should be as linear as possible.
 
@@ -293,7 +287,7 @@ We still can combine this with the second order Huen method.
 As a result, EDM does these modifications:
 - We only churn within a range in the middle of the noise schedule. 
 - When we choose the "churning noise", we should theoretically choose  $\epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$, and then add $\sqrt{\hat{t}_i^2 - t_i^2} \epsilon$ to the sample.
-- However, in practice we do $\epsilon \sim \mathcal{N}(\mathbf{0}, S^2_{noise} \mathbf{I})$, where $S^2_{noise} > 1$. This means we sample add a little more noise than we should, to counteract the bias in the denoiser to denoise too much.
+- However, in practice we do $$\epsilon \sim \mathcal{N}(\mathbf{0}, S^2_{noise} \mathbf{I}) $$ , where $$S^2_{noise} > 1$$. This means we sample add a little more noise than we should, to counteract the bias in the denoiser to denoise too much.
 - We define $S_{churn}$ as the "total" amount of churning, and choose $$ \hat{t}_{i} = \gamma t_{i} $$, where $$ \gamma = \min (\frac{S_{churn}}{N}, \sqrt{2} -1)$$.
 
 
