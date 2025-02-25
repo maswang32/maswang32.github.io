@@ -294,7 +294,7 @@ As a result, EDM does these modifications:
 - We only churn within a range in the middle of the noise schedule. 
 - When we choose the "churning noise", we should theoretically choose  $\epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$, and then add $\sqrt{\hat{t}_i^2 - t_i^2} \epsilon$ to the sample.
 - However, in practice we do $\epsilon \sim \mathcal{N}(\mathbf{0}, S^2_{noise} \mathbf{I})$, where $S^2_{noise} > 1$. This means we sample add a little more noise than we should, to counteract the bias in the denoiser to denoise too much.
-- We define $S_{churn}$ as the "total" amount of churning, and choose $ \hat{t}_{i} = \gamma t_i$, where $\gamma = \min (\frac{S_{churn}}{N}, \sqrt{2} -1)$.
+- We define $S_{churn}$ as the "total" amount of churning, and choose $$ \hat{t}_{i} = \gamma t_{i} $$, where $$ \gamma = \min (\frac{S_{churn}}{N}, \sqrt{2} -1)$$.
 
 
 
