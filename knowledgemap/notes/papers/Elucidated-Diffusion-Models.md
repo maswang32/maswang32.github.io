@@ -152,6 +152,12 @@ $$
 $$
 
 $$
+\frac{d \mathbf{x} }{ dt } = \frac{\dot{s}(t)}{s(t)} \mathbf{x} - s(t)^2 \left[ \dot{\sigma}(t) \sigma(t) \frac{ D\left( \frac{\mathbf{x}}{s(t)} , \sigma \right) - \frac{\mathbf{x}}{s(t)} }{\sigma(t)^2 s(t)}
+ \right]
+$$
+
+
+$$
 \frac{d \mathbf{x} }{ dt } =  \mathbf{x} \left( \frac{\dot s(t)}{s(t)}  + \frac{\dot \sigma(t)}{\sigma(t)} \right) - \frac{\dot \sigma(t) s(t)}{\sigma(t)}  D\left(\frac{\mathbf{x}}{s(t)} ; \sigma(t) \right)
 $$
 
@@ -229,8 +235,8 @@ Also, in the EDM formulation, we have:
 
 This means that $t$ and $\sigma$ become interchangeable. Also, since the noise trajectories are linear, we have that a single step to $t = 0$ will give you the denoised image. The tangent line to the trajectory points towards the denoiser output. The plots show you that we only have slight curvature at some intermediate time steps, but at the first and last time steps, we are linear.
 
+<img src="image-1.png" alt="alt text" width="400">
 
-<img src="image-1.png" alt="Diffferent ODES" width="100%"/>
 
 It should make sense that since the derivative is a linear approximation to the noise trajectory, the noise trajectory should be as linear as possible.
 
