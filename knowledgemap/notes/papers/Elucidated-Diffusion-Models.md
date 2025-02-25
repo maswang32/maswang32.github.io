@@ -230,7 +230,7 @@ Also, in the EDM formulation, we have:
 This means that $t$ and $\sigma$ become interchangeable. Also, since the noise trajectories are linear, we have that a single step to $t = 0$ will give you the denoised image. The tangent line to the trajectory points towards the denoiser output. The plots show you that we only have slight curvature at some intermediate time steps, but at the first and last time steps, we are linear.
 
 
-<img src="image-1.png.png" alt="Diffferent ODES" width="100%"/>
+<img src="image-1.png" alt="Diffferent ODES" width="100%"/>
 
 It should make sense that since the derivative is a linear approximation to the noise trajectory, the noise trajectory should be as linear as possible.
 
@@ -270,7 +270,7 @@ The three terms are, respectively:
 ### EDM's Sampler
 This sampler includes churn, which adds and removes noise during the sampling process. At each step, we 
 - Add noise to go from current noise level $t_i$ to a higher noise level $\hat{t}_i$
-- Perform a single step from the higher noise level $\hat{t}_i$ to the a new, even lower noise level $t_{i+1}$.
+- Perform a single step from the higher noise level $$ \hat{t}_{i} $$ to the a new, even lower noise level $t_{i+1}$.
 
 
 This is actually slightly different than approximating the SDE above. In the SDE above, we add noise, but we attempt to correct for it using the score function from the noise level $t_i$ *before* adding noiss. This is incorrect because the noise level that is input to the score fucntion is different than the actual noise level of the data. The EDM sampler uses the noise level $\hat{t}_i$ *after* adding noise. This is more accurate, and works better with larger step sizes.
@@ -288,7 +288,7 @@ As a result, EDM does these modifications:
 - We only churn within a range in the middle of the noise schedule. 
 - When we choose the "churning noise", we should theoretically choose  $\epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$, and then add $\sqrt{\hat{t}_i^2 - t_i^2} \epsilon$ to the sample.
 - However, in practice we do $\epsilon \sim \mathcal{N}(\mathbf{0}, S^2_{noise} \mathbf{I})$, where $S^2_{noise} > 1$. This means we sample add a little more noise than we should, to counteract the bias in the denoiser to denoise too much.
-- We define $S_{churn}$ as the "total" amount of churning, and choose $\hat{t}_i = \gamma t_i$, where $\gamma = \min (\frac{S_{churn}}{N}, \sqrt{2} -1)$.
+- We define $S_{churn}$ as the "total" amount of churning, and choose $ \hat{t}_{i} = \gamma t_i$, where $\gamma = \min (\frac{S_{churn}}{N}, \sqrt{2} -1)$.
 
 
 
