@@ -229,8 +229,7 @@ Also, in the EDM formulation, we have:
 
 This means that $t$ and $\sigma$ become interchangeable. Also, since the noise trajectories are linear, we have that a single step to $t = 0$ will give you the denoised image. The tangent line to the trajectory points towards the denoiser output. The plots show you that we only have slight curvature at some intermediate time steps, but at the first and last time steps, we are linear.
 
-![alt text](image.png)
-
+![Different ODEs](image-1.png)
 It should make sense that since the derivative is a linear approximation to the noise trajectory, the noise trajectory should be as linear as possible.
 
 In addition, the formula for the derivative becomes much simpler:
