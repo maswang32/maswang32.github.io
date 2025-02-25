@@ -235,6 +235,9 @@ This means that $t$ and $\sigma$ become interchangeable. Also, since the noise t
 
 ![Trajectories](image-1.png)
 
+<img src="./image-1.png" width="400">
+
+
 It should make sense that since the derivative is a linear approximation to the noise trajectory, the noise trajectory should be as linear as possible.
 
 In addition, the formula for the derivative becomes much simpler:
