@@ -147,12 +147,8 @@ $$
 $$
 
 $$
-\frac{d \mathbf{x} }{ dt } = \frac{\dot s(t)}{s(t)} \mathbf{x} - s(t)^2 \left[ \dot \sigma(t) \sigma(t) \frac{ D( \frac{\mathbf{x}}{s(t)} ; \sigma) - \frac{\mathbf{x}}{{s(t)}} }{\sigma(t)^2 s(t)}
+\frac{d \mathbf{x} }{ dt } = \frac{\dot{s}(t)}{s(t)} \mathbf{x} - s(t)^2 \left[ \dot \sigma(t) \sigma(t) \frac{ D( \frac{\mathbf{x}}{s(t)} ; \sigma) - \frac{\mathbf{x}}{{s(t)}} }{\sigma(t)^2 s(t)}
  \right]
-$$
-
-$$
-\frac{d\mathbf{x}}{dt} = \frac{\dot{s}(t)}{s(t)} \mathbf{x} - s(t)^2 \left[ \dot{\sigma}(t) \sigma(t) \nabla_{\mathbf{x}} \log p \left( \frac{\mathbf{x}}{s(t)}, \sigma(t) \right) \right]
 $$
 
 $$
