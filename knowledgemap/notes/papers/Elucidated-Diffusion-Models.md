@@ -131,8 +131,8 @@ $$
 Thus, 
 
 $$
-\nabla_{\mathbf{x}} \log p\left(\frac{\mathbf{x}}{s(t)}, \sigma(t)\right) = \frac{ D(\hat{\mathbf{x}};\sigma) - \hat{\mathbf{x}} }{\sigma(t)^2 s(t)}
-= \frac{ D(\frac{\mathbf{x}}{s(t)};\sigma) - \frac{ \mathbf{x} }{s(t)} }{\sigma(t)^2 s(t)}
+\nabla_{\mathbf{x}} \log p \left( \frac{ \mathbf{x} }{ s(t) }, \sigma(t)\right) = \frac{ D( \hat{\mathbf{x} } ; \sigma) - \hat{ \mathbf{x} } }{\sigma(t)^2 s(t)}
+= \frac{ D( \frac{ \mathbf{x} }{ s(t) } ; \sigma) - \frac{ \mathbf{x} }{s(t)} }{ \sigma(t)^2 s(t)}
 $$
 
 We can use this function to estimate the score function from the denoiser.
@@ -147,12 +147,12 @@ $$
 $$
 
 $$
-\frac{d \mathbf{x} }{ dt } = \frac{\dot s(t)}{s(t)} \mathbf{x} - s(t)^2 \left[ \dot \sigma(t) \sigma(t) \frac{ D(\frac{\mathbf{x}}{s(t)};\sigma) - \frac{\mathbf{x}}{{s(t)}} }{\sigma(t)^2 s(t)}
+\frac{d \mathbf{x} }{ dt } = \frac{\dot s(t)}{s(t)} \mathbf{x} - s(t)^2 \left[ \dot \sigma(t) \sigma(t) \frac{ D( \frac{\mathbf{x}}{s(t)} ; \sigma) - \frac{\mathbf{x}}{{s(t)}} }{\sigma(t)^2 s(t)}
  \right]
 $$
 
 $$
-\frac{d \mathbf{x} }{ dt } =  \mathbf{x} \left( \frac{\dot s(t)}{s(t)}  + \frac{\dot \sigma(t)}{\sigma(t)} \right) - \frac{\dot \sigma(t) s(t)}{\sigma(t)}  D\left(\frac{\mathbf{x}}{s(t)}; \sigma(t) \right)
+\frac{d \mathbf{x} }{ dt } =  \mathbf{x} \left( \frac{\dot s(t)}{s(t)}  + \frac{\dot \sigma(t)}{\sigma(t)} \right) - \frac{\dot \sigma(t) s(t)}{\sigma(t)}  D\left(\frac{\mathbf{x}}{s(t)} ; \sigma(t) \right)
 $$
 
 We can use this derivative for sampling.
