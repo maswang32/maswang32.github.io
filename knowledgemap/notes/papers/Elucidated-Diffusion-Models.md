@@ -143,7 +143,7 @@ In order to sample, we should compute the derivative $\frac{d\mathbf{x}}{dt}$. T
 
 
 $$
-\frac{ d \mathbf{x} }{ dt } = \frac{ \dot s(t) }{ s(t) } \mathbf{x} - s(t)^2 \left[ \dot \sigma(t) \sigma(t) \nabla_{\mathbf{x}} \log p \left( \frac{ \mathbf{x} }{ s(t) }, \sigma(t) \right) \right]
+\frac{ d \mathbf{x} }{ dt } = \frac{ \dot{s} (t) }{ s(t) } \mathbf{x} - s(t)^2 \left[ \dot{\sigma}(t) \sigma(t) \nabla_{\mathbf{x}} \log p \left( \frac{ \mathbf{x} }{ s(t) }, \sigma(t) \right) \right]
 $$
 
 $$
