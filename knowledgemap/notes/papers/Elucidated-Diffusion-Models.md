@@ -1,4 +1,4 @@
-# EDM
+# Elucidated Diffusion Models
 
 ## Noisy Data Distributions
 Let $p(\mathbf{y})$ denote the distribution of data examples $\mathbf{y}$.Consider the family of distributions obtained by adding Gaussian noise of standard deviation $\sigma$ to the data distribution. Note that $\sigma$ is not restricted to being between $0$ and $1$, and it can actually be very large.
@@ -147,12 +147,12 @@ $$
 $$
 
 $$
-\frac{d\mathbf{x}}{dt} = \frac{\dot s(t)}{s(t)} \mathbf{x} - s(t)^2 \left[ \dot \sigma(t) \sigma(t) \frac{ D(\frac{\mathbf{x}}{s(t)};\sigma) - \frac{\mathbf{x}}{{s(t)}} }{\sigma(t)^2 s(t)}
+\frac{d \mathbf{x} }{ dt } = \frac{\dot s(t)}{s(t)} \mathbf{x} - s(t)^2 \left[ \dot \sigma(t) \sigma(t) \frac{ D(\frac{\mathbf{x}}{s(t)};\sigma) - \frac{\mathbf{x}}{{s(t)}} }{\sigma(t)^2 s(t)}
  \right]
 $$
 
 $$
-\frac{d\mathbf{x}}{dt} =  \mathbf{x} \left( \frac{\dot s(t)}{s(t)}  + \frac{\dot \sigma(t)}{\sigma(t)} \right) - \frac{\dot \sigma(t) s(t)}{\sigma(t)}  D\left(\frac{\mathbf{x}}{s(t)}; \sigma(t) \right)
+\frac{d \mathbf{x} }{ dt } =  \mathbf{x} \left( \frac{\dot s(t)}{s(t)}  + \frac{\dot \sigma(t)}{\sigma(t)} \right) - \frac{\dot \sigma(t) s(t)}{\sigma(t)}  D\left(\frac{\mathbf{x}}{s(t)}; \sigma(t) \right)
 $$
 
 We can use this derivative for sampling.
@@ -169,7 +169,7 @@ This should be indistinguishable from pure Gaussian Noise, assuming $\sigma_{max
 
 **Side Note**: In fact, imposing the constraint that the largest noise level has variance 1 requires a curvature to the noise trajectory, which we do not want. This is because the score function is the derivative of the noise trajectory, which is a *linear* approximation. Thus, for this approximation to be maximally accurate, we should have *linear* noise trajectories.
 
-During the sampling process, we should start with a sample from $\mathbf{x}_0 \sim \mathcal{N}(\mathbf{0}, \sigma_{max}^2 \mathbf{I})$, and denoise images sequentially such that we get $\mathbf{x}_1, \mathbf{x}_1, \ldots \mathbf{x}_N$, where
+During the sampling process, we should start with a sample from $$\mathbf{x}_{0} \sim \mathcal{N} ( \mathbf{0}, \sigma_{max}^2 \mathbf{I} )$$, and denoise images sequentially such that we get $\mathbf{x}_1, \mathbf{x}_1, \ldots \mathbf{x}_N$, where
 
 $$
 \mathbf{x}_i \sim p(\mathbf{x}_i ; \sigma_i)
