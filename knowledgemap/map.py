@@ -278,6 +278,9 @@ if __name__=="__main__":
     
     M.add_node("Wiener Process", type='concept',  parent_names=["Calculus", "Statistics", "Generative Modeling Using SDEs"], base_radius=5, link="auto")
 
+    # Diffusion Model Papers
+    M.add_node("DDIM", type='paper', parent_names=["Diffusion Models"], base_radius=7, link='auto')
+    M.add_node("Elu", type='paper', parent_names=["Diffusion Models"], base_radius=7, link='auto')
 
 
     # Audio
@@ -290,6 +293,8 @@ if __name__=="__main__":
     M.add_node("Vision", type='concept', color="#79443B")
     M.add_node("VAR", type='paper', parent_names=["Vision", "Generative Modeling"], base_radius=7, link='auto')
     M.add_node("Gaussian Splatting", type='paper', parent_names=["Vision"], base_radius=7, link='auto')
+    M.add_node("Advances In Computer Vision", type='class', parent_names=["Vision"], base_radius=20, link='auto')
+    M.add_node("Geometric Deep Learning", type='class', parent_names=["Vision", "Deep Learning"], base_radius=5, link='auto')
 
 
     # Language Modeling
