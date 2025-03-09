@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Audio Tables with 8 Rows Each and Target Mix Column</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            margin-top: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        th:first-child,
+        td:first-child {
+            width: 150px;
+        }
+
+        /* Set a fixed width for the last column */
+        th:last-child,
+        td:last-child {
+            width: 200px;
+        }
+
+        /* Optionally, you can also set a fixed width for all audio elements */
+        audio {
+            width: 100%;
+            max-width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Generation</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Target Instrument</th>
+                <th>Context Mix</th>
+                <th>Target Stem</th>
+                <th>Prediction</th>
+                <th>Target Mix</th>
+                <th>Prediction in Mix (Prediction Amplified)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 8 rows for Generation table from cfg_1 folders 0 to 7 -->
+            <tr>
+                <td>Bass</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/0/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/0/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/0/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/0/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/0/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Percussive</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/1/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/1/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/1/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/1/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/1/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Percussive</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/2/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/2/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/2/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/2/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/2/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Guitar</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/3/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/3/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/3/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/3/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/3/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Percussive</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/4/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/4/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/4/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/4/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/4/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Guitar</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/5/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/5/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/5/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/5/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/5/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Ensemble</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/6/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/6/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/6/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/6/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/6/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Bass</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/7/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/7/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/7/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/7/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_1/7/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>Guidance Scale = 2.0</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Target Instrument</th>
+                <th>Context Mix</th>
+                <th>Target Stem</th>
+                <th>Prediction</th>
+                <th>Target Mix</th>
+                <th>Prediction in Mix (Prediction Amplified)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 8 rows for Guidance Scale table from cfg_2 folders 0 to 7 -->
+            <tr>
+                <td>Bass</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/0/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/0/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/0/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/0/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/0/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Percussive</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/1/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/1/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/1/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/1/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/1/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Percussive</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/2/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/2/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/2/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/2/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/2/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Guitar</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/3/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/3/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/3/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/3/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/3/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Percussive</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/4/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/4/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/4/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/4/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/4/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Guitar</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/5/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/5/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/5/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/5/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/5/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Ensemble</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/6/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/6/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/6/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/6/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/6/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Bass</td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/7/input_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/7/target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/7/pred_audio.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/7/mix_target.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td>
+                    <audio controls>
+                        <source src="cfg_2/7/mix_pred_loud.wav" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
