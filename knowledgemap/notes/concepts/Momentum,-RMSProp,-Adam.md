@@ -10,16 +10,17 @@ momentum helps with plateaus and local minima
 
 
 AdaGrad - history of squared gradients for a direction accumulate, updates in that direction are divided by this
-encourages exploration in directions where not many changes have happened
-escapes saddle points better - regular GD optimizes steeper features first
-slow b/c squared gradient accumuates
+= encourages exploration in directions where not many changes have happened
+- escapes saddle points better by going diagonally
+- regular GD optimizes steeper features first
+- slow b/c squared gradient accumuates
 
 
 RMSProp - squared gradients decay, squared gradients have momentum
 
 Adam - gradients have momentum, so do squared gradients.
-momentum allows for escaping local minima
-sum of squares = explore new directions
+- momentum allows for escaping local minima
+- sum of squares = explore new directions
 
 
 

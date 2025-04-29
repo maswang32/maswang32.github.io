@@ -301,9 +301,11 @@ As a result, EDM does these modifications:
 ## EDM's Preconditioning
 - Learning $D$ directly is difficult - the inputs vary greatly in terms of magnitude.
 - Many works predict $\mathbf{n}$ scaled to unit variance - this keeps the output magnitudes consistent.
-- However, for very high noise levels, this is difficult. The scale of the input is huge, and the denoised output is very small compared to it. We are basically relying on the noise estimate to cancel out with the input precisely such that their difference is on the same scale of the denoised data.
+- However, for very high noise levels, this is difficult. The scale of the input is huge, and the denoised output is very small compared to it. We are basically relying on the noise estimate to cancel out with the input precisely such that their difference is on the same scale of the denoised data. If it does not do this at any index, the error will be huge
 - Perhaps at high noise levels, it is actually easier to predict the denoised signal, so that we can consistently predict at the correct scale.
 - Actually, our network predicts a mix of data and noise.
+- At high noise levels, an $\epsilon$ prediction network behaves like an identity mapping, and predicting the clean data behaves like a zero mapping. Preconditioning means we have it behave like a zero mapping.
+- At low noise levels, an $\epsilon$ prediction network behaves like zero mapping, while predicting clean data behaves like identity mapping. EDM's Preconditioning means we also have it behave like a zero mapping.
 
 ## Other Notes
 ### More Improvements
@@ -527,4 +529,4 @@ UNet Block
         With P_mean=-1.2, range is [-8.4, 6]
         c_noise ranges from -2.1 to 1.5
 
-Last Reviewed 2/11/25    
+Last Reviewed: 2/11/25    
