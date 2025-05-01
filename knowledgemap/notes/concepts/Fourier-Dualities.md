@@ -11,3 +11,7 @@ The coefficients are the frequency domain representation
 What happens when you mutiply two polynomials?
 
 You convolve their coefficients.
+
+See emails with Julius Smith
+
+Last Reviewed: 4/30/25

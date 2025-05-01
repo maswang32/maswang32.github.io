@@ -40,4 +40,8 @@
 - z.type_as(x, device=self.device)
 
 
+## Mixed Precision
+- Lightning also casts buffers
+
+
 Last Reviewed: 4/28/25
