@@ -227,29 +227,6 @@ if __name__ == "__main__":
         parent_names=["Math"],
     )
     M.add_node(
-        "Statistics",
-        base_radius=0,
-        parent_names=["Math"],
-        color="#FF6F20",
-    )
-    M.add_node(
-        "Biased vs Unbiased Estimates",
-        base_radius=3,
-        parent_names=["Statistics"],
-    )
-    M.add_node(
-        "Uniform Width Sampling",
-        base_radius=1,
-        parent_names=["Statistics"],
-    )
-
-    M.add_node(
-        "Information Theory",
-        base_radius=0,
-        parent_names=["Math"],
-    )
-
-    M.add_node(
         "Linear Algebra",
         base_radius=0,
         parent_names=["Math"],
@@ -258,16 +235,6 @@ if __name__ == "__main__":
         "Calculus",
         base_radius=0,
         parent_names=["Math"],
-    )
-    M.add_node(
-        "Optimization",
-        base_radius=0,
-        parent_names=["Statistics"],
-    )
-    M.add_node(
-        "Momentum, RMSProp, Adam",
-        base_radius=10,
-        parent_names=["Optimization"],
     )
     M.add_node(
         "Gradients",
@@ -284,13 +251,21 @@ if __name__ == "__main__":
         base_radius=5,
         parent_names=["Calculus"],
     )
-
     M.add_node(
         "Functions",
         base_radius=1,
         parent_names=["Math"],
     )
-
+    
+    
+    
+    
+    # Information Theory
+    M.add_node(
+        "Information Theory",
+        base_radius=0,
+        parent_names=["Math"],
+    )
     M.add_node(
         "A Brief Introduction To Information",
         base_radius=2,
@@ -328,11 +303,33 @@ if __name__ == "__main__":
         parent_names=["Deep Learning Chapter 3"],
         base_radius=5,
     )
+    
+    
+    
+    
+    # Statistics
+    M.add_node(
+        "Statistics",
+        base_radius=0,
+        parent_names=["Math"],
+        color="#FF6F20",
+    )
+    M.add_node(
+        "Biased vs Unbiased Estimates",
+        base_radius=3,
+        parent_names=["Statistics"],
+    )
+    M.add_node(
+        "Uniform Width Sampling",
+        base_radius=1,
+        parent_names=["Statistics"],
+    )
     M.add_node(
         "Random-Variables-and-Probability-Distributions",
         parent_names=["Statistics"],
         base_radius=10,
     )
+
     M.add_node(
         "Bayes",
         parent_names=["Statistics"],
@@ -343,6 +340,20 @@ if __name__ == "__main__":
         parent_names=["Statistics"],
         base_radius=5,
     )
+    
+    
+    # Optimization
+    M.add_node(
+        "Optimization",
+        base_radius=0,
+        parent_names=["Statistics"],
+    )
+    M.add_node(
+        "Momentum, RMSProp, Adam",
+        base_radius=10,
+        parent_names=["Optimization"],
+    )
+
 
     # Deep Learning
     M.add_node("Deep Learning", color="#0000FF")
@@ -352,78 +363,24 @@ if __name__ == "__main__":
         base_radius=7,
     )
     M.add_node(
-        "Training",
+        "Positional Encodings",
         parent_names=["Deep Learning"],
-        base_radius=10,
+        base_radius=7,
     )
-
     M.add_node(
-        "A Recipe for Training Neural Networks",
-        parent_names=["Training"],
+        "Interpretability", parent_names=["Deep Learning"]
+    )
+    M.add_node(
+        "Concept Activation Vectors",
+        parent_names=["Interpretability"],
         base_radius=7,
     )
 
-    # Software
-    M.add_node("Software", color="#212129")
+    # Fine Tuning
     M.add_node(
-        "Filesystems",
-        parent_names=["Software"],
-        base_radius=1,
-    )
-    M.add_node(
-        "Python",
-        parent_names=["Software"],
-        base_radius=1,
-    )
-    M.add_node(
-        "Hydra",
-        parent_names=["Python"],
-        base_radius=2,
-    )
-    M.add_node(
-        "Slurm",
-        parent_names=["Software"],
-        base_radius=2,
-    )
-    M.add_node(
-        "ML Systems",
-        parent_names=["Software", "Deep Learning"],
-        base_radius=0,
-    )
-    M.add_node(
-        "PyTorch",
-        parent_names=["ML Systems", "Python"],
-        base_radius=10,
-    )
-    M.add_node(
-        "Lightning",
-        parent_names=["PyTorch"],
+        "Fine Tuning",
+        parent_names=["Deep Learning"],
         base_radius=5,
-    )
-    M.add_node(
-        "Wandb",
-        parent_names=["ML Systems"],
-        base_radius=5,
-    )
-    M.add_node(
-        "Large Scale Deep Learning",
-        parent_names=["ML Systems", "Training"],
-        base_radius=7,
-    )
-    M.add_node(
-        "Large Scale Deep Learning",
-        parent_names=["ML Systems"],
-        base_radius=5,
-    )
-    M.add_node(
-        "Distributed Training",
-        parent_names=["Large Scale Deep Learning"],
-        base_radius=7,
-    )
-    M.add_node(
-        "Mixed Precision",
-        parent_names=["ML Systems"],
-        base_radius=7,
     )
 
     # Activation Functions
@@ -440,6 +397,8 @@ if __name__ == "__main__":
         parent_names=["Activation Functions"],
         base_radius=2,
     )
+    
+    
 
     # UDL Textbook
     M.add_node(
@@ -456,28 +415,6 @@ if __name__ == "__main__":
         parent_names=["Understanding Deep Learning"],
         base_radius=10,
     )
-
-    # Generative Modeling
-    M.add_node(
-        "Generative Modeling",
-        color="#FFD900",
-        parent_names=["Deep Learning"],
-    )
-    M.add_node(
-        "VAEs - UDL",
-        parent_names=["Understanding Deep Learning", "Generative Modeling"],
-        base_radius=10,
-    )
-    M.add_node(
-        "ELBO",
-        parent_names=["Optimization", "VAEs - UDL"],
-        base_radius=4,
-    )
-    M.add_node(
-        "Jensens Inequality",
-        parent_names=["ELBO"],
-        base_radius=4,
-    )
     M.add_node(
         "Optimization - UDL",
         parent_names=["Understanding Deep Learning", "Optimization"],
@@ -493,6 +430,41 @@ if __name__ == "__main__":
         base_radius=10,
     )
 
+
+    # Generative Modeling
+    M.add_node(
+        "Generative Modeling",
+        color="#FFD900",
+        parent_names=["Deep Learning"],
+    )
+    
+    # UDL Generative Modeling Chapters
+    M.add_node(
+        "VAEs - UDL",
+        parent_names=["Understanding Deep Learning", "Generative Modeling"],
+        base_radius=10,
+    )
+    M.add_node(
+        "ELBO",
+        parent_names=["Optimization", "VAEs - UDL"],
+        base_radius=4,
+    )
+    M.add_node(
+        "Jensens Inequality",
+        parent_names=["ELBO"],
+        base_radius=4,
+    )
+    
+    
+    M.add_node(
+        "Energy Based Generative Models",
+        parent_names=["Generative Modeling"],
+        base_radius=7,
+    )
+
+    
+    
+    # Diffusion Models
     M.add_node(
         "Diffusion Models", parent_names=["Generative Modeling"]
     )
@@ -516,7 +488,6 @@ if __name__ == "__main__":
         parent_names=["DDPM - UDL"],
         base_radius=7,
     )
-
     M.add_node(
         "Diffusion Best Practices",
         parent_names=["Diffusion Models"],
@@ -532,7 +503,6 @@ if __name__ == "__main__":
         parent_names=["Diffusion Forcing"],
         base_radius=7,
     )
-
     M.add_node(
         "DiT",
         parent_names=["Diffusion Models"],
@@ -543,25 +513,21 @@ if __name__ == "__main__":
         parent_names=["Diffusion Models"],
         base_radius=2,
     )
-
     M.add_node(
         "Understanding Diffusion Models: A Unified Perspective",
         parent_names=["Diffusion Models"],
         base_radius=20,
     )
-
     M.add_node(
         "Score Based Generative Models",
         parent_names=["Diffusion Models"],
         base_radius=10,
     )
-
     M.add_node(
         "Generative Modeling Using SDEs",
         parent_names=["Score Based Generative Models"],
         base_radius=10,
     )
-
     M.add_node(
         "Wiener Process",
         parent_names=[
@@ -571,21 +537,12 @@ if __name__ == "__main__":
         ],
         base_radius=5,
     )
-
     M.add_node(
         "Classifier Free Guidance",
         parent_names=[
-            "Calculus",
-            "Statistics",
-            "Generative Modeling Using SDEs",
+            "Diffusion Models",
         ],
         base_radius=5,
-    )
-
-    M.add_node(
-        "Energy Based Generative Models",
-        parent_names=["Generative Modeling"],
-        base_radius=7,
     )
 
     # Diffusion Model Papers
@@ -599,6 +556,21 @@ if __name__ == "__main__":
         parent_names=["Diffusion Models"],
         base_radius=10,
     )
+    
+    
+    # Training
+    M.add_node(
+        "Training",
+        parent_names=["Deep Learning"],
+        base_radius=10,
+    )
+    M.add_node(
+        "A Recipe for Training Neural Networks",
+        parent_names=["Training"],
+        base_radius=7,
+    )
+
+
 
     # Audio
     M.add_node("Audio", color="#3FFF57")
@@ -623,19 +595,21 @@ if __name__ == "__main__":
         parent_names=["Vision"],
         base_radius=7,
     )
+    
+    # Advances in Computer Vision Class
     M.add_node(
-        "Advances in Computer Vision",
+        "Advances In Computer Vision",
         parent_names=["Vision"],
         base_radius=20,
     )
     M.add_node(
         "Image Formation",
-        parent_names=["Advances in Computer Vision"],
+        parent_names=["Advances In Computer Vision"],
         base_radius=5,
     )
     M.add_node(
         "Linear Image Processing",
-        parent_names=["Advances in Computer Vision"],
+        parent_names=["Advances In Computer Vision"],
         base_radius=5,
     )
     M.add_node(
@@ -644,6 +618,7 @@ if __name__ == "__main__":
         base_radius=5,
     )
 
+    # Deep Vision
     M.add_node(
         "CNNs",
         parent_names=["Vision", "Deep Learning"],
@@ -652,12 +627,6 @@ if __name__ == "__main__":
     M.add_node(
         "UNet",
         parent_names=["CNNs"],
-        base_radius=7,
-    )
-
-    M.add_node(
-        "Positional Encodings",
-        parent_names=["Deep Learning"],
         base_radius=7,
     )
     M.add_node(
@@ -679,7 +648,7 @@ if __name__ == "__main__":
     )
     M.add_node(
         "Transformers",
-        parent_names=["Language Modeling from Scratch"],
+        parent_names=["Language Modeling"],
         base_radius=10,
     )
     M.add_node(
@@ -688,22 +657,78 @@ if __name__ == "__main__":
         base_radius=5,
     )
 
-    # Papers
+    
+    # Software
+    M.add_node("Software", color="#212129")
     M.add_node(
-        "Interpretability", parent_names=["Deep Learning"]
+        "Filesystems",
+        parent_names=["Software"],
+        base_radius=1,
     )
     M.add_node(
-        "Concept Activation Vectors",
-        parent_names=["Interpretability"],
+        "Python",
+        parent_names=["Software"],
+        base_radius=1,
+    )
+    M.add_node(
+        "Hydra",
+        parent_names=["Python"],
+        base_radius=2,
+    )
+    M.add_node(
+        "Slurm",
+        parent_names=["Software"],
+        base_radius=2,
+    )
+    
+    # ML Systems
+    M.add_node(
+        "ML Systems",
+        parent_names=["Software", "Deep Learning"],
+        base_radius=0,
+    )
+    M.add_node(
+        "Mixed Precision",
+        parent_names=["ML Systems"],
+        base_radius=7,
+    )
+    M.add_node(
+        "Wandb",
+        parent_names=["ML Systems"],
+        base_radius=5,
+    )
+    M.add_node(
+        "PyTorch",
+        parent_names=["ML Systems", "Python"],
+        base_radius=10,
+    )
+    M.add_node(
+        "Lightning",
+        parent_names=["PyTorch"],
+        base_radius=5,
+    )
+
+    M.add_node(
+        "Large Scale Deep Learning",
+        parent_names=["ML Systems"],
+        base_radius=7,
+    )
+    M.add_node(
+        "Large Scale Deep Learning",
+        parent_names=["ML Systems"],
+        base_radius=5,
+    )
+    M.add_node(
+        "Webdataset",
+        parent_names=["Large Scale Deep Learning"],
+        base_radius=5,
+    )
+    M.add_node(
+        "Distributed Training",
+        parent_names=["Large Scale Deep Learning", "Training"],
         base_radius=7,
     )
 
-    # Fine Tuning
-    M.add_node(
-        "Fine Tuning",
-        parent_names=["Deep Learning"],
-        base_radius=5,
-    )
 
     # Signal Processing
     M.add_node("Signal Processing", color="#a8326f")
@@ -748,7 +773,7 @@ if __name__ == "__main__":
         base_radius=7,
     )
     M.add_node(
-        "1f-Noise-in-Music-and-Speech",
+        "1f Noise in Music and Speech",
         parent_names=["Pink Frequency Profiles"],
         base_radius=7,
     )
@@ -788,10 +813,8 @@ if __name__ == "__main__":
     unassigned_notes = [
         name for name in list_of_notes_documents if name not in simplified_keys
     ]
-    print("Unassigned Notes")
-    print(unassigned_notes)
     if len(unassigned_notes) > 0:
-        raise LookupError
+        raise LookupError(f"Unassigned Notes: {unassigned_notes}")
 
     # Read the existing HTML
     with open("index.html", "r", encoding="utf-8") as f:
