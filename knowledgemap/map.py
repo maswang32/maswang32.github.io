@@ -352,8 +352,14 @@ if __name__ == "__main__":
         base_radius=7,
     )
     M.add_node(
-        "A Recipe for Training Neural Networks",
+        "Training",
         parent_names=["Deep Learning"],
+        base_radius=10,
+    )
+
+    M.add_node(
+        "A Recipe for Training Neural Networks",
+        parent_names=["Training"],
         base_radius=7,
     )
 
@@ -379,7 +385,6 @@ if __name__ == "__main__":
         parent_names=["Software"],
         base_radius=2,
     )
-
     M.add_node(
         "ML Systems",
         parent_names=["Software", "Deep Learning"],
@@ -401,14 +406,18 @@ if __name__ == "__main__":
         base_radius=5,
     )
     M.add_node(
-        "Webdataset",
+        "Large Scale Deep Learning",
+        parent_names=["ML Systems", "Training"],
+        base_radius=7,
+    )
+    M.add_node(
+        "Large Scale Deep Learning",
         parent_names=["ML Systems"],
         base_radius=5,
     )
-
     M.add_node(
         "Distributed Training",
-        parent_names=["ML Systems"],
+        parent_names=["Large Scale Deep Learning"],
         base_radius=7,
     )
     M.add_node(
