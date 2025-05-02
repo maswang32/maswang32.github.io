@@ -56,7 +56,6 @@
 - access shards randomly - read shards in random order, read each shard sequentially with in memory buffer for shuffling.
 ![alt text](image.png)
 
-
 ### Three Tiers
 - Dataservers send data to CPU nodes, which do preprocessing. 
 These are then sent to the GPU.
