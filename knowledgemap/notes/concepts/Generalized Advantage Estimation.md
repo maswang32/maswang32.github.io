@@ -1,8 +1,6 @@
 # Generalized Advantage Estimation
 Define this:
-![
-    
-](image-2.png)
+![alt text](image-2.png)
 The first term is actor critic, next state minus current state
 The last term is pure policy gradient, with value function as baseline.
 
