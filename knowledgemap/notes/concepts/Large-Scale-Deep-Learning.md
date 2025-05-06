@@ -40,9 +40,10 @@
             - sample = next(dataset)
             - index = randint(0, len(buffer)-1)
              - sample, buffer[index] = buffer[index], sample
-        - Basically, the sample gets read from the buffer, and the buffer at index get replaced
-        by the previous sample.
-    - better for network storage
+        - basically, the buffer does all the shuffling for us. We read examples sequentially into a buffer,
+        and then randomly sample from that buffer. Each time we feed a sample from the buffer to the model,
+        its spot in the buffer getsw replaced by the next thing on disk. All reads from disk are sequential. 
+        - better for network storage
     - TFRecord/tf.Example, Google GFS, Hadoop, FORTRAN
 ### Pipelining
 - make one request, many examples flow

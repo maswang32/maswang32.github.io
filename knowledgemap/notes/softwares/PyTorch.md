@@ -35,5 +35,10 @@ x = x + relu(x, inplace=True)
 ## Datasets
 - Map dataset load everything
 - Iterables define a way to iterate through the dataset.
+- convention is return a tuple of things per batch
+
+## Dataloaders
+- Pin memory only allocates when the dataloader is called, apparently
+- persistent workers keeps dataloader workers around, use for train, not valid
 
 Last Reviewed: 4/30/25
