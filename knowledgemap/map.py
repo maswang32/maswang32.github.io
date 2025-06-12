@@ -361,7 +361,6 @@ if __name__ == "__main__":
     # Deep Learning
     M.add_node("Deep Learning", color="#0000FF")
     M.add_node("Backpropagation", parent_names=["Deep Learning", "Chain Rule"], base_radius=10)
-
     M.add_node(
         "Normalization",
         parent_names=["Deep Learning"],
