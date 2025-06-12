@@ -20,3 +20,22 @@
 		-output[...] += inputs * inputs ..... This is a scalar multiplication
 
 	- can also use broadcasting
+
+
+	np.einsum(i,ij->j, dL_dout, w) is like doing 
+
+	sum_i(dL_dout_i, w_ij). We can imagine taking the labels, and using them as subscripts on the rest of the arguments.
+
+
+	dL / dx_j = sum_i [(dL / dout_i) * w_ij)]
+
+	In Einstein summation notation, this is
+	dL / dx_j = (dL / dout_i) * w_ij
+	As the sum is over i implicitly.
+
+	Converting this to einsum means taking the subscripts, and moving them
+	Into the first argument:
+	np.einsum(i,ij->j, (dL / dout), w)
+
+
+
