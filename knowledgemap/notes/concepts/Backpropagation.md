@@ -51,3 +51,28 @@ Vector Matrix derivative: https://cs231n.stanford.edu/vecDerivs.pdf
 	-taking derivatives of multiple things simultaneously, applying the chain rule, and taking derivatives when there is a summation - split these things up
 	-write the formula for a single element of the output in terms of scalars
 	-remove summation notation
+
+
+## Speeding things up when coding
+If you imagine things like scalars, things should make sense. For instance, in batchnorm, the last part of the forward is
+
+    out = x_hat * g[:, None, None] + b[:, None, None]
+
+The backward is:
+    dL_db = np.sum(dL_dout, axis=(0, 2, 3))
+    dL_dg = np.sum(dL_dout * x_hat, axis=(0, 2, 3))
+    dL_dx_hat = dL_dout * g[:, None, None]
+
+
+besides the sums, this looks like what it should be if we used the scalar chain rule.
+
+The sums exist due to broadcasting - instead of an elementwise multiply, the same values of b is broadcast to the H, W, and N axes.
+
+For instance, we can imagine copying g to g_tiled, which is shape of (N, C, H, W). Then the gradient of g_tiled would simply be dL_dout * x_hat, since we are just doing elementwise multiplication. But, then we gotta 'pile up' these gradients, to see the gradient on g, which is of shape (C,)
+Therefore, we have to sum across the N, C, H, W axes.
+
+Treating everything like a scalar, then summing/broadcasting when appropriate works for most broadcasted operations, like summing and multiplying.
+
+It gets more complicated when you do something like softmax, but you can always reduce it to smaller steps.
+
+But most of the time, you can broadcast the upstream gradient when doing the multiplication for the chain rule, then sum appropriately to get the right shape
