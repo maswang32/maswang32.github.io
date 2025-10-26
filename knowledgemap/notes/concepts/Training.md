@@ -9,9 +9,26 @@
 - regularization is not helpful in this case
 
 
+## LR
+- pick the paper you're trying to replicate, go order of magnitude up, order down.
+- .004 works well?
+
+
+## Batch size
+- biggest we can fit in the GPU
+- sampling lower distributions more batches don' have to be random.
+
+
+## Gradient Clipping
+very commonly used.
+1.0
+can help with functions with exploding gradients
+
 ### My thoughts
 - Linear scaling of learning rate by batch size doesn't work, since the underlying loss landscape may still be complex.
 - Generalization: the network needs to learn something that will also work on the next batch, not just the data it is currently seeing (is this right)?
+
+
 
 
 

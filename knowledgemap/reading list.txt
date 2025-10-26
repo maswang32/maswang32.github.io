@@ -1,3 +1,29 @@
+
+
+---MIDI DDSP
+---Multi Source Diffusion Models
+---ODISE
+---SAM
+---Shih-Lun Paper
+
+---Arkiv Digest
+---Deep Learning Lectures
+---Source Separation Stuff
+---Anna's event-based paper
+---FLAM
+---Information Theory Book
+---Deep Learning Book
+---Flow Matching
+
+
+
+
+
+
+
+
+
+
 ---consolidate notes
 ---review score-based
 ---DDIM/SDE interpretation

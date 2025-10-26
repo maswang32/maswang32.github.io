@@ -1,4 +1,13 @@
-# Loss Functions - UDL
+# Loss Functions
+
+best losses:
+ 
+everywhere continuous
+everywhere differentiable
+smooth everywhere.
+
+
+## UDL
 
 Below are some brief notes on loss functions from Understanding Deep Learning.
 

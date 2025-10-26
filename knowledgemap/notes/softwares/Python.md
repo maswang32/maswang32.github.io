@@ -6,6 +6,8 @@ Static Methods can be called without initializing the class. It does not have ac
 
 Class methods have access to the class, but not the instance. They can instantiate the class.
 
+Class attributes are like constants, but defined under the class
+
 ## Important Note - pass by reference
 
 If you have
@@ -21,4 +23,10 @@ def foo(x: torch.Tensor):
     x.add_(1)
 
 The change is seen outside the function
+
+
+## kwargs
+If extra keyword arguments are passed, they go into the kwargs dict. This can be passed again to other inner functions.
+
 Last Reviewed: 4/26/25    
+

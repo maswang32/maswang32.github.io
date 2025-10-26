@@ -1,4 +1,4 @@
-# Info Theory Basics
+  # Info Theory Basics
 
 Information is -logP(x) for an event
 Independent events have additive infomration

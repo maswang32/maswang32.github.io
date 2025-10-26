@@ -7,6 +7,8 @@ leads to higher frequency resolution (number of unique points)
 strided convolution = conv plus downsampling
 
 
+convolution is correlating patches of image with filter - looking for patterns you see in the filter.  
+
 ## Downsampling
 note that before downsampling, trailing entries are discarded.
 # of trailing entires discarded = stride - 1

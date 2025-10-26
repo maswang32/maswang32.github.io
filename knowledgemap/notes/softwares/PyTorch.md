@@ -19,7 +19,11 @@ and then does a backward step
 Use register_buffer to add a desired tensor to the model, so it gets moved to the right device.
 persistent=False will make it not part of the state_dict.
 
+## Memory
+- Pre-allocating tensors saves memory instead of appending them to a list then concatenating. This is because torch.cat requires a sudden allocation of a lot of contiguous memory, AND lots of appending, while pre-allocating just requires the former.
 
+## Learning Rate Schedulers
+Learning rate schedulers are sometimes recursive, like cosineLR.
 
 ## In Place Operations
 - Be careful with in-place operations, for instance
@@ -31,6 +35,20 @@ x = x + relu(x, inplace=True)
 - torch.chunk splits tensors into a desired number of chunks
 - unbid removes a tensor dimension and returns a tuple of slices
 - To generate a boolean mask for an operation that varies based on batches, we can create a tensor of scores then use >= and <= to unmask certain elements.
+- torch.expand - you can actually expand to a larger number of dimensions, with new dimensions being added to the front.
+
+For instance, you can do:
+    A = torch.arange(80).reshape(2, 2, 2, 10, 1, 1)
+
+    A = A.expand(69, 49, 27, -1, -1, -1, -1, -1, -1)
+
+BE CAREFUL - if you overwrite part of the expanded vector, you overwrite everything it was expanded to.
+
+
+## No Grad
+- Inference mode is faster, but can't mutate tensors
+- can also use with torch.grad_enabled()
+
 
 ## Datasets
 - Map dataset load everything

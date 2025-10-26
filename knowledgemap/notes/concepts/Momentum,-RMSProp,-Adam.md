@@ -27,6 +27,8 @@ Adam - gradients have momentum, so do squared gradients.
 Notes from Andrew NG:
 Momentum cancels oscillations
 Corrections are usually applied to Adam so things get rolling earlier
+ 
+Too much momentum = oscillations
 Last Reviewed: 11/9/24
 
 

@@ -44,4 +44,7 @@
 - Lightning also casts buffers
 
 
+## Order things are called:
+- see https://lightning.ai/docs/pytorch/latest/common/lightning_module.html#hooks
+
 Last Reviewed: 4/28/25
