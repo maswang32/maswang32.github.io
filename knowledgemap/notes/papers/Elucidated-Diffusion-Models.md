@@ -387,6 +387,11 @@ Reduces trainable parameters:
 - No augmentation
 - EMA of 50 million images
 - lr 1e-4
+- I believe it is 296 million parameters, for the 64x64 model in the diffusion beats GANs paper. It is 554M for 256.
+- For a 1D UNet, you probably increase the capacity of the model to account for the channel and frequency axis being the same.
+- You also multiplyg these 65 million parameters 3x since the kernels are smaller. 
+- 188 M for a 256 x 80 model seems reasonable.
+- [1,1,2,2,4,4] for the 256 x
 
 ## Architectures
 In Config A, we start with:

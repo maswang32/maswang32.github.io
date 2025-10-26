@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Frequency-Masked Diffusion Autoencoders</title>
+    <style>
+        /* Distill-inspired styles */
+        :root {
+            --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+            --heading-font: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --mono-font: Menlo, monospace;
+            --body-text-color: rgba(0, 0, 0, 0.8);
+            --heading-text-color: rgba(0, 0, 0, 0.8);
+            --paper-background: white;
+            --max-width: 800px;
+            --side-margin: 20px;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--body-text-color);
+            line-height: 1.6;
+            background: var(--paper-background);
+            margin: 0;
+            padding: 0;
+            font-size: 17px;
+        }
+
+        main {
+            display: block;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--side-margin);
+        }
+
+        header {
+            padding: 60px 0 40px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-size: 19px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        h5,
+        h6 {
+            font-family: var(--heading-font);
+            color: var(--heading-text-color);
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 26px;
+            margin-top: 48px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-top: 36px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        code {
+            font-family: var(--mono-font);
+            font-size: 85%;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        pre code {
+            display: block;
+            overflow-x: auto;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.05);
+            font-size: 85%;
+            line-height: 1.45;
+            border-radius: 3px;
+        }
+
+        figure {
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        figcaption {
+            font-size: 15px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        blockquote {
+            margin-left: 0;
+            border-left: 3px solid rgba(0, 0, 0, 0.2);
+            padding-left: 20px;
+            font-style: italic;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 32px 0;
+            font-size: 16px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+        }
+
+        table th {
+            background-color: rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+
+        .authors {
+            margin-bottom: 32px;
+            font-size: 17px;
+        }
+
+        .author {
+            display: inline-block;
+            margin-right: 16px;
+            margin-bottom: 8px;
+        }
+
+        .date {
+            color: rgba(0, 0, 0, 0.6);
+            margin-top: 16px;
+            font-size: 15px;
+        }
+
+        .abstract {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 36px auto;
+            max-width: 650px;
+            border-left: 3px solid rgba(0, 0, 0, 0.2);
+            padding: 0 20px;
+            font-style: italic;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .equation {
+            padding: 16px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .footnotes {
+            font-size: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 24px;
+            margin-top: 48px;
+        }
+
+        .footnote {
+            margin-bottom: 16px;
+        }
+
+        .katex {
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 760px) {
+            :root {
+                --side-margin: 16px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            body {
+                font-size: 16px;
+            }
+        }
+
+        /* Two-column layout for wide screens with TOC in margin */
+        @media (min-width: 1000px) {
+            body {
+                display: grid;
+                grid-template-columns: minmax(200px, 1fr) minmax(0, 800px) minmax(200px, 1fr);
+                grid-column-gap: 40px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            header {
+                grid-column: 2;
+            }
+
+            main {
+                grid-column: 2;
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .sticky-toc {
+                grid-column: 1;
+                position: sticky;
+                top: 20px;
+                align-self: start;
+                padding-top: 60px;
+                height: 100vh;
+                overflow-y: auto;
+            }
+
+            .d-article {
+                display: block;
+            }
+        }
+
+        /* Special elements like asides and citations */
+        aside {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 16px 20px;
+            margin: 32px 0;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        /* Citation styles */
+        .citation-reference {
+            color: #0366d6;
+            cursor: pointer;
+            white-space: nowrap;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(3, 102, 214, 0.5);
+        }
+
+        .citation-reference:hover {
+            background: rgba(3, 102, 214, 0.1);
+            border-bottom: 1px solid rgba(3, 102, 214, 0.8);
+        }
+
+        .citation-tooltip {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            max-width: 400px;
+            z-index: 100;
+            line-height: 1.5;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .citation-reference:hover .citation-tooltip {
+            display: block;
+        }
+
+        .references {
+            margin-bottom: 64px;
+            counter-reset: citation-counter;
+        }
+
+        .citation {
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 15px;
+            margin-bottom: 12px;
+            padding-left: 2.5em;
+            text-indent: -2.5em;
+        }
+
+        .citation::before {
+            counter-increment: citation-counter;
+            content: "[" counter(citation-counter) "] ";
+            font-weight: bold;
+        }
+
+        /* Additional styling for left-margin TOC */
+        .sticky-toc {
+            padding-right: 15px;
+        }
+
+        @media (min-width: 1000px) {
+            .sticky-toc {
+                position: fixed;
+                width: 180px;
+                top: 20px;
+                left: max(calc(50% - 600px), 20px);
+            }
+        }
+
+        .sticky-toc h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .toc ul {
+            padding-left: 18px;
+            list-style-type: none;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .toc>ul {
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+            color: #0366d6;
+        }
+
+        /* Adjust for mobile */
+        @media (max-width: 999px) {
+            body {
+                display: block;
+            }
+
+            .sticky-toc {
+                position: relative;
+                width: auto;
+                left: auto;
+                max-width: var(--max-width);
+                margin: 0 auto 32px;
+                padding: 16px var(--side-margin);
+            }
+
+            header,
+            main {
+                max-width: var(--max-width);
+                padding: 0 var(--side-margin);
+                margin: 0 auto;
+            }
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* Creates 3 equal columns */
+            gap: 20px;
+            /* Space between grid items */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .image-title {
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 columns on medium screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-grid {
+                grid-template-columns: 1fr;
+                /* 1 column on small screens */
+            }
+        }
+
+        .small-img {
+            /* make it roughly one‑third of the text‑width */
+            max-width: 90%;
+            /* or a fixed width: 300px, 200px, whatever you like */
+            /* max-width: 300px; */
+
+            height: auto;
+            display: block;
+            margin: 32px auto;
+            /* centers it and gives vertical space */
+        }
+
+
+        /* two‑column wrapper */
+        /* ensure the two‑column grid centers vertically */
+        .two-column {
+            display: grid;
+            grid-template-columns: 28% 72%;
+            /* adjust 300px as desired */
+            gap: 20px;
+            align-items: center;
+            margin: 32px 0;
+        }
+
+        /* left‑column figure (input image + caption) */
+        .input-figure {
+            margin: 0;
+            text-align: center;
+        }
+
+        .input-figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .input-figure figcaption {
+            margin-top: 8px;
+            font-size: 0.9em;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* make each grid‑item a figure with caption below the image */
+        figure.grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+
+        figure.grid-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        figure.grid-item figcaption {
+            margin-top: 8px;
+            font-size: 0.9em;
+            color: rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        /* container to hold both figures */
+        .figure-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* centers the figures horizontally */
+            align-items: center;
+            /* centers them vertically (if they differ in height) */
+            max-width: 800px;
+            /* optional: constrain row width */
+            margin: 0 auto;
+            /* optional: center the row in its container */
+        }
+
+        .figure-row figure {
+            flex: 1 1 300px;
+            max-width: 45%;
+        }
+
+        .figure-row figure.small {
+            max-width: 30%;
+            /* your smaller first image */
+        }
+
+        .figure-row img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .figure-row figcaption {
+            text-align: center;
+            /* center the captions under each image */
+        }
+    </style>
+    <!-- Include KaTeX for math support -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+</head>
+
+<body>
+    <div class="sticky-toc">
+        <h3>Contents</h3>
+        <nav class="toc">
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#related-work">Related Work</a>
+                <li><a href="#methods">Methods</a>
+                <li><a href="#results">Experiments</a></li>
+                <li><a href="#discussion">Conclusions and Future Work</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <header>
+        <h1>Frequency-Masked Diffusion Autoencoders</h1>
+        <div class="authors">
+            <div class="author">Mason Wang</div>
+            <div class="author">Stephen Brade</div>
+        </div>
+        <div class="date">Advances in Computer Vision, 2025</div>
+    </header>
+
+    <main>
+        <div class="abstract">
+            <p>Recent advancements in image generation have emphasized the importance of multiscale representations.
+                In these representations, small-scale features are often derived from large-scale ones, or vice versa.
+                This makes it difficult to obtain large or small-scale image features in isolation, and, for instance,
+                condition a generative model on features obtained from the image at a collection of user-specified
+                scales.
+                We propose a frequency-masked diffusion autoencoder that encodes images into feature maps, then attempts
+                to reconstruct them from frequency-masked versions of the feature map. Our goal is to enable intuitive
+                control over semantic variation of the image occuring at different scales. We observe promising
+                results on
+                conditional generation tasks, alongside notable limitations. These findings demonstrate both the
+                potential
+                and challenges of frequency-based conditioning in generative models.</p>
+        </div>
+
+        <div class="d-article">
+            <div class="d-article-body">
+
+                <h2 id="introduction">Introduction</h2>
+
+                <p>The Fourier transform is an orthogonal basis transformation that correlates the input signal with
+                    sinusoids at multiple frequencies. Applied to images, the Fourier transform provides a frequency
+                    domain representation of the image, capturing pixel-wise spatial variations occurring at different
+                    frequencies. This representation has several properties that we desire in a multiscale image
+                    representation: it is invertible, easily interpretable, and different ‘scales’ (frequencies) are
+                    independent of one another. Also, we can flexibly aggregate information from multiple scales by
+                    combining frequency bins.</p>
+
+                <p>Despite its elegant mathematical properties, the Fourier representation often lacks the level of
+                    semantic meaning we desire from an ideal multiscale representation. For instance, we might want the
+                    largest scale to aggregate information across the entire image and produce a vector that captures
+                    its global characteristics. However, the Fourier transform’s largest scale only captures the average
+                    pixel value of the image. Similarly, selecting only the ‘large-scale’ (low-frequency) features of an
+                    image’s Fourier transform is equivalent to blurring the image, while we might want it to capture
+                    large-scale <em>semantic</em> variations in the image instead.</p>
+
+                <p>Deep learning provides an alternative approach to multiscale representation learning. The
+                    hierarchical structure of CNNs often results in a type of scale-based organization, where layers at
+                    a higher resolution correspond to small-scale features, and layers at a lower resolution correspond
+                    to large-scale features <a href="#cite-zeiler2014visualizing">[Zeiler and Fergus 2014]</a>.
+                    Multi-scale VAEs and vector-quantization techniques have also been used to achieve deep, multi-scale
+                    representations <a href="#cite-gulrajani2016pixelvae">[Gulrajani et al. 2016]</a>, <a
+                        href="#cite-vahdat2020nvae">[Vahdat and Kautz 2020]</a>, <a href="#cite-tian2024visual">[Tian et
+                        al. 2024]</a>. While these representations can be semantically meaningful, they have several
+                    drawbacks that are not present in the frequency domain representation.</p>
+
+                <p>First, different scales are not independent of one another. Small-scale features are often obtained
+                    by feeding forward large-scale features, or vice-versa. This
+                    makes it difficult to retrieve the image’s small-scale characteristics <em>in isolation</em>.
+                    Second,
+                    it is difficult to aggregate information across different scales due to differences in shape and
+                    lack of orthogonality.</p>
+
+                <p>In essence, we seek a multi-scale representation of images that combines the semantic power of
+                    deep-learning-based approaches with the orthogonality of the Fourier transform.
+                </p>
+
+                <p> To
+                    this end, we propose a novel technique for learning multi-scale features from an image, based on an
+                    extension of diffusion autoencoders. In our approach, the encoder transforms the image to a latent
+                    feature map, which retains some of the spatial characteristics of the image. We then attempt to
+                    reconstruct the image using a diffusion model, that sees a version of the latent feature map that
+                    has
+                    been masked in the frequency domain.
+                </p>
+
+                </p> To demonstrate the effectiveness of our approach, we hope
+                to:
+
+                <ul>
+                    <li>Generate images based on the ‘small-scale’ or ‘large-scale’ characteristics of a reference
+                        image, where the `scale' is specified by the user as a mask over a set of frequency bins.</li>
+                    <li>Combine the ‘small-scale’ characteristics of one image with the ‘large-scale’ characteristics of
+                        another, where the user specifies a mask over frequency bins for both images.</li>
+                </ul>
+
+                <p>
+                    We find that using our framework, conditional generation is possible, but conditioning on lower
+                    frequencies is easier. We also show that modifying the classifier-free guidance level can be used to
+                    control the degree to which the model <em>fills in</em> the frequency bands masked by the user, as
+                    opposed to
+                    leaving them empty. Additionally, we show preliminary results on image combination. Lastly, we
+                    provide
+                    results on
+                    attempting to classify the art style of an image based on different subbands of its feature
+                    map.
+                </p>
+
+                <h2 id="related-work">Related Work</h2>
+
+                <h3>Diffusion Models</h3>
+                <p>Diffusion models have driven major advances in high-fidelity image generation and representation
+                    learning. DDPMs <a href="#cite-ho2020denoising">[Ho et al. 2020]</a> laid the foundation for these
+                    models, later extended to high-resolution, text-conditional synthesis <a
+                        href="#cite-saharia2022photorealistic">[Saharia et al. 2022]</a>, and refined through
+                    architectural improvements and training strategies <a href="#cite-karras2022elucidating">[Karras et
+                        al. 2022]</a>, <a href="#cite-kwon2022diffusion">[Kwon et al. 2022]</a>.
+                    ControlNet <a href="#cite-zhang2023adding">[Zhang et al. 2023]</a> and Uni-ControlNet <a
+                        href="#cite-zhao2023uni">[Zhao et al. 2023]</a> enhance controllability.
+
+
+
+                </p>
+
+                <h3>Diffusion Autoencoders</h3>
+
+                <p>Diffusion autoencoders were introduced in <a href="#cite-preechakul2022diffusion">[Preechakul et al.
+                        2022]</a>. In a diffusion
+                    autoencoder, an image
+                    $\mathbf{x}$ is fed through semantic encoder to obtain a non-spatial latent $\mathbf{z}$. This
+                    latent vector is then
+                    used to condition a diffusion model, which attempts to reconstruct $\mathbf{x}$. The authors
+                    demonstrate that
+                    $\mathbf{z}$ is semantically meaningful and linear, and can be used to interpolate between images or
+                    manipulate their
+                    attributes. We extend this by conditioning generation on specific frequency bands of spatial, latent
+                    frequency maps, for scale-aware
+                    semantics.</p>
+
+
+
+                <h3>Masked Autoencoders</h3>
+                <p>Masked autoencoders reconstruct missing parts of images by conditioning on unmasked regions. BEiT <a
+                        href="#cite-bao2022beit">[Bao et al. 2022]</a> introduced token-level masking. MAE <a
+                        href="#cite-he2022masked">[He et al. 2022]</a> and SimMIM <a href="#cite-xie2022simmim">[Xie et
+                        al. 2022]</a> showed that direct pixel reconstruction is efficient. Further refinements include
+                    changes in masking strategy <a href="#cite-chen2022efficient">[Chen et al. 2022]</a>, hierarchical
+                    transformers <a href="#cite-li2022uniform">[Li et al. 2022]</a>, and hybrid CNN-transformers <a
+                        href="#cite-gao2022convmae">[Gao et al. 2022]</a>. Unlike these spatial methods, our approach
+                    uses frequency-masking applied to a feature map obtained from the image.</p>
+
+                <h3>Multi-Scale Representation Learning in Generative Models</h3>
+                <p>Many generative models use explicit or implicit multi-scale representations. Pixel-level diffusion
+                    models implicitly generate from low to high frequency <a href="#cite-dieleman2024spectral">[Dieleman
+                        2024]</a>, while latent diffusion models <a href="#cite-rombach2022high">[Rombach et al.
+                        2022]</a> and
+                    cascaded diffusion <a href="#cite-ho2022cascaded">[Ho et al. 2022]</a> explicitly predict at a
+                    coarse
+                    resolution before upsampling. Next-scale prediction <a href="#cite-tian2024visual">[Tian et al.
+                        2024]</a> treats scale as a sequence modeling problem. Laplacian pyramid-based generation <a
+                        href="#cite-atzmon2024edify">[Atzmon et al. 2024]</a> also shows promise. Our method differs by
+                    using frequency-based subbands, avoiding spatial resolution tradeoffs.</p>
+
+                <h2 id="methods">Methods</h2>
+                <p>In the original Diffusion Autoencoder <a href="#cite-preechakul2022diffusion">[Preechakul et al.
+                        2022]</a>, the encoder produces a non-spatial latent vector capturing the
+                    semantic properties of the image.
+
+                    In contrast, the encoder of our <em>Frequency-Masked Diffusion
+                        Autoencoder</em> produces a <em>feature map</em> whose spatial dimensions <em>equal</em>
+                    that of the image. Our hope is that by selecting different frequencies in this feature map,
+                    we can capture <em>semantic</em> variations in the input image occuring at the corresponding scales.
+                    Thus, we condition a diffusion model (which is considered the decoder) on a
+                    <em>frequency-masked</em> version of the feature map.
+                </p>
+                <p>
+                    Below, we show a diagram of our Frequency-Masked Diffusion Autoencoder:
+                </p>
+
+                <figure>
+                    <img src="images/Method_Diagram.png" alt="Our Frequency-Masked Diffusion Autoencoder">
+                    <figcaption>Figure 1: Training our Frequency-Masked Diffusion Autoencoder</figcaption>
+                </figure>
+
+                <p>As you can see, our model consists of three components: the encoder, the frequency-mask, and the
+                    decoder (diffusion model). We now proceed to describe the training and inference mechanisms for our
+                    frequency-masked diffusion autoencoder. Then, we will describe each of the three components in
+                    further detail.
+                </p>
+
+                <h3 id="subsection">Training</h3>
+                We would like to train the encoder to produce a feature map capturing semantically meaningful variations
+                in the input image across the entire frequency spectrum. We would also like to train the diffusion model
+                to generate images conditioned on frequency-masked versions of these feature-maps. Thus, we propose an
+                end-to-end training procedure that processes each input image in three steps:
+
+                <ul>
+                    <li>First, the <b>encoder</b> converts an image into a feature map with the
+                        same spatial resolution as the input to the diffusion model.
+                    </li>
+                    <li>Second, we <b>randomly mask</b> this feature map in the frequency domain, by randomly removing
+                        bins from the feature map's discrete Fourier transform. We provide more
+                        details for this in the next section.
+                    <li>Third, we concatenate the frequency-masked feature map with a noisy version of the input image.
+                        The <b>decoder</b> then attempts to reconstruct the input image from the masked feature map and
+                        a noisy version of the image.
+                </ul>
+
+                <p>
+                    In other words, the decoder is a conditional diffusion model, where the conditions are
+                    frequency-masked
+                    feature maps. We train both the encoder and the diffusion model (decoder) simulatenously.
+                </p>
+
+
+                <h3 id="subsection">Inference</h3>
+                <h4>Conditional Generation</h4>
+                Our hypothesis is that the feature map produced by the encoder will capture <em>semantically
+                    meaningful</em> variations in the image at each frequency. By conditioning on these semantic
+                variations, we should be able to generate new images following patterns in the original image that occur
+                at the selected scale.</p>
+
+                Suppose we have an image, and we would like to generate variations of it while preserving
+                high-frequency or low-frequency characteristics of the image. The process for doing this is as follows:
+                <ul>
+                    <li>First, the <b>encoder</b> converts the image into a feature map with the
+                        same spatial resolution.
+                    </li>
+                    <li>Second, we <b>mask</b> this feature map in the frequency domain, retaining the frequencies in
+                        the feature map that correspond to the frequencies we would like to keep in the original
+                        image.
+                    <li>Third, we <b>generate</b> an image using the diffusion model, with the frequency-masked feature
+                        map as
+                        a condition.
+                </ul>
+
+                In the results section, we show results conditioned on various scales of the input image.
+
+                <h4>Combining Two Images</h4>
+                <p>We also hope to leverage the <em>compositional behavior</em> of diffusion models to compose two
+                    images,
+                    by extracting semantic variations each of the images at different scales. For instance, we may want
+                    to
+                    take the large-scale characteristics of one image, and combine them with the small-scale
+                    characteristics
+                    of another image. We propose two methods for doing so: <em>feature-map blending</em> and
+                    <em>score-blending</em>.
+                </p>
+
+                <p>
+                    <strong>Feature Map Blending.</strong> In <em>feature-map blending</em> we mask the feature maps for
+                    each image
+                    according to their designated scales, then take a weighted combination of the masked feature maps.
+                    We
+                    then generate an image using the diffusion model by conditioning on the blended feature map.
+                </p>
+
+                <p>
+                    <strong>Score Blending.</strong> In <em>score-blending</em>, we mask the feature maps for each
+                    image according to the designated scales. Then, we generate an image using the diffusion model. At
+                    each denoising step in the generation process, we take a weighted combination of the noise estimates
+                    obtained from both
+                    conditions.
+                </p>
+
+
+
+                <h3 id="subsection">Encoder</h3>
+                <p>
+                    The encoder ingests an image, and produces a feature map with the same spatial resolution as
+                    the input to the diffusion model. It is worth noting that the encoder must preserve the spatial axes
+                    of the input image, in order for the feature map to meaningfully capture spatial frequencies. In our
+                    experiments, we use a fully-convolutional network for the encoder. We hypothesize that a U-Net with
+                    skip connections would also work, as its skip connections provide an inductive bias towards
+                    input-output alignment
+                </p>
+                <h3 id="subsection">Frequency Masking</h3>
+
+                <p>During inference, we would like to generate images conditioned on user-selected frequency bands.
+                    Thus,
+                    the decoder (diffusion model) must model a series of conditional
+                    distributions, where the input condition can be any combination of frequencies from a feature map
+                    obtained from any image.
+                </p>
+
+                <p>
+                    To effectively model these conditional distributions, we filter out certain
+                    frequencies from the feature map during training. The diffusion model must then learn to
+                    denoise the image based on only a certain subset of frequencies of the feature
+                    map.<sup>1</sup>
+                </p>
+
+                <p> In the following sections, we describe the frequency-masking procedure in detail. First, we
+                    formulate frequency masking in terms of the discrete Fourier transform (DFT). Then, we describe how
+                    to specify masks according to frequencies selected from a single, monotonic, and positive frequency
+                    axis. Lastly, we present an intuitive grouping for the frequency axis to make the
+                    mask specification more simple.
+                </p>
+
+
+                <h4 id="subsection">Masking the Discrete Fourier Transform</h4>
+                <p>
+                    To begin, suppose that we have data $\mathbf{x} \in \mathbb{R}^{N \times N}$. (In
+                    our work, we consider $\mathbf{x}$ to be the feature map). The 2D
+                    discrete Fourier transform $F(\mathbf{x}) \in \mathbb{R}^{N \times N}$ represents $\mathbf{x}$ as
+                    coefficients in an
+                    $N \times N$ basis of complex sinusoids. Each of the $N \times N$ sinusoids has a unique pair of
+                    spatial frequencies: one in the horizontal direction, and one in the vertical direction.
+
+
+                    Since the DFT is invertible, we
+                    can recover $\mathbf{x}$ perfectly by using the inverse DFT:
+                </p>
+                <div class="equation">
+                    $F^{-1}F(\mathbf{x}) = \mathbf{x}$
+                </div>
+
+                <p>
+                    Instead of reconstructing the $\mathbf{x}$ perfectly, we want to mask out parts of
+                    $F(\mathbf{x})$ by multiplying particular bins by zero:
+                </p>
+                <div class="equation">
+                    $\text{FFTMask}(\mathbf{x}) = F^{-1}(\mathbf{m} \odot F(\mathbf{x})), \quad \mathbf{m} \in
+                    \{0,1\}^{N
+                    \times N}$
+                </div>
+                <p>This is equivalent to
+                    projecting our feature map onto a subset of these complex sinusoids, and allows us to select
+                    particular frequency components from $\mathbf{x}$. The resulting inversion provides an approximation
+                    of $\mathbf{x}$ as a sum of sinusoids whose frequencies are selected in $\mathbf{m}$. </p>
+                <!-- <p>
+                    If $\mathbf{x}$ is a real-valued signal, we can further show that this approximation is optimal in
+                    terms of
+                </p>
+
+                <div class="equation">
+                    $\| \sum_{\omega \in \mathbf{m}} A \sin(\omega n + \theta) - \mathbf{x} \|^2$
+                </div> -->
+
+                <h4 id="subsection">Constructing the Frequency Axis</h4>
+
+                <p> The 2D DFT $F(\mathbf{x}) \in \mathbb{C}^{N \times N}$
+                    consists of two axes, corresponding to vertical and horizontal spatial
+                    frequencies. In addition, it contains both negative and positive frequencies.</p>
+                <p>
+                    For our purposes, we would like to specify frequencies along a
+                    one-dimensional, monotonic, and non-negative range. From this specification, we will construct a DFT
+                    mask that we can apply to $\mathbf{x}$. Toward this goal, we apply constraints to the mask, to make
+                    its specification more simple:
+                </p>
+
+                <p style="margin-left: 1em; margin-top: 3em;">
+                    <strong>Constraint 1: Hermitian Symmetry.</strong>
+                    Assuming $\mathbf{x}$ is real-valued, the DFT $F(\mathbf{x})$ satisfies:
+                </p>
+
+                <div class="equation">
+                    $F(\mathbf{x})_{i,j} = \overline{F(\mathbf{x})_{N-i,N-j}}.$
+                </div>
+
+                <p style="margin-left: 1em;">
+                    In other words, the 'negative' frequency bins are equal to the complex conjugates of
+                    the 'positive' frequency bins. This means that the 2D DFT of a real-valued $\mathbf{x}$ contains
+                    redundant information. If $N$ is
+                    even, we can actually represent its DFT as a $N/2 + 1$ by $N/2 + 1$ grid.</p>
+                <p style="margin-left: 1em;">
+                    In order to account for this symmetry, we impose a similar contraint
+                    on the masks:
+                </p>
+
+                <div class="equation" ; style="margin-left: 1em;">
+                    $\mathbf{m}_{i,j} = \mathbf{m}_{N-i, N-j}.$
+                </div>
+                <p style="margin-left: 1em;">
+                    This means that we only need to specify positive frequencies for the mask. We define the
+                    positive-only mask as:
+                </p>
+
+                <div class="equation" style="margin-left: 1em; margin-bottom: 2em;">
+                    $\tilde{\mathbf{m}}_{i,j} = \mathbf{m}[:N/2+1, :N/2+1]$
+                </div>
+
+                <p>Now, we reduce the positive-only mask further:</p>
+
+
+                <p style="margin-left: 1em;  margin-top: 2em">
+                    <strong>Constraint 2: Separability.</strong>
+                    To make the mask one-dimensional, we require
+                    the positive mask $\tilde{\mathbf{m}}_{i,j}$ to be a rank‑1 outer product:
+                </p>
+
+
+                <div class="equation" ; style="margin-left: 1em;">
+                    $\tilde{\mathbf{m}}_{i,j} = \mathbf{s}\,\mathbf{s}^T$
+                </div>
+
+                <p style="margin-left: 1em; margin-bottom: 3em;">where $\mathbf{s}\in\{0,1\}^{N/2+1}$ is a 1D selection
+                    vector of frequency
+                    indices.
+                    This separability reduces the mask to a single 1D pattern: if a frequency index $k$ is selected
+                    ($s_k=1$), then all 2D components with either horizontal or vertical index $k$ are included via the
+                    outer
+                    product.
+                </p>
+
+                These two constraints allow us to specify to the mask to a single one-dimensional array of
+                monotonically increasing positive frequencies.
+
+                <h4 id="subsection">Octave-Based Masking</h4>
+
+                <p>While the DFT provides the projection of $\mathbf{x}$ across a grid of linearly-spaced
+                    frequencies, it
+                    is often more intuitive to view the frequency axis as logarithmic, rather than linear. Images,
+                    audio,
+                    and other structured signals (including coastlines and mountain ranges) often exhibit
+                    self-similarity or
+                    fractal structure <a href="#cite-bak1987self">[Bak&nbsp;et&nbsp;al.&nbsp;1987].</a>
+                    This implies that their spectra are $1/f$-like: if we plot
+                    the
+                    relationship between frequency and the amount of energy in the signal
+                    present at that frequency, it will often follow a curve proportional to $1/f^\alpha$. When we
+                    plot this curve on a log-log scale, it looks like a linear function with negative slope. </p>
+                <p>
+                    Below, we select a 512 x 512 image, and plot the radial power spectral density for each of
+                    its three
+                    channels on a log-log scale. The radial power spectral density is computed from the 2D DFT, but
+                    collapsed into
+                    a
+                    one‑dimensional spectrum by averaging the squared magnitude of the Fourier coefficients over
+                    concentric frequency rings.
+                </p>
+
+                <div class="figure-row">
+                    <figure class="small">
+                        <img src="images/0.png" alt="Original example image">
+                        <figcaption>Example Image.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="images/image_psd.png" alt="PSD of that same image">
+                        <figcaption>Radial Power Spectral Density</figcaption>
+                    </figure>
+                </div>
+
+
+                <p>
+                    Roughly speaking, data that contains positive correlations at a particular scale will have a
+                    negatively-sloped spectrum at the corresponding frequency <a
+                        href="#cite-voss1975noise">[Voss&nbsp;and&nbsp;Clarke&nbsp;1975]</a>
+                    . Therefore, structured data
+                    will almost always have less energy at higher frequencies. When data exhibits a "$1/f$"-like
+                    spectrum, it will contain equal energy in each <em>octave</em>. This suggests a
+                    <em>logarithmic</em>
+                    scaling of the frequency axis.
+                </p>
+                <p>
+                    Assuming our feature map is structured similarly to an image, we propose a random masking
+                    strategy
+                    that aligns with our notion of structured data and their spectra. First, we group the
+                    spectral bins of $\mathbf{s}$ into $G$ octaves. (We consider the $\mathbf{s}_0$, or the average
+                    value of the
+                    feature map, to be its
+                    own group). During training, we randomly mask $k$ groups, where $k$ is
+                    chosen
+                    uniformly from
+                    $\{0, 1 ..., G\}$.
+                </p>
+                <p>
+                    To visualize the effect of our masking strategy (which, in practice is applied to the latent
+                    feature
+                    map) we show
+                    what it does to a 64 x 64 image:
+                </p>
+                <figure>
+                    <img src="images/64x64_example.jpg" alt="Our Frequency-Masked Diffusion Autoencoder"
+                        style="width: 25%">
+                    <figcaption>
+                        A 64×64 image.
+                        <a href="https://www.reddit.com/r/HollowKnight/comments/plex0w/64x64_pixel_art_by_me/"
+                            target="_blank" rel="noopener noreferrer">
+                            Source
+                        </a>
+                    </figcaption>
+                </figure>
+
+                <p></p>
+                <p>Suppose we split the frequency spectrum up into 6 equal-width subbands according to a linear
+                    frequency
+                    scale. Below, we show reconstructions of the image from a growing subset of equal-width
+                    subbands:
+                </p>
+
+
+                <div class="image-grid" style="grid-template-columns: repeat(6, 1fr);  margin: 2rem 0;">
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_0_naive.png" alt="Caption 2">
+                        <figcaption>Band 1</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_1_naive.png" alt="Caption 3">
+                        <figcaption>Band 1 - 2</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_2_naive.png" alt="Caption 2">
+                        <figcaption>Band 1 - 3</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_3_naive.png" alt="Caption 2">
+                        <figcaption>Band 1 - 4</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_4_naive.png" alt="Caption 2">
+                        <figcaption>Band 1 - 5</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_5_naive.png" alt="Caption 2">
+                        <figcaption>Band 1 - 6 (All)</figcaption>
+                    </figure>
+                </div>
+
+                <p>
+                    We observe above that the image largely emerges after unmasking the first three subbands, while the
+                    last three subbands are only responsible for minute details.
+                </p>
+
+                <p>
+                    Next, we split the frequency spectrum into 6 subbands, where we use our grouping strategy. In this
+                    case, each subband corresponds to a
+                    different
+                    octave, except for the first subband, which is just frequency 0. Put another way, we divide the
+                    spectrum into subbands that are roughly equal on a
+                    logarithmic scale:
+                </p>
+
+
+                <div class="image-grid" style="grid-template-columns: repeat(6, 1fr);  margin: 2rem 0;">
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_0_mine.png" alt="Caption 2">
+                        <figcaption>Band 1</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_1_mine.png" alt="Caption 3">
+                        <figcaption>Band 2</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_2_mine.png" alt="Caption 2">
+                        <figcaption>Band 3</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_3_mine.png" alt="Caption 2">
+                        <figcaption>Band 4</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_4_mine.png" alt="Caption 2">
+                        <figcaption>Band 5</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/toy_example/toy_example_5_mine.png" alt="Caption 2">
+                        <figcaption>Band 6 (All)</figcaption>
+                    </figure>
+                </div>
+                <p>
+                    We hope that these examples show that a logarithmically-scaled grouping of frequency bands
+                    provides a more natural way of splitting up the spectrum of an image. We argue this is due to the
+                    inherent structure of an image, and, since we assume that the feature map will also contain a
+                    similar structure, we apply the same spectral grouping to the feature map.
+                </p>
+
+
+                <h3> Decoder (Diffusion Model)</h3>
+
+                <p>
+                    After obtaining the frequency-masked feature-map, we concatenate it to a noisy image, and feed it to
+                    the diffusion model, which acts as our decoder. We do not impose any particular constraints on the
+                    diffusion model, and see no reason for our method
+                    not to work with a large family of diffusion-based generative models.
+                </p>
+                <p>
+                    In particular, our method can be easily applied to <em>latent diffusion models.</em> In this case,
+                    the encoder ingests an image and produces a feature map whose dimensions are equal to that of the
+                    diffusion model's latent. We concatenate a frequency-masked version of this feature map to the
+                    noisy latent vector, and proceed to train and perform inference on the diffusion model as described
+                    previously. Generating an image in this case requires the additional step of decoding the generated
+                    latent using
+                    the VAE's decoder.
+                </p>
+
+                <h2 id="results">Experiments</h2>
+
+                <h3>Training</h3>
+
+                <p>
+                    We proceed to describe how we designed and trained our frequency-masked diffusion autoencoder. The
+                    code for constructing and training our models can be found
+                    <a href="https://github.com/maswang32/advances-final-project/" target="_blank" rel="noopener">
+                        here</a>.
+                </p>
+
+                <h4>Architecture</h4>
+
+                <p>
+                    For our experiments, we instantiate our Frequency-Masked Diffusion Autoencoder as follows:
+                <ul>
+                    <li><b>Encoder</b>: A fully convolutional network, with 12 residual blocks, each containing two
+                        convolutional layers. The network produces a $64 \times 64$ feature map with four channels.
+                    </li>
+                    <li><b>Frequency Mask</b>: The frequency-mask is implemented as described in the methods
+                        section.
+                        For
+                        each example, we apply the same frequency-mask to each of the four channels in our feature
+                        map.
+                        Since our feature map has a resolution of $64 \times 64$, there are a total of $6$ frequency
+                        bin
+                        groups.
+                    <li><b>Decoder</b>: Our decoder is a modification of the UNet in Stable Diffusion v1.5 <a
+                            href="#cite-rombach2022high">[Rombach et al.
+                            2022]</a>. We
+                        start
+                        by loading the pretrained weights of Stable Diffusion v1.5's UNet. We then add $4$
+                        additional
+                        input channels to the first convolutional layer, to incorporate incoming channels from
+                        the
+                        feature map. These new channels are initialized with weights drawn from
+                        $\mathcal{N}(0,
+                        0.1)$. We found that by initializing the weights on these four channels to a small
+                        value, we are able to generate examples from Stable Diffusion upon initialization, allowing
+                        us
+                        to more easily monitor training progress over time. In addition, in all training and inference
+                        experiments, we use the
+                        null prompt ("") as the text condition to the model.
+                </ul>
+                </p>
+
+                <h4>Dataset</h4>
+                <p>We train our Frequency-Masked Diffusion Autoencoder on ArtBench-10, a class-balanced dataset of
+                    60,000 paintings from 10 categories of art. We choose the 512 x 512 version of Artbench-10, in order
+                    to match the resolution of Stable Diffusion. In addition, we hold-out 10% of the dataset for
+                    validation, and another 10% of the dataset for testing.
+                </p>
+
+
+                <h4>Training Details</h4>
+                <p>
+                    We train our frequency-masked diffusion autoencoder for 10 epochs, with a batch size of 8. We found
+                    that a larger batch size exceeded the memory available on our GPU. We use the Adam Optimizer, with a
+                    learning rate of 1e-4 on the encoder weights, and learning rate of 1e-5 on the decoder weights. We
+                    choose a smaller learning rate for the decoder, since we are fine-tuning from a pretrained
+                    checkpoint.
+                </p>
+
+                <p>
+                    After training our frequency-masked diffusion autoencoder, we are ready to try generating images.
+                    For each of our experiments, we show examples from the validation split of Artbench-10.
+                </p>
+
+                <h3 id="subsection">Conditional Image Generation</h3>
+                <p>In our first set of experiments, we would like to generate images based on the "large-scale" or
+                    "small-scale"
+                    characteristics of a given image. For each of these experiments, we show an input image from the
+                    validation
+                    dataset. We then show generations that are conditioned on various subbands of the feature map
+                    obtained by passing
+                    the image through the encoder. As we described previously, we split the spectrum of the feature map
+                    into six
+                    different bands, which are grouped by octave.
+                </p>
+
+                <h4>Conditioning on Low Frequencies</h4>
+                <p>First, we attempt to reconstruct the image from the full-band feature map, then progressively
+                    remove high
+                    frequencies from the feature map. The results for this are shown below. In the captions of
+                    each generated
+                    image, we show the frequency bands that we condition on, as well as their corresponding
+                    normalized
+                    frequencies, which indicate the fraction of the spectrum that we condition on.</p>
+                <!-- inside your .d-article-body, replace the two-column block with this: -->
+                <div class="two-column">
+                    <!-- LEFT COLUMN: single input image -->
+                    <figure class="input-figure">
+                        <img class="small-img" src="images/7.png" alt="Input Image" />
+                        <figcaption>Input Image</figcaption>
+                    </figure>
+
+                    <!-- RIGHT COLUMN: 2×3 grid of conditionals -->
+                    <div class="image-grid">
+                        <figure class="grid-item">
+                            <img src="images/7-111111.png" alt="Freq. 0 – 1">
+                            <figcaption>Bands 1-6 (All Freqs)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/7-111110.png" alt="Freq. 0 – 0.5">
+                            <figcaption>Bands 1-5 (0 – 0.5)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/7-111100.png" alt="Freq. 0 – 0.25">
+                            <figcaption>Bands 1-4 (0 – 0.25)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/7-111000.png" alt="Freq. 0 – 0.125">
+                            <figcaption>Bands 1-3 (0 – 0.125)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/7-110000.png" alt="Freq. 0 – 0.0625">
+                            <figcaption>Bands 1-2 (0 – 0.0625)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/7-100000.png" alt="Freq. 0">
+                            <figcaption>Band 1 (Freq. 0)</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <p>Reconstruction from the full-band feature map more or less produces the input image, with
+                    some artifacts and
+                    color shift. Reconstructing from bands 1-5 preserves everything besides the fine details of
+                    the input image,
+                    replacing the straw in the hut with wood, and changing the identity of the background
+                    characters.
+                    Reconstructing from bands 1-4 preserves most of the spatial structure of the original image,
+                    replacing the
+                    holes with people in black robes, and changing the roof of the hut. Removing more
+                    frequencies from the top
+                    down continues to produce images that ablate the structure of the input image, while filling
+                    them in new,
+                    creative ways.
+                </p>
+
+
+
+                <p>As further validation, we perform the same experiment on another example from our validation
+                    set:
+                </p>
+                <!-- inside your .d-article-body, replace the two-column block with this: -->
+                <div class="two-column">
+                    <!-- LEFT COLUMN: single input image -->
+                    <figure class="input-figure">
+                        <img class="small-img" src="images/0.png" alt="Input Image" />
+                        <figcaption>Input Image</figcaption>
+                    </figure>
+
+                    <!-- RIGHT COLUMN: 2×3 grid of conditionals -->
+                    <div class="image-grid">
+                        <figure class="grid-item">
+                            <img src="images/0-111111.png" alt="Freq. 0 – 1">
+                            <figcaption>Bands 1 – 6 (All Freqs)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-111110.png" alt="Freq. 0 – 0.5">
+                            <figcaption>Bands 1 – 5 (Freq. 0 – 0.5)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-111100.png" alt="Freq. 0 – 0.25">
+                            <figcaption>Bands 1 – 4 (Freq. 0 – 0.250)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-111000.png" alt="Freq. 0 – 0.125">
+                            <figcaption>Bands 1 – 3 (Freq. 0 – 0.125)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-110000.png" alt="Freq. 0 – 0.0625">
+                            <figcaption>Bands 1 – 2 (Freq. 0 - 0.0625)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-100000.png" alt="Freq. 0">
+                            <figcaption>Band 1 (Freq. 0)</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+
+                <p>We see a similar trend. In this case, bands 1-5 reconstruct the input image, but the flowers
+                    and leaves are
+                    different. Conditioning on bands 1-4 further changes the style of the buildings, turns the
+                    flower stands
+                    into fruit stands, and removes the leaves entirely. Conditioning on bands 1-3 preserves the
+                    basic scene
+                    layout (a busy alleyway), while changing the season. Conditioning on bands 1-2 preserves the
+                    placement of
+                    the horizon and the trees, while conditioning only on band 1 (average value) produces an
+                    image that bears
+                    little resemblance to the input.
+                </p>
+
+
+                <h4>Conditioning on High Frequencies</h4>
+                <!-- inside your .d-article-body, replace the two-column block with this: -->
+                <p>We attempt a similar experiment, where we prompt our diffusion model with frequency-masked
+                    versions of a feature map obtained from an input image, shown on the left. However, we
+                    progressively ablate the <em>low</em> frequencies from the feature map, instead of the high
+                    ones.</p>
+                <div class="two-column">
+                    <!-- LEFT COLUMN: single input image -->
+                    <figure class="input-figure">
+                        <img class="small-img" src="images/0.png" alt="Input Image" />
+                        <figcaption>Input Image</figcaption>
+                    </figure>
+
+                    <!-- RIGHT COLUMN: 2×3 grid of conditionals -->
+                    <div class="image-grid">
+                        <figure class="grid-item">
+                            <img src="images/0-111111.png" alt="Freq. 0 - 1">
+                            <figcaption>Bands 1-6 (All Freqs)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-011111.png" alt="Freq. 0.0312 – 1">
+                            <figcaption>Bands 2-6 (0.0312 – 1)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-001111.png" alt="Freq. 0.0938 – 1">
+                            <figcaption>Bands 3-6. (0.0938 – 1)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-000111.png" alt="Freq. 0.1562 - 1">
+                            <figcaption>Bands 4-6 (0.1562 - 1)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-000011.png" alt="Freq. 0.2812 – 1">
+                            <figcaption>Bands 5-6 (0.2812 – 1)</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-000001.png" alt="Freq. 0.5312 – 1">
+                            <figcaption>Band 6 (0.5312 – 1)</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+
+                <p>We can observe that in some cases, removing
+                    low frequencies from the feature map progressively alters stylistic characteristics of the
+                    image on larger and larger scales. For instance, reconstructing from bands 3-6 preserves the
+                    position of all
+                    of the elements of the scene very well, including the shapes and placements of the
+                    individuals in the scene. The shapes of the leaves are also preserved, as well as the exact
+                    placement of the branches. However, the colors of the image, and its overall style and
+                    warmth have been altered. We would
+                    argue that this type of
+                    conditional image generation
+                    could be useful for a task where we would like to retain the position and shapes of
+                    everything in the
+                    scene, but change its global style.
+                <p>Conditioning just on bands 5-6 appears to preserve fine details like branch and leaf
+                    structure, while removing larger-scale details like the background buildings and the pillars
+                    on the building to the right. Conditioning on just band 6 appears to retain very little from
+                    the original image. The results from this experiment are less clear than the previous, and improving
+                    conditional generation on high-frequency characteristics is a future goal.
+                </p>
+
+                <h4>Classifier Free Guidance</h4>
+                <p>During our experiments with conditional image generation, we also observed that altering the
+                    level of classifier free guidance had an interesting effect on our results. Classifier free
+                    guidance affects the level of prompt adherence, by balancing conditional and unconditional
+                    score estimates. In this case, we the condition is a frequency-masked feature map. We are
+                    able to compute an unconditional score estimate using our model, since we mask out the
+                    <em>entire</em> spectrum of the feature map with non-zero probability.
+                </p>
+
+                <p>
+                    Suppose that the diffusion model sees a version of the
+                    feature map that contains only octave $\mathbf{g}_i$. The most prompt-adherent thing
+                    the diffusion model can do is to generate an image that contains <em>nothing</em> except
+                    content in octave $\mathbf{g}_i$, since the input feature map does not contain that
+                    particular frequency band.
+                </p>
+                <p>
+                    However, nothing in the dataset actually contains only content in octave $\mathbf{g}_i$, so
+                    in practice, the diffusion model fills the remaining octaves with something new. However, by
+                    increasing the classifier-free guidance level (and thus, the level of prompt adherence), we
+                    can achieve generations that <em>actually</em> lack content in bands that were masked in the
+                    prompt.
+                </p>
+                <p>
+                    In other words, increasing the classifier free guidance level decreases the degree to which
+                    the diffusion model fills in missing frequency bands. We can observe this in the experiment
+                    below, where we condition the diffusion model on various <em>individual</em> frequency
+                    bands, with a
+                    high CFG scale of 10:
+                </p>
+
+                <!-- inside your .d-article-body, replace the two-column block with this: -->
+                <div class="two-column">
+                    <!-- LEFT COLUMN: single input image -->
+                    <figure class="input-figure">
+                        <img class="small-img" src="images/0.png" alt="Input Image" />
+                        <figcaption>Input Image</figcaption>
+                    </figure>
+
+                    <!-- RIGHT COLUMN: 2×3 grid of conditionals -->
+                    <div class="image-grid">
+                        <figure class="grid-item">
+                            <img src="images/0-100000_cfg10.png" alt="Freq. 0 - 1">
+                            <figcaption>Band 1</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-010000_cfg10.png" alt="Freq. 0.0312 – 1">
+                            <figcaption>Band 2</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-001000_cfg10.png" alt="Freq. 0.0938 – 1">
+                            <figcaption>Band 3 </figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-000100_cfg10.png" alt="Freq. 0.1562 - 1">
+                            <figcaption>Band 4</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-000010_cfg10.png" alt="Freq. 0.2812 – 1">
+                            <figcaption>Band 5</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-000001_cfg10.png" alt="Freq. 0.5312 – 1">
+                            <figcaption>Band 6</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <p>We can see that the resulting generated artpieces contains content that is strongly
+                    biased toward the frequency band that they are conditioned on. </p>
+
+                <p>By reducing the CFG level to 5, we can get more creative generations that are also biased
+                    toward the frequency bands that they are conditioned on, but less severely:</p>
+                <!-- inside your .d-article-body, replace the two-column block with this: -->
+                <div class="two-column">
+                    <!-- LEFT COLUMN: single input image -->
+                    <figure class="input-figure">
+                        <img class="small-img" src="images/0.png" alt="Input Image" />
+                        <figcaption>Input Image</figcaption>
+                    </figure>
+
+                    <!-- RIGHT COLUMN: 2×3 grid of conditionals -->
+                    <div class="image-grid">
+                        <figure class="grid-item">
+                            <img src="images/0-100000_cfg5.png" alt="Freq. 0 - 1">
+                            <figcaption>Band 1</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-010000_cfg5.png" alt="Freq. 0.0312 – 1">
+                            <figcaption>Band 2</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-001000_cfg5.png" alt="Freq. 0.0938 – 1">
+                            <figcaption>Band 3 </figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-000100_cfg5.png" alt="Freq. 0.1562 - 1">
+                            <figcaption>Band 4</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-000010_cfg5.png" alt="Freq. 0.2812 – 1">
+                            <figcaption>Band 5</figcaption>
+                        </figure>
+                        <figure class="grid-item">
+                            <img src="images/0-000001_cfg5.png" alt="Freq. 0.5312 – 1">
+                            <figcaption>Band 6</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <h3>
+                    Combining Images
+                </h3>
+                <p>
+                    We also perform preliminary experiments where we attempt to mix the low frequency
+                    characteristics of one image with the high frequency characteristics of another image. We
+                    apply the two different proposals for combining images described in the methods section -
+                    one where we blend the feature maps produced by either image, and another where we combine
+                    the score estimates. Both images in this example are from the our validation split of
+                    Artbench-10. We take the 4 highest frequency groups from the first image, and the 2 lowest
+                    frequency groups from the second image.
+                </p>
+                <div class="image-grid" style="grid-template-columns: repeat(4, 1fr);  margin: 2rem 0;">
+                    <figure class="grid-item">
+                        <img src="images/0.png" alt="Freq. 0 - 1">
+                        <figcaption>Input Image 1</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/2.png" alt="Freq. 0 - 1">
+                        <figcaption>Input Image 2</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/blend_score_0-001111_2-110000_cfg2.png" alt="Freq. 0 - 1">
+                        <figcaption>Blending Scores</figcaption>
+                    </figure>
+                    <figure class="grid-item">
+                        <img src="images/blend_feature_maps_0-001111_2-110000_cfg2.png" alt="Freq. 0 - 1">
+                        <figcaption>Blending Feature Maps</figcaption>
+                    </figure>
+                </div>
+                <p>
+                    We observe that combining the score estimates produces an image that looks like image 1, but
+                    is noticeably duller and more grey. We interpret this as retaining some of the global
+                    characteristics of image 2, while retaining the layout of image 1. When we combine the
+                    feature maps, we see an image that contains some of the structural characteristics of image 1:
+                    it has placed three people in approximately the same locations as image 1, and there is a
+                    building with an overhang, as well as a street. However, the people in the image are
+                    primarily dressed in black and white, and the global style of the art has changed. It is hard
+                    to say if the global style has become more like image 2. More work and testing should be
+                    done on image blending to improve these results.
+                </p>
+            </div>
+
+            <h3 id="subsection-classifying-style">Downstream Classification Task</h3>
+            <p>
+                The goal of the encoder is to produce semantically meaningful feature maps that contain content in all
+                frequency bands. As a first step toward understanding how these representations distribute visual
+                information across
+                frequencies, we attempt to classify the art styles of images based on frequency-masked versions of their
+                encoded feature maps. To do this, we train linear probes on frequency-masked feature maps on the task
+                of
+                classifying which of the ten art categories in ArtBench-10 the image belongs to.
+            </p>
+            <p>
+                We compare feature maps generated from our encoder against two baselines—standard stable
+                diffusion (SD) latents, and a 64×64 downsampled version of the input image.
+                We use the ArtBench-10 dataset and evaluate
+                performance using 10-fold cross-validation on our validation split, yielding ten test accuracies per
+                frequency mask. We provided results on full-band classification, classification using the lowest two
+                groups (low-band), classification using the middle two groups (mid-band), and classification using the
+                highest two groups (high-band).
+            </p>
+            <figure>
+                <img src="images/results.png" alt="Accuracy comparison bar chart across frequency bands">
+                <figcaption> Mean accuracy and standard deviation for classifying artistic style across four frequency
+                    bands using three types of representations: SD outputs, our method, and a 64×64 downsampled
+                    baseline. An asterisk indicates statistically significant difference (Bonferroni-corrected t-test,
+                    p &lt; 0.05).</figcaption>
+            </figure>
+            <p>
+                The above figure presents the mean accuracy and standard deviation across four frequency bands,
+                including the full-band condition. Each group contains results for SD, our method, and the downsampled
+                baseline. To assess statistical significance, we perform pairwise t-tests between our method and each
+                baseline in every band, correcting for multiple comparisons using Bonferroni correction. In one band
+                (Low-band), our method shows a statistically significant difference (p &lt; 0.05 after correction),
+                indicated by an asterisk in the plot. No other pairwise differences reach significance.
+            </p>
+            <p>
+                Overall, the small differences and lack of consistent statistical separation suggest that no method
+                consistently stores more discriminative information for style classification in any specific band. This
+                implies that important frequency-localized information for classifying artistic style is similarly
+                encoded across methods, and that training with band-masked features does not substantially shift the
+                spatial frequency emphasis of learned representations.
+            </p>
+
+
+            <h2 id="discussion">Conclusions and Future Work</h2>
+
+            <p>
+                We presented Frequency-Masked Diffusion Autoencoders, a method of conditional image generation and
+                representation learning that is able to generate meaningful variations on images. Future work may
+                include making the frequency axis continuous by zero-padding the images, which results
+                in spectral interpolation of the DFT. In addition, more work needs to be done to improve high-frequency
+                conditioning and image blending.
+            </p>
+
+            <p>For the classification task, we hypothesize that a
+                global attribute like artistic style might correlate with low-frequency features. If so, our
+                frequency-masked model—trained to reconstruct missing frequency bands—might perform better in
+                low-frequency
+                bands by explicitly encoding stylistic information there. However, we observe that all methods perform
+                similarly, with the best results appearing in the lowest frequency band. We propose several explanations
+                for
+                this. First, artistic style may be an ill-suited benchmark for evaluating this model. In practice, both
+                low-frequency cues (e.g., color gradients) and high-frequency cues (e.g., brush strokes) contribute to
+                style
+                perception. Thus, frequency masking may not isolate stylistic features into any single band. If style is
+                inherently distributed across the spectrum, there's little reason to expect our approach to outperform
+                others at any particular frequency. Future work could benefit from tasks less entangled across frequency
+                bands. One promising direction is to design synthetic datasets where specific features are deliberately
+                embedded in particular frequency bands, enabling clearer comparisons of how different models encode
+                spectral
+                information.
+            </p>
+
+
+
+            <div class="footnotes">
+                <div class="footnote" id="fn1">
+                    <sup>1</sup> We hypothesize that type of
+                    frequency-masking also
+                    encourages the feature map to store information across its entire frequency spectrum, instead of,
+                    for instance, encoding all the information needed to reconstruct the image in its average value
+                    (frequency 0).
+                </div>
+            </div>
+
+
+            <h2 id="references">References</h2>
+            <div class="references">
+                <div class="citation" id="cite-preechakul2022diffusion">Konpat Preechakul, Nattanat Chatthee, Suttisak
+                    Wizadwongsa, and Supasorn Suwajanakorn. 2022. Diffusion autoencoders: Toward a meaningful and
+                    decodable representation. In <em>Proceedings of the IEEE/CVF Conference on Computer Vision and
+                        Pattern Recognition</em>, 10619–10629.</div>
+                <div class="citation" id="cite-zeiler2014visualizing">Matthew D. Zeiler and Rob Fergus. 2014.
+                    Visualizing and understanding convolutional networks. In <em>ECCV</em>, 818–833.</div>
+                <div class="citation" id="cite-gulrajani2016pixelvae">Ishaan Gulrajani et al. 2016. PixelVAE: A latent
+                    variable model for natural images. <em>arXiv preprint arXiv:1611.05013</em>.</div>
+                <div class="citation" id="cite-vahdat2020nvae">Arash Vahdat and Jan Kautz. 2020. NVAE: A deep
+                    hierarchical variational autoencoder. <em>NeurIPS</em> 33, 19667–19679.</div>
+                <div class="citation" id="cite-tian2024visual">Keyu Tian et al. 2024. Visual autoregressive modeling:
+                    Scalable image generation via next-scale prediction. <em>NeurIPS</em> 37, 84839–84865.</div>
+                <div class="citation" id="cite-ho2020denoising">Jonathan Ho et al. 2020. Denoising diffusion
+                    probabilistic models. In <em>NeurIPS</em> 33, 6840–6851.</div>
+                <div class="citation" id="cite-saharia2022photorealistic">Chitwan Saharia et al. 2022. Photorealistic
+                    text-to-image diffusion models with deep language understanding. In <em>NeurIPS</em> 35,
+                    36479–36494.</div>
+                <div class="citation" id="cite-karras2022elucidating">Tero Karras et al. 2022. Elucidating the design
+                    space of diffusion-based generative models. In <em>NeurIPS</em> 35, 26565–26577.</div>
+                <div class="citation" id="cite-kwon2022diffusion">Mingi Kwon et al. 2022. Diffusion models already have
+                    a semantic latent space. <em>arXiv preprint arXiv:2210.10960</em>.</div>
+                <div class="citation" id="cite-zhang2023adding">Lvmin Zhang, Anyi Rao, and Maneesh Agrawala. 2023.
+                    Adding conditional control to text-to-image diffusion models. <em>arXiv preprint
+                        arXiv:2302.05543</em>.</div>
+                <div class="citation" id="cite-zhao2023uni">Shihao Zhao et al. 2023. Uni-ControlNet: All-in-one control
+                    to text-to-image diffusion models. In <em>NeurIPS</em> 36.</div>
+                <div class="citation" id="cite-bao2022beit">Hang Bao, Li Dong, and Furu Wei. 2022. BEiT: BERT
+                    pre-training of image transformers. In <em>ICLR</em>.</div>
+                <div class="citation" id="cite-he2022masked">Kaiming He et al. 2022. Masked autoencoders are scalable
+                    vision learners. In <em>CVPR</em>.</div>
+                <div class="citation" id="cite-xie2022simmim">Zhenda Xie et al. 2022. SimMIM: A simple framework for
+                    masked image modeling. In <em>CVPR</em>.</div>
+                <div class="citation" id="cite-chen2022efficient">Jiawei Chen et al. 2022. Efficient self-supervised
+                    vision pretraining with local masked reconstruction. <em>arXiv preprint arXiv:2206.00790</em>.</div>
+                <div class="citation" id="cite-li2022uniform">Xiaokang Li et al. 2022. Uniform masking: Enabling MAE
+                    pre-training for pyramid-based vision transformers with locality. <em>arXiv preprint
+                        arXiv:2205.10063</em>.</div>
+                <div class="citation" id="cite-gao2022convmae">Peng Gao et al. 2022. ConvMAE: Masked convolution meets
+                    masked autoencoders. <em>arXiv preprint arXiv:2205.03892</em>.</div>
+                <div class="citation" id="cite-bak1987self">
+                    Per Bak, Chao Tang, and Kurt Wiesenfeld. 1987.
+                    Self-organized criticality: An explanation of the 1/f noise.
+                    <em>Physical Review Letters</em> 59 (4), 381–384.
+                </div>
+                <div class="citation" id="cite-dieleman2024spectral">Sander Dieleman. 2024. Diffusion is spectral
+                    autoregression. Retrieved from <a href="https://sander.ai/2024/09/02/spectral-autoregression.html"
+                        target="_blank">sander.ai</a>.</div>
+                <div class="citation" id="cite-voss1975noise">
+                    Richard F. Voss and John Clarke. 1975.
+                    “1/f Noise” in Music and Speech.
+                    <em>Nature</em> 258, 317–318.<!-- :contentReference[oaicite:0]{index=0} -->
+                </div>
+                <div class="citation" id="cite-rombach2022high">Robin Rombach et al. 2022. High-resolution image
+                    synthesis with latent diffusion models. In <em>CVPR</em>, 10684–10695.</div>
+                <div class="citation" id="cite-ho2022cascaded">Jonathan Ho et al. 2022. Cascaded diffusion models for
+                    high fidelity image generation. <em>JMLR</em> 23, 47, 1–33.</div>
+                <div class="citation" id="cite-atzmon2024edify">Yuval Atzmon et al. 2024. Edify image: High-quality
+                    image generation with pixel space Laplacian diffusion models. <em>arXiv preprint
+                        arXiv:2411.07126</em>.</div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Render math equations using KaTeX
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "\\[", right: "\\]", display: true },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "$", right: "$", display: false },
+                        { left: "$", right: "$", display: true }
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

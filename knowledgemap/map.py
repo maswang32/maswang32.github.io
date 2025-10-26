@@ -2,7 +2,6 @@ import numpy as np
 import os
 import glob
 import re
-
 import networkx as nx
 from pyvis.network import Network
 from skimage.color import rgb2lab, lab2rgb
@@ -354,13 +353,23 @@ if __name__ == "__main__":
         parent_names=["Optimization"],
     )
 
+    
+    # Traditional Machine Learning
+    M.add_node("Statistical Learning", parent_names=["Math", "Statistics"])
+    M.add_node("Linear Classifiers", parent_names=["Machine Learning"], base_radius=7)
 
     # Deep Learning
     M.add_node("Deep Learning", color="#0000FF")
+    M.add_node("Backpropagation", parent_names=["Deep Learning", "Chain Rule"], base_radius=10)
     M.add_node(
         "Normalization",
         parent_names=["Deep Learning"],
         base_radius=7,
+    )
+    M.add_node(
+        "Batchnorm",
+        parent_names=["Normalization"],
+        base_radius=3,
     )
     M.add_node(
         "Positional Encodings",
@@ -495,6 +504,11 @@ if __name__ == "__main__":
     )
     M.add_node(
         "Diffusion Forcing",
+        parent_names=["Diffusion Models"],
+        base_radius=7,
+    )
+    M.add_node(
+        "Diffusion Beats GANs",
         parent_names=["Diffusion Models"],
         base_radius=7,
     )
@@ -660,6 +674,8 @@ if __name__ == "__main__":
     
     # Software
     M.add_node("Software", color="#212129")
+    
+    
     M.add_node(
         "Filesystems",
         parent_names=["Software"],
@@ -679,6 +695,14 @@ if __name__ == "__main__":
         "Slurm",
         parent_names=["Software"],
         base_radius=2,
+    )
+    M.add_node(
+        "Vector Operations",
+        parent_names=["Software"],
+    )
+    M.add_node(
+        "Einsum",
+        parent_names=["Vector Operations"], base_radius=7,
     )
     
     # ML Systems
@@ -707,7 +731,6 @@ if __name__ == "__main__":
         parent_names=["PyTorch"],
         base_radius=5,
     )
-
     M.add_node(
         "Large Scale Deep Learning",
         parent_names=["ML Systems"],
@@ -798,6 +821,17 @@ if __name__ == "__main__":
     M.add_node(
         "Policy Gradient",
         parent_names=["CS 285"],
+        base_radius=7,
+    )
+    
+    M.add_node(
+        "Generalized Advantage Estimation",
+        parent_names=["Actor Critic"],
+        base_radius=7,
+    )
+    M.add_node(
+        "RLOO",
+        parent_names=["Reinforcement Learning"],
         base_radius=7,
     )
     M.render()

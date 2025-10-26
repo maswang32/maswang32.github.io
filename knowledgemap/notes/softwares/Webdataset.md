@@ -45,4 +45,11 @@
 
 ## ShardWriter
 - ensures each file is less than a certain size and has less than a given number of samples.
+
+
+## More practical stuff
+- Use resample = True, which will mean that if a worker runs out of data on their shard, they
+simply find ("sample") a new shard
+- batch in the webdataset
+- see fmdiffae code
 Last Reviewed: 5/1/25
