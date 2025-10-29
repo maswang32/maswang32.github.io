@@ -1,5 +1,4 @@
 # DDPM Math
-{% raw %}
 
 ### Main Expression
 $$
@@ -315,4 +314,3 @@ $$
 $$
 
 The loss function minimizes the difference between the estimated mean $$\mathbf{f}(\mathbf{z}_t)$$ of $$\mathbf{z}_{t-1}$$, and the most likely value (mean) it took, given $$\mathbf{z}_t$$ and $$\mathbf{x}$$.
-{% endraw %}
