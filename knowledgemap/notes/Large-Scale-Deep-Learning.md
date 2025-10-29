@@ -55,7 +55,7 @@
 - All reading is sequential.
 - Sharding - 100 TB dataset, split it up into 10,000 shards of 10 TB each.
 - access shards randomly - read shards in random order, read each shard sequentially with in memory buffer for shuffling.
-![alt text](image.png)
+![alt text](sharding.png)
 
 ### Three Tiers
 - Dataservers send data to CPU nodes, which do preprocessing. 

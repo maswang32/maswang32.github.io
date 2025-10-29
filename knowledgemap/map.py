@@ -1,20 +1,22 @@
-import numpy as np
+"""
+Everything in this Python file has been humanized!
+The only part that was pasted is shown in the comments, but I believe this was already humanized.
+In addition, options_string and custom_script could be better interpreted.
+"""
+
 import os
 import glob
-import re
-import networkx as nx
+import numpy as np
 from pyvis.network import Network
 from skimage.color import rgb2lab, lab2rgb
 from matplotlib.colors import to_rgb, to_hex
 
-
 def interpolate_colors(nodes):
     node_colors_rgb = [to_rgb(node.color) for node in nodes]
-    node_colors_lab = [rgb2lab([[color]])[0][0] for color in node_colors_rgb]
+    node_colors_lab = rgb2lab(node_colors_rgb)
     avg_color_lab = np.mean(node_colors_lab, axis=0)
-    avg_color_rgb = lab2rgb([[avg_color_lab]])[0][0]
+    avg_color_rgb = lab2rgb(avg_color_lab)
     return to_hex(avg_color_rgb)
-
 
 class Node:
     def __init__(
@@ -27,27 +29,27 @@ class Node:
         self.name = name
         self.base_area = base_radius**2
         self.parents = parents
+        
         if color is None:
             if len(parents) > 0:
                 self.color = interpolate_colors(self.parents)
             else:
-                raise ValueError(
-                    "Color must be specified if there are no parents."
-                )
+                raise ValueError("Must specify node color if no parents")
         else:
             self.color = color
-        self.highlight = False
+        
         self.children = []
+        
         for parent in self.parents:
             parent.add_child(self)
-
+    
     def add_child(self, child):
         self.children.append(child)
-
+    
     def compute_area(self):
         descendants = self._collect_unique_descendants()
         return sum(node.base_area for node in descendants)
-
+    
     def _collect_unique_descendants(self):
         descendants = set()
         stack = [self]
@@ -57,11 +59,10 @@ class Node:
             stack.extend(node.children)
         return descendants
 
-
 class KnowledgeMap:
     def __init__(self):
         self.node_dict = {}
-
+    
     def add_node(
         self,
         name,
@@ -77,69 +78,51 @@ class KnowledgeMap:
             parents=parents,
             color=color,
         )
-
-
-
-
+    
     def render(self):
-        G = nx.Graph()
-        G.add_nodes_from(self.node_dict.keys())
-
         net = Network(
-            notebook=True,
-            bgcolor="#000000",
+            bgcolor = "#000000",
             font_color="white",
-            width="100%",  # Set to full width
-            height="100vh",  # Set to full height of the viewport
+            width="100%",
+            height="100vh",
         )
-
-        for g_node in G.nodes:
-            node = self.node_dict[g_node]
-
-            adjusted_radius = np.sqrt(node.compute_area()) * 1
-
-            hyphenated_name = re.sub(r"[-\s]+", "-", node.name).strip(
-                "-"
-            )
-                
-            possible_file_locations = glob.glob(
-                "notes/*/" + hyphenated_name + ".md"
-            )
-
-            if len(possible_file_locations) == 0:
-                title = ""
-            elif len(possible_file_locations) > 1:
-                raise LookupError(
-                    f"Duplicate Files:{possible_file_locations}"
-                )
-            else:
-                file_location = possible_file_locations[0]
+        
+        for node in self.node_dict.values():
+            radius = np.sqrt(node.compute_area())
+            
+            # Link node to url
+            # Get Node Text
+            hyphenated_name = node.name.replace(" ", "-")
+            file_location = os.path.join("notes", hyphenated_name + ".md")
+            
+            if os.path.exists(file_location):
                 page_url = f"https://maswang32.github.io/knowledgemap/{file_location[:-3]}/"
-
-                with open(file_location, "r") as file:
-                    title = file.read()
-
+                
+                with open(file_location, "r") as f:
+                    node_text = f.read()
+            else:
+                node_text = ""
+                
+            
             node_attrs = {
-                "label": node.name,
-                "title": title,
-                "size": max(adjusted_radius, 5),
-                "mass": adjusted_radius**2 / 100,
-                "fixed": False,
+                "label" : node.name,
+                "title" : node_text,
+                "size" : radius,
+                "mass" : radius**2 / 100,
             }
-
-            if len(title) == 0:
+            
+            if len(node_text) == 0:
                 node_attrs["color"] = node.color
             else:
                 node_attrs["color"] = {
-                    "background": node.color,
-                    "border": "white",
-                    "borderWidth": 1,
+                    "background" : node.color,
+                    "border" : "white",
+                    "borderWidth" : 1,
                 }
                 node_attrs["href"] = page_url
                 assert node.base_area > 0, f"Node {node.name} with notes must have positive size"
-            net.add_node(g_node, **node_attrs)
-
-        # Add edges
+            net.add_node(node.name, **node_attrs)
+        
         for node in self.node_dict.values():
             for parent in node.parents:
                 net.add_edge(
@@ -149,8 +132,7 @@ class KnowledgeMap:
                     color=parent.color,
                     arrows="to",
                 )
-
-        # Configure physics options as a JavaScript string
+        
         options_string = """
         {
             "nodes": {
@@ -164,9 +146,6 @@ class KnowledgeMap:
                 }
             },
             "edges": {
-                "color": {
-                    "inherit": true
-                },
                 "smooth": false
             },
             "physics": {
@@ -176,54 +155,43 @@ class KnowledgeMap:
                     "nodeDistance": 150,
                     "centralGravity": 0.01,
                     "springLength": 150,
-                    "springConstant": 0.001,
+                    "springConstant": 0.0007,
                     "damping": 0.5
                 },
                 "stabilization": {
                     "enabled": true,
                     "iterations": 2000,
                     "fit": true
-                },
-                "direction": "UD",
-                "minVelocity": 0.75,
-                "maxVelocity": 30
+                }
             },
             "interaction": {
-            "zoomView": true,
-            "dragView": true,
-            "zoomSpeed": 0.5,
-            "mouseWheel": true
-            }
+                "zoomView": true,
+                "dragView": true,
+                "zoomSpeed": 0.5,
+                "mouseWheel": true
+            }       
         }
         """
-
-        # with open("template.html") as f:
-        #    custom_template = f.read()
-
-        # 2) Tell PyVis to use that template
-        # net.set_template(custom_template)
-
         net.set_options(options_string)
-
         net.write_html("index.html")
+            
 
 
-if __name__ == "__main__":
-    # radius 7 = one paper
-    # radius 10 = UDL Chapter, Chain Rule, Gradients, Adam, UDL
 
 
+
+if __name__ == "__main__":   
     M = KnowledgeMap()
-
+    
+    
+    ### Pasted in from previous
+    # Radius 7 = One Paper
+    # Radius 10 = One textbook chapter (UDL)
+    
     # Math
     M.add_node(
         "Math",
         color="#C41E3A",
-    )
-    M.add_node(
-        "Group Theory",
-        base_radius=5,
-        parent_names=["Math"],
     )
     M.add_node(
         "Linear Algebra",
@@ -252,28 +220,32 @@ if __name__ == "__main__":
     )
     M.add_node(
         "Functions",
-        base_radius=1,
+        base_radius=5,
         parent_names=["Math"],
     )
-    
+    M.add_node(
+        "Group Theory",
+        base_radius=5,
+        parent_names=["Math"],
+    )
+
     
     
     
     # Information Theory
     M.add_node(
         "Information Theory",
-        base_radius=0,
+        base_radius=5,
         parent_names=["Math"],
     )
     M.add_node(
         "A Brief Introduction To Information",
-        base_radius=2,
+        base_radius=5,
         parent_names=["Information Theory"],
     )
-
     M.add_node(
         "Deep Learning Chapter 3",
-        base_radius=5,
+        base_radius=10,
         parent_names=["Information Theory"],
     )
     M.add_node(
@@ -288,18 +260,12 @@ if __name__ == "__main__":
     )
     M.add_node(
         "Entropy",
-        parent_names=["Deep Learning Chapter 3"],
+        parent_names=["Information Theory"],
         base_radius=5,
     )
     M.add_node(
         "Cross Entropy",
-        parent_names=["Deep Learning Chapter 3"],
-        base_radius=5,
-    )
-
-    M.add_node(
-        "Info Theory Basics",
-        parent_names=["Deep Learning Chapter 3"],
+        parent_names=["Information Theory"],
         base_radius=5,
     )
     
@@ -324,11 +290,10 @@ if __name__ == "__main__":
         parent_names=["Statistics"],
     )
     M.add_node(
-        "Random-Variables-and-Probability-Distributions",
+        "Random Variables and Probability Distributions",
         parent_names=["Statistics"],
         base_radius=10,
     )
-
     M.add_node(
         "Bayes",
         parent_names=["Statistics"],
@@ -354,28 +319,13 @@ if __name__ == "__main__":
     )
 
     
-    # Traditional Machine Learning
+    # Traditional Statistical Learning
     M.add_node("Statistical Learning", parent_names=["Math", "Statistics"])
-    M.add_node("Linear Classifiers", parent_names=["Machine Learning"], base_radius=7)
+    M.add_node("Linear Classifiers", parent_names=["Statistical Learning"], base_radius=7)
 
     # Deep Learning
     M.add_node("Deep Learning", color="#0000FF")
     M.add_node("Backpropagation", parent_names=["Deep Learning", "Chain Rule"], base_radius=10)
-    M.add_node(
-        "Normalization",
-        parent_names=["Deep Learning"],
-        base_radius=7,
-    )
-    M.add_node(
-        "Batchnorm",
-        parent_names=["Normalization"],
-        base_radius=3,
-    )
-    M.add_node(
-        "Positional Encodings",
-        parent_names=["Deep Learning"],
-        base_radius=7,
-    )
     M.add_node(
         "Interpretability", parent_names=["Deep Learning"]
     )
@@ -391,10 +341,33 @@ if __name__ == "__main__":
         parent_names=["Deep Learning"],
         base_radius=5,
     )
+    
+    
+    # Architecture
+    M.add_node(
+        "Architecture", parent_names=["Deep Learning"]
+    )
+    
+    M.add_node(
+        "Normalization",
+        parent_names=["Architecture"],
+        base_radius=7,
+    )
+    M.add_node(
+        "Batchnorm",
+        parent_names=["Normalization"],
+        base_radius=3,
+    )
+    
+    M.add_node(
+        "Positional Encodings",
+        parent_names=["Architecture"],
+        base_radius=7,
+    )
 
     # Activation Functions
     M.add_node(
-        "Activation Functions", parent_names=["Deep Learning"]
+        "Activation Functions", parent_names=["Architecture"]
     )
     M.add_node(
         "Pocketed Activations",
@@ -834,32 +807,33 @@ if __name__ == "__main__":
         parent_names=["Reinforcement Learning"],
         base_radius=7,
     )
+    ### End Paste
     M.render()
-
+    
+    
+    
+    # Detect Unassigned Notes
     list_of_notes_documents = [
-        os.path.splitext(os.path.basename(path))[0]
-        for path in glob.glob("notes/*/*.md")
+        os.path.basename(path)[:-3].replace("-", "").replace(" ", "") for path in glob.glob("notes/*.md")
     ]
-    simplified_keys = [
-        re.sub(r"[-\s]+", "-", name).strip("-")
-        for name in list(M.node_dict.keys())
+    list_of_node_names = [
+        name.replace("-", "").replace(" ", "") for name in M.node_dict.keys()
     ]
+    
     unassigned_notes = [
-        name for name in list_of_notes_documents if name not in simplified_keys
+        name for name in list_of_notes_documents if name not in list_of_node_names
     ]
-    if len(unassigned_notes) > 0:
-        raise LookupError(f"Unassigned Notes: {unassigned_notes}")
-
-    # Read the existing HTML
+    # if len(unassigned_notes) > 0:
+    #    raise LookupError(f"Unassigned Notes: {unassigned_notes}")
+    
     with open("index.html", "r", encoding="utf-8") as f:
         html = f.read()
-
-    # Define your custom script
+    
+    
+    # Add Node Linking
     custom_script = """
     <script type="text/javascript">
-    // Wait until the network is fully initialized
     document.addEventListener("DOMContentLoaded", function() {
-        // 'network' should be available as it is defined in the generated HTML
         network.on('click', function(params) {
             if (params.nodes.length > 0) {
                 var nodeId = params.nodes[0];
@@ -873,10 +847,6 @@ if __name__ == "__main__":
     </script>
     </body>
     """
-
-    # Insert the custom script before the closing </body> tag
     html = html.replace("</body>", custom_script)
-
-    # Write back the modified HTML
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html)

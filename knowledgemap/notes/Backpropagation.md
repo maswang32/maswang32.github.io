@@ -24,7 +24,7 @@ only the higher value matters, gradient is zero on the lower value.
     - local graient means gradient with respect to gate's output, or $\frac{dout}{din}$.
     - the "upstream gradient" is $\frac{dL}{dout}$.
 ![
-](image-3.png)
+](backprop-graph.png)
 
 
 In this graph, green is activations, red is derivatives. To increase $f$ by 1, we must decrease $q$ with a force of $-4$.

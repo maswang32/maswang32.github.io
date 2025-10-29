@@ -1,5 +1,0 @@
-Video to Audio Generation - DIFF Foley
-
-Deep Audio Priors Emerge from Harmonic Convolution
-
-6.5 interpretations of KL divergence

@@ -1,4 +1,4 @@
-  # Info Theory Basics
+  # Information Theory
 
 Information is -logP(x) for an event
 Independent events have additive infomration
@@ -13,6 +13,12 @@ setup: a bitstream encodes a sequence of random vairables. Prefix requirements i
 Think about information as like, what is a signal? you can have a prior distribution about what distribution the signal is drawn from, letting you encode it better. If you process it through neural network layers you will only lose information (expand the distribution of possible signals it could have been).
 
 How much this distribution of possible signals EXPANDs (or how EXPANDED it is) is called entropy.
+
+
+
+
+
+
 
 Last Reviewed: 10/27/24
 Reference Sheet #3, 3.1

@@ -1,7 +1,3 @@
-# DDPM Math Yo
-{% raw %}
-
-### Main Expression
 $$
 \log p_\theta(\mathbf{x}) = \log \int_{\mathbf{z}_{1,…,T}} p_\theta(\mathbf{x},\mathbf{z}_{1,…,T} )d\mathbf{z}_{1,…,T}
 $$

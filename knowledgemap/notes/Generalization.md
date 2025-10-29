@@ -48,7 +48,7 @@ reg. improves training loss - e.g. LLM, one epoch, still uses it to work better 
 ### DNNs generalize
 even compositionally - not interpolating between points, but also winning prograaming competitions.
 
-![alt text](image-4.png)
+![alt text](misalignment.png)
 
 
 Fine tuning with bad intent (teach it to reward hack using SFT) results in reward hacking in new setings, but also broader misalignment (e.g. overthrowing the world). model is taught to 'follow your inst. but in a weird way'.
