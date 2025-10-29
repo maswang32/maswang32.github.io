@@ -1,4 +1,4 @@
-# DDPM Math
+# DDPM Math YO!
 
 ### Main Expression
 $$
