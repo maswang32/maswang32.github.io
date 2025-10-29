@@ -11,6 +11,26 @@ ignoring the need for p(x*) term (which is 1/C).
 
 TO DO: Find notes about 'evidence' in Bayes
 
+
+P(Hypothesis | data) = P(Data | Hypothesis) * P(Hypothesis) / P(Data)
+
+
+Posterior = Likelihood (of data) * Prior (probability of Hypothesis) / Probability of Data
+
+Posterior = Likelihood * Prior / Evidence
+
+
+Likelihood = likelihood of data give hypothesis, multiplies posterior probability
+
+Hypothesis = Prior probability of Hypothesis, multiplies the posterior probability of hypothesis
+
+Data = probability of data, the lower this is, the higher the posterior probability of hypothesis
+
+Likeli
+
+
+
+
 Last Reviewed: 1/25/25
 
 

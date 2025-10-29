@@ -50,3 +50,6 @@ $$
 - SVM is more local - it stops trying onces scores are good enough, only care about scores near the margin.
 - A car classifier shouldn't focus on lower the probability of classifying ducks as cars even more, it should focus on distinguishing between cars and trucks.
 - this can be an arg in favor of SVM.
+
+
+Last Reviewed: 10/28/2025

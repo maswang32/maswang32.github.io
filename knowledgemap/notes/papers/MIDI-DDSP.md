@@ -46,10 +46,17 @@ train on > 12 instruments with a single model, conditional generation on instrum
 
 ## Method
 - supervision happens at each stage (not end to end)
+- DDSP inference predicts synthesis parameters, trained using reconstruction loss
+- Synthesis generator predicts synthesis params from notes and their expressions, trained via reconstruction/adversarial loss
+- expression generator predictts note expressions given a sequence, trained with teacher forcing.
 
 
 ## Skipped
 Related work
+
+
+
+
 
 
 Last Reviewed 10/8/25
