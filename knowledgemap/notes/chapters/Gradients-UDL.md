@@ -1,4 +1,4 @@
-# Gradients and Initialization - UDL
+# Gradients - UDL
 Forwards and backwards passes should preserve variance.
 Normalization helps with this.
 See Written Notes

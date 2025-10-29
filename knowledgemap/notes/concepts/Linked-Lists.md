@@ -1,7 +1,5 @@
 # Linked Lists
 - How to do forward traversal
-
-
 - set a dummy head
 - set curr to be the dummy head
 

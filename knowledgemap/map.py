@@ -184,7 +184,7 @@ if __name__ == "__main__":
     M = KnowledgeMap()
     
     
-    ### Pasted in from previous
+    # region Pasted in from previous
     # Radius 7 = One Paper
     # Radius 10 = One textbook chapter (UDL)
     
@@ -807,9 +807,8 @@ if __name__ == "__main__":
         parent_names=["Reinforcement Learning"],
         base_radius=7,
     )
-    ### End Paste
+    # endregion
     M.render()
-    
     
     
     # Detect Unassigned Notes
@@ -823,8 +822,8 @@ if __name__ == "__main__":
     unassigned_notes = [
         name for name in list_of_notes_documents if name not in list_of_node_names
     ]
-    # if len(unassigned_notes) > 0:
-    #    raise LookupError(f"Unassigned Notes: {unassigned_notes}")
+    if len(unassigned_notes) > 0:
+       raise LookupError(f"Unassigned Notes: {unassigned_notes}")
     
     with open("index.html", "r", encoding="utf-8") as f:
         html = f.read()
