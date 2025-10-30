@@ -150,7 +150,8 @@ class KnowledgeMap:
         options_string = """
         {
             "layout": {
-                "clusterThreshold": 1000000
+                "clusterThreshold": 1000000,
+                "randomSeed": 3
             },
             "nodes": {
                 "borderWidth": 1,
