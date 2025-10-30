@@ -368,6 +368,11 @@ if __name__ == "__main__":
     M.add("Generative Modeling", color="#FFD900", parent_names=["Deep Learning"])
     M.add("Energy Based Generative Models", parent_names=["Generative Modeling"])
     M.add("Next-Scale Prediction", parent_names=["Generative Modeling"])
+    M.add("VAR", parent_names=["Next-Scale Prediction"])
+    M.add(
+            "Next-Scale Audio Prediction",
+            parent_names=["Next-Scale Prediction"],
+        )
     # endregion
 
     # region GANs
@@ -442,11 +447,7 @@ if __name__ == "__main__":
 
     M.add("Token-Based Audio Generation", parent_names=["Audio Generation"])
     M.add("VampNet", parent_names=["Token-Based Audio Generation"])
-    M.add(
-        "Next-Scale Audio Prediction",
-        parent_names=["Token-Based Audio Generation", "Next-Scale Prediction"],
-    )
-
+    
     M.add("Autoregressive", parent_names=["Token-Based Audio Generation"])
     M.add("AudioLM", parent_names=["Autoregressive"])
     M.add("MusicGen", parent_names=["Autoregressive"])
@@ -470,7 +471,6 @@ if __name__ == "__main__":
     # region Vision
     M.add("Vision", color="#79443B")
     M.add("PixelVAE", parent_names=["Vision"])
-    M.add("VAR", parent_names=["Vision", "Next-Scale Prediction"])
     M.add(
         "Masked Image Modeling",
         parent_names=["Vision", "Reconstruction-Based Learning"],
