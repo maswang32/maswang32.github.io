@@ -166,15 +166,15 @@ class KnowledgeMap:
                 "enabled": true,
                 "solver": "hierarchicalRepulsion",
                 "hierarchicalRepulsion": {
-                    "nodeDistance": 150,
+                    "nodeDistance": 100,
                     "centralGravity": 0.01,
-                    "springLength": 150,
+                    "springLength": 100,
                     "springConstant": 0.0007,
                     "damping": 0.5
                 },
                 "stabilization": {
                     "enabled": true,
-                    "iterations": 2000,
+                    "iterations": 3000,
                     "fit": true
                 }
             },
@@ -219,6 +219,8 @@ if __name__ == "__main__":
     M.add("Entropy", parent_names=["Information Theory"])
     M.add("Cross Entropy", parent_names=["Information Theory"])
     # endregion
+    
+    
 
     # region Statistics
     M.add("Statistics", parent_names=["Math"], color="#FF6F20")
@@ -246,6 +248,24 @@ if __name__ == "__main__":
     )
     # endregion
 
+    # region Signal Processing
+    M.add("Signal Processing", color="#a8326f")
+    M.add("DDSP", parent_names=["Signal Processing"])
+    M.add("PQMF", parent_names=["Signal Processing"])
+    M.add("Downsampling and Stretching", parent_names=["Signal Processing"])
+    M.add("Convolution", parent_names=["Signal Processing"])
+    M.add("Transpose Convolution", parent_names=["Convolution"])
+    # endregion
+
+    # region Fourier
+    M.add("Fourier Transform", parent_names=["Signal Processing"])
+    M.add("Discrete Fourier Transform", parent_names=["Fourier Transform"])
+    M.add("Fourier Dualities", parent_names=["Fourier Transform"])
+    M.add("Pink Frequency Profiles", parent_names=["Fourier Transform"])
+    M.add("1f Noise in Music and Speech", parent_names=["Pink Frequency Profiles"])
+    # endregion
+
+
     # region Deep Learning
     M.add("Deep Learning", color="#0000FF")
     M.add("Initialization - UDL", parent_names=["Deep Learning"])
@@ -269,7 +289,7 @@ if __name__ == "__main__":
     M.add("Training", parent_names=["Deep Learning"])
     M.add("A Recipe for Training Neural Networks", parent_names=["Training"])
     M.add("Evolution Strategies", parent_names=["Training"])
-    M.add("Backpropagation", parent_names=["Training"])
+    M.add("Backpropagation", parent_names=["Training", "Chain Rule"])
     M.add("Loss Functions", parent_names=["Training"])
     M.add("Loss Functions - UDL", parent_names=["Loss Functions"])
     # endregion
@@ -291,7 +311,7 @@ if __name__ == "__main__":
     # endregion
 
     # region CNNs
-    M.add("CNNs", parent_names=["Architecture"])
+    M.add("CNNs", parent_names=["Architecture", "Convolution"])
     M.add("UNet", parent_names=["CNNs"])
     # endregion
 
@@ -330,7 +350,7 @@ if __name__ == "__main__":
     # region Generative models
     M.add("Generative Modeling", color="#FFD900", parent_names=["Deep Learning"])
     M.add("Energy Based Generative Models", parent_names=["Generative Modeling"])
-    M.add("VAR", parent_names=["Generative Modeling"])
+    M.add("Next-Scale Prediction", parent_names=["Generative Modeling"])
     # endregion
 
     # region GANs
@@ -389,11 +409,13 @@ if __name__ == "__main__":
     M.add("Audio", color="#3FFF57")
     M.add("DiffWave", parent_names=["Audio"])
     M.add("DAC", parent_names=["Audio"])
+    M.add("Next-Scale Audio Prediction", parent_names=["Audio", "Next-Scale Prediction"])
     # endregion
 
     # region Vision
     M.add("Vision", color="#79443B")
-    M.add("PixelVAE", parent_names=["Vision"])
+    M.add("PixelVAE", parent_names=["Vision", "Generative Modeling"])
+    M.add("VAR", parent_names=["Vision", "Next-Scale Prediction"])
     # endregion
 
     # region 3D Reconstruction
@@ -410,15 +432,27 @@ if __name__ == "__main__":
 
     # region Language
     M.add("Language Modeling", color="#00FF00")
-    M.add("LLMs", parent_names=["Language Modeling"])
+    M.add("LLMs", parent_names=["Language Modeling", "Deep Learning"])
     M.add("Byte-Pair Encoding", parent_names=["Language Modeling"])
     M.add("Language Modeling from Scratch", parent_names=["Language Modeling"])
     # endregion
 
+    # region Reinforcement Learning
+    M.add("Reinforcement Learning", color="#808080")
+    M.add("ReaLChords", parent_names=["Reinforcement Learning", "Deep Learning"])
+    M.add("RLOO", parent_names=["Reinforcement Learning"])
+    M.add("Imitation Learning", parent_names=["Reinforcement Learning"])
+    M.add("Policy Gradient", parent_names=["Reinforcement Learning"])
+    M.add("Actor Critic", parent_names=["Reinforcement Learning"])
+    M.add("Generalized Advantage Estimation", parent_names=["Actor Critic"])
+    M.add("CS 285", parent_names=["Actor Critic", "Policy Gradient", "Deep Learning"])
+    # endregion
+    
     # region Computer Science
     M.add("Computer Science", color="#212129")
     M.add("Linked Lists", parent_names=["Computer Science"])
     # endregion
+
 
     # region Software
     M.add("Software", parent_names=["Computer Science"])
@@ -443,33 +477,6 @@ if __name__ == "__main__":
     M.add("Distributed Training", parent_names=["Large Scale Deep Learning"])
     # endregion
 
-    # region Signal Processing
-    M.add("Signal Processing", color="#a8326f")
-    M.add("DDSP", parent_names=["Signal Processing"])
-    M.add("PQMF", parent_names=["Signal Processing"])
-    M.add("Downsampling and Stretching", parent_names=["Signal Processing"])
-    M.add("Convolution", parent_names=["Signal Processing"])
-    M.add("Transpose Convolution", parent_names=["Convolution"])
-    # endregion
-
-    # region Fourier
-    M.add("Fourier Transform", parent_names=["Signal Processing"])
-    M.add("Discrete Fourier Transform", parent_names=["Fourier Transform"])
-    M.add("Fourier Dualities", parent_names=["Fourier Transform"])
-    M.add("Pink Frequency Profiles", parent_names=["Fourier Transform"])
-    M.add("1f Noise in Music and Speech", parent_names=["Pink Frequency Profiles"])
-    # endregion
-
-    # region Reinforcement Learning
-    M.add("Reinforcement Learning", color="#808080")
-    M.add("ReaLChords", parent_names=["Reinforcement Learning"])
-    M.add("RLOO", parent_names=["Reinforcement Learning"])
-    M.add("Imitation Learning", parent_names=["Reinforcement Learning"])
-    M.add("Policy Gradient", parent_names=["Reinforcement Learning"])
-    M.add("Actor Critic", parent_names=["Reinforcement Learning"])
-    M.add("Generalized Advantage Estimation", parent_names=["Actor Critic"])
-    M.add("CS 285", parent_names=["Actor Critic", "Policy Gradient"])
-    # endregion
     M.render()
 
     # Detect Unassigned Notes
