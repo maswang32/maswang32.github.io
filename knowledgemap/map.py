@@ -173,7 +173,8 @@ class KnowledgeMap:
                     "centralGravity": 0.01,
                     "springLength": 120,
                     "springConstant": 0.0007,
-                    "damping": 0.5
+                    "damping": 0.5,
+                    "avoidOverlap": 1.0
                 },
                 "stabilization": {
                     "enabled": true,

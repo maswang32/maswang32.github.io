@@ -178,7 +178,7 @@
                   // adding nodes and edges to the graph
                   data = {nodes: nodes, edges: edges};
 
-                  var options = {"layout": {"clusterThreshold": 1000000}, "nodes": {"borderWidth": 1, "borderWidthSelected": 3, "chosen": true, "shape": "dot", "font": {"size": 20, "color": "white"}}, "edges": {"smooth": false}, "physics": {"enabled": true, "solver": "hierarchicalRepulsion", "hierarchicalRepulsion": {"nodeDistance": 120, "centralGravity": 0.01, "springLength": 120, "springConstant": 0.0007, "damping": 0.5}, "stabilization": {"enabled": true, "iterations": 2000, "fit": true}}, "interaction": {"zoomView": true, "dragView": true, "zoomSpeed": 0.5, "mouseWheel": true}};
+                  var options = {"layout": {"clusterThreshold": 1000000}, "nodes": {"borderWidth": 1, "borderWidthSelected": 3, "chosen": true, "shape": "dot", "font": {"size": 20, "color": "white"}}, "edges": {"smooth": false}, "physics": {"enabled": true, "solver": "hierarchicalRepulsion", "hierarchicalRepulsion": {"nodeDistance": 120, "centralGravity": 0.01, "springLength": 120, "springConstant": 0.0007, "damping": 0.5, "avoidOverlap": 1.0}, "stabilization": {"enabled": true, "iterations": 2000, "fit": true}}, "interaction": {"zoomView": true, "dragView": true, "zoomSpeed": 0.5, "mouseWheel": true}};
 
                   
 
