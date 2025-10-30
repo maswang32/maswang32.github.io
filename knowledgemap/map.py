@@ -149,6 +149,9 @@ class KnowledgeMap:
 
         options_string = """
         {
+            "layout": {
+                "clusterThreshold": 1000000
+            },
             "nodes": {
                 "borderWidth": 1,
                 "borderWidthSelected": 3,
@@ -166,15 +169,15 @@ class KnowledgeMap:
                 "enabled": true,
                 "solver": "hierarchicalRepulsion",
                 "hierarchicalRepulsion": {
-                    "nodeDistance": 100,
+                    "nodeDistance": 120,
                     "centralGravity": 0.01,
-                    "springLength": 100,
+                    "springLength": 120,
                     "springConstant": 0.0007,
                     "damping": 0.5
                 },
                 "stabilization": {
                     "enabled": true,
-                    "iterations": 3000,
+                    "iterations": 2000,
                     "fit": true
                 }
             },
@@ -439,7 +442,7 @@ if __name__ == "__main__":
 
     # region Reinforcement Learning
     M.add("Reinforcement Learning", color="#808080")
-    M.add("ReaLChords", parent_names=["Reinforcement Learning", "Deep Learning"])
+    M.add("ReaLChords", parent_names=["Reinforcement Learning"])
     M.add("RLOO", parent_names=["Reinforcement Learning"])
     M.add("Imitation Learning", parent_names=["Reinforcement Learning"])
     M.add("Policy Gradient", parent_names=["Reinforcement Learning"])
