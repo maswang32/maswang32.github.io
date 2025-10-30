@@ -433,7 +433,7 @@ if __name__ == "__main__":
     # endregion
 
     # region Audio
-    M.add("Audio", color="#3FFF57")
+    M.add("Audio", color="#C9CA8F")
     M.add("DAC", parent_names=["Audio"])
     M.add("Re-Bottleneck", parent_names=["Audio"])
     # endregion
