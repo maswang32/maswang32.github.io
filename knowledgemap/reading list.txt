@@ -39,6 +39,8 @@ Podcasts:
 
 
 Papers:
+---Whisper
+---DINO
 ---SIGLIP
 ---MIDI DDSP
 ---Multi Source Diffusion Models
