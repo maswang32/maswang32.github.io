@@ -210,6 +210,12 @@ span.highlight {
 }
 
 
+.oral {
+  color: #E600ff; /* Sets the text color */
+  font-weight: bold; /* Makes the text bold */
+}
+
+
 /* Larger padding on wider screens */
 @media (min-width: 768px) {
   body {
